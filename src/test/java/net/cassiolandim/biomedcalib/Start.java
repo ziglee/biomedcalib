@@ -5,6 +5,9 @@ import org.mortbay.jetty.Server;
 import org.mortbay.jetty.bio.SocketConnector;
 import org.mortbay.jetty.webapp.WebAppContext;
 
+/**
+ * @author Cássio Landim
+ */
 public class Start {
 
 	public static void main(String[] args) throws Exception {

@@ -5,6 +5,8 @@ import org.apache.wicket.util.tester.WicketTester;
 
 /**
  * Simple test using the WicketTester
+ * 
+ * @author Cássio Landim
  */
 public class TestHomePage extends TestCase
 {
