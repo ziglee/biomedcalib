@@ -1,4 +1,4 @@
-package net.cassiolandim.biomedcalib;
+package net.cassiolandim.biomedcalib.web.page;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;

@@ -1,25 +1,29 @@
 package net.cassiolandim.biomedcalib;
 
-import junit.framework.TestCase;
+import net.cassiolandim.biomedcalib.web.WicketApplication;
+import net.cassiolandim.biomedcalib.web.page.HomePage;
+
+import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
 import org.apache.wicket.util.tester.WicketTester;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Simple test using the WicketTester
  * 
  * @author Cássio Landim
  */
-public class TestHomePage extends TestCase
-{
+public class TestHomePage {
 	private WicketTester tester;
 
-	@Override
-	public void setUp()
-	{
+	@Before
+	public void setUp(){
 		tester = new WicketTester(new WicketApplication());
 	}
 
-	public void testRenderMyPage()
-	{
+	@Test
+	public void testRenderMyPage(){
 		//start and render the test page
 		tester.startPage(HomePage.class);
 

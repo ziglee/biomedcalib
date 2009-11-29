@@ -1,4 +1,6 @@
-package net.cassiolandim.biomedcalib;
+package net.cassiolandim.biomedcalib.web;
+
+import net.cassiolandim.biomedcalib.web.page.HomePage;
 
 import org.apache.wicket.protocol.http.WebApplication;
 

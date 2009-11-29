@@ -5,6 +5,7 @@
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="var" path="M2_REPO/junit/junit/4.4/junit-4.4.jar" sourcepath="M2_REPO/junit/junit/4.4/junit-4.4-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.14/log4j-1.2.14.jar" sourcepath="M2_REPO/log4j/log4j/1.2.14/log4j-1.2.14-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-math/2.0-SNAPSHOT/commons-math-2.0-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket/1.4.3/wicket-1.4.3.jar" sourcepath="M2_REPO/org/apache/wicket/wicket/1.4.3/wicket-1.4.3-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar" sourcepath="M2_REPO/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-extensions/1.4.3/wicket-extensions-1.4.3.jar" sourcepath="M2_REPO/org/apache/wicket/wicket-extensions/1.4.3/wicket-extensions-1.4.3-sources.jar"/>
