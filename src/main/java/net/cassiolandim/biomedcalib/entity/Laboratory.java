@@ -1,7 +1,7 @@
 package net.cassiolandim.biomedcalib.entity;
 
 /**
- * @author Cássio Landim
+ * @author Cassio Landim
  */
 public class Laboratory {
 

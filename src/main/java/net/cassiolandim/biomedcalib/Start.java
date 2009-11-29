@@ -7,7 +7,7 @@ import org.mortbay.jetty.webapp.WebAppContext;
 
 /**
  * Seperate startup class for people that want to run the app directly.
- * @author Cássio Landim
+ * @author Cassio Landim
  */
 public class Start {
 	

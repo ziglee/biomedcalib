@@ -9,7 +9,7 @@ import org.junit.Test;
 /**
  * Simple test using the WicketTester
  * 
- * @author Cássio Landim
+ * @author Cassio Landim
  */
 public class TestHomePage {
 	private WicketTester tester;

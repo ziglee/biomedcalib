@@ -1,7 +1,7 @@
 package net.cassiolandim.biomedcalib.math;
 
 /**
- * @author Cássio Landim
+ * @author Cassio Landim
  */
 public class CoeffientOfVariation {
 

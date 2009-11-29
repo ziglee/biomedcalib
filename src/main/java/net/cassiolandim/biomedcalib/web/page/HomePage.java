@@ -7,7 +7,7 @@ import org.apache.wicket.markup.html.WebPage;
 /**
  * Homepage
  * 
- * @author Cássio Landim
+ * @author Cassio Landim
  */
 public class HomePage extends WebPage {
 

@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @author Cássio Landim
+ * @author Cassio Landim
  */
 public class TestStandardDeviation {
 	
