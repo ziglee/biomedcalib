@@ -1,11 +1,8 @@
-package net.cassiolandim.biomedcalib;
+package net.cassiolandim.biomedcalib.web.page;
 
 import net.cassiolandim.biomedcalib.web.WicketApplication;
-import net.cassiolandim.biomedcalib.web.page.HomePage;
 
-import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
 import org.apache.wicket.util.tester.WicketTester;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
