@@ -5,4 +5,7 @@ package net.cassiolandim.biomedcalib.entity;
  */
 public class User {
 
+	public String name;
+	public Laboratory laboratory;
+	
 }

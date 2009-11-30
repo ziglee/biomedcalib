@@ -13,7 +13,7 @@ import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
 
 public class MeasuresPerLevel {
 
-	private ControlSerum controlSerum;
+	public ControlSerum controlSerum;
 	private List<Measure> measures;
 	
 	public MeasuresPerLevel() {
