@@ -6,7 +6,7 @@ package net.cassiolandim.biomedcalib.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.cassiolandim.biomedcalib.math.CoeffientOfVariation;
+import net.cassiolandim.biomedcalib.math.MyMath;
 
 import org.apache.commons.math.stat.descriptive.moment.Mean;
 import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
@@ -47,7 +47,6 @@ public class MeasuresPerLevel {
 	}
 
 	public double getCofficientOfVariation() {
-		CoeffientOfVariation cv = new CoeffientOfVariation(getMean(), getStandardDeviation());
-		return cv.getResult();
+		return MyMath.coeffientOfVariation(getStandardDeviation(), getMean());
 	}
 }
