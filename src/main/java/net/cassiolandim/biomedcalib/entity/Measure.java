@@ -5,5 +5,13 @@ package net.cassiolandim.biomedcalib.entity;
  */
 public class Measure {
 
-	public Long value;
+	private Long value;
+	
+	public Measure(long value) {
+		this.value = value;
+	}
+	
+	public Long getValue() {
+		return value;
+	}
 }
