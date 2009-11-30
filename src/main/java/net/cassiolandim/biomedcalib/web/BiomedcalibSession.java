@@ -4,6 +4,9 @@ import org.apache.wicket.Request;
 import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebSession;
 
+/**
+ * @author Cassio Landim
+ */
 public class BiomedcalibSession extends WebSession {
 
 	private static final long serialVersionUID = 1L;

@@ -10,6 +10,9 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.context.ApplicationContext;
 
+/**
+ * @author Cassio Landim
+ */
 public abstract class BaseBiomedcalibApplication extends WebApplication {
 
 	@Override
