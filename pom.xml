@@ -33,7 +33,7 @@
 
 	<developers>
 		<developer>
-			<name>C�ssio Landim Ribeiro</name>
+			<name>Cassio Landim Ribeiro</name>
 			<id>cassiolandim</id>
 			<email>ziglee at gmail.com</email>
 		</developer>
@@ -190,8 +190,6 @@
 			<version>2.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
-	
-	
 
 	<build>
 		<resources>
@@ -274,4 +272,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	</project>
+</project>
