@@ -1,6 +1,6 @@
 package net.cassiolandim.biomedcalib.web.page;
 
-import net.cassiolandim.biomedcalib.web.BiomedcalibApplication;
+import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -16,7 +16,7 @@ public class TestHomePage {
 
 	@Before
 	public void setUp(){
-		tester = new WicketTester(new BiomedcalibApplication());
+		tester = new BiomedcalibWicketTester();
 	}
 
 	@Test
