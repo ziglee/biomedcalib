@@ -1,33 +1,36 @@
 package net.cassiolandim.biomedcalib.web.page;
 
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
+import net.cassiolandim.biomedcalib.web.page.measure.NewMeasurePage;
 
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Simple test using the WicketTester
- * 
  * @author Cassio Landim
  */
 public class TestHomePage {
+	
 	private WicketTester tester;
 
 	@Before
 	public void setUp(){
 		tester = new BiomedcalibWicketTester();
+		tester.startPage(HomePage.class);
 	}
 
 	@Test
 	public void testRenderMyPage(){
-		//start and render the test page
-		tester.startPage(HomePage.class);
-
-		//assert rendered page class
 		tester.assertRenderedPage(HomePage.class);
-
-		//assert rendered label component
 		tester.assertLabel("message", "If you see this message wicket is properly configured and running");
+	}
+	
+	@Test
+	public void testClickNewMeasureLink(){
+		tester.assertComponent("newMeasureLink", Link.class);
+		tester.clickLink("newMeasureLink");
+		tester.assertRenderedPage(NewMeasurePage.class);
 	}
 }
