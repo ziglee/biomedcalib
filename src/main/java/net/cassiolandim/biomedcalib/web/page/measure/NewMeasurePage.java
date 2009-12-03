@@ -2,13 +2,13 @@ package net.cassiolandim.biomedcalib.web.page.measure;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
+import net.cassiolandim.biomedcalib.web.page.BasePage;
 
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.PropertyModel;
 
-public class NewMeasurePage extends WebPage {
+public class NewMeasurePage extends BasePage {
 
 	MeasuresAggregate measuresAggregate;
 	

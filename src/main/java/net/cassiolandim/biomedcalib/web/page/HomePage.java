@@ -3,14 +3,13 @@ package net.cassiolandim.biomedcalib.web.page;
 import net.cassiolandim.biomedcalib.web.page.measure.NewMeasurePage;
 
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 
 /**
  * Homepage
  * @author Cassio Landim
  */
-public class HomePage extends WebPage {
+public class HomePage extends BasePage {
 
 	private static final long serialVersionUID = 1L;
 
