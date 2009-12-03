@@ -24,7 +24,6 @@ public class TestHomePage {
 	@Test
 	public void testRenderMyPage(){
 		tester.assertRenderedPage(HomePage.class);
-		tester.assertLabel("message", "If you see this message wicket is properly configured and running");
 	}
 	
 	@Test

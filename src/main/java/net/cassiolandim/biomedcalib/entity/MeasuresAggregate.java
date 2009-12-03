@@ -13,6 +13,7 @@ public class MeasuresAggregate implements Serializable {
 	public MeasuresPerLevel measures1;
 	public MeasuresPerLevel measures2;
 	public MeasuresPerLevel measures3;
+	public String observation;
 	
 	public MeasuresAggregate(Laboratory laboratory) {
 		this.laboratory = laboratory;

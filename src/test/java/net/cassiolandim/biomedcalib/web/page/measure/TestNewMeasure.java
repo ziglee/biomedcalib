@@ -2,6 +2,8 @@ package net.cassiolandim.biomedcalib.web.page.measure;
 
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +24,12 @@ public class TestNewMeasure {
 	}
 	
 	@Test
-	public void testeUserName(){
-		tester.assertModelValue("laboratory.name", "CAPC");
+	public void testForm(){
+		tester.assertComponent("form", Form.class);
+	}
+	
+	@Test
+	public void testLaboratory(){
+		tester.assertComponent("form:laboratory.name", Label.class);
 	}
 }
