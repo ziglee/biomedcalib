@@ -1,0 +1,23 @@
+package net.cassiolandim.biomedcalib.sampleDataGeneration;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.cassiolandim.biomedcalib.entity.Laboratory;
+import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
+
+public class LaboratoryDataGenerator {
+
+	private static final String[] NAMES = { "CAPC" , "Atalaia" };
+	
+	public static List<Laboratory> generateData(LaboratorySimplePersistableService laboratoryService){
+		List<Laboratory> list = new ArrayList<Laboratory>();
+		for (int i = 0; i < NAMES.length; i++) {
+			Laboratory laboratory = new Laboratory();
+			laboratory.setName(NAMES[i]);
+			laboratoryService.persist(laboratory);
+			list.add(laboratory);
+		}
+		return list;
+	}
+}
