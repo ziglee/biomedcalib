@@ -24,7 +24,7 @@ public class BiomedcalibSession extends WebSession {
 		return (BiomedcalibSession)Session.get();
 	}
 
-	public User getUser() {
+	public synchronized User getUser() {
 		return user;
 	}
 }

@@ -1,14 +1,37 @@
 package net.cassiolandim.biomedcalib.entity;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * @author Cassio Landim
  */
-public class Laboratory implements Serializable {
+@Entity
+public class Laboratory extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
-	
-	public String name;
-	
+
+	private Long id;
+	private String name;
+
+	@Id
+	@Column(name="laboratory_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Column(nullable=false,length=150)
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 }

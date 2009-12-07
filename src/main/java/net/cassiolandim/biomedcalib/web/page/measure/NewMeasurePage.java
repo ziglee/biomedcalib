@@ -14,7 +14,7 @@ public class NewMeasurePage extends BasePage {
 	
 	public NewMeasurePage() {
 		Laboratory laboratory = new Laboratory();
-		laboratory.name = "CAPC";
+		laboratory.setName("CAPC");
 		measuresAggregate = new MeasuresAggregate(laboratory);
 
 		Form form = new Form("form");

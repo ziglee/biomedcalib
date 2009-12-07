@@ -1,5 +1,6 @@
 package net.cassiolandim.biomedcalib.web;
 
+import net.cassiolandim.biomedcalib.web.page.AdminPage;
 import net.cassiolandim.biomedcalib.web.page.HomePage;
 
 import org.apache.wicket.Page;
@@ -25,6 +26,7 @@ public abstract class BaseBiomedcalibApplication extends WebApplication {
 		super.init();
 		addComponentInstantiationListener(new SpringComponentInjector(this, context()));
 		getMarkupSettings().setStripWicketTags(true);
+		mountBookmarkablePage("admin", AdminPage.class);
 	}
 	
 	@Override

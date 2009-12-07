@@ -8,6 +8,8 @@
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<import resource="classpath:dataSource.xml" />
 
 	<bean id="placeholderConfig"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -18,7 +20,61 @@
 			<value>SYSTEM_PROPERTIES_MODE_OVERRIDE</value>
 		</property>
 	</bean>
-	
+
+	<!-- JPA EntityManagerFactory -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		p:dataSource-ref="dataSource">
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="true" />
+				<property name="generateDdl" value="true" />
+				<property name="databasePlatform" value="${hibernate.dialect}" />
+			</bean>
+		</property>
+	</bean>
+
+	<!--
+		Transaction manager for a single JPA EntityManagerFactory (alternative
+		to JTA)
+	-->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory" />
+
+	<tx:annotation-driven />
+
+	<!--**** Revere Group DAO Setup ****-->
+	<!--
+		Need one search processor and one metadata util per persistence unit
+		(i.e. EntityManagerFactory). We're wiring these to the Generic DAOs
+		using an autowire annotation in BaseDAO.
+	-->
+	<bean id="metadataUtil" class="com.trg.search.jpa.hibernate.HibernateMetadataUtil"
+		factory-method="getInstanceForEntityManagerFactory">
+		<constructor-arg ref="entityManagerFactory" />
+	</bean>
+	<bean id="searchProcessor" class="com.trg.search.jpa.JPASearchProcessor">
+		<constructor-arg ref="metadataUtil" />
+	</bean>
+
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+		
+		
+	<bean id="laboratoryDao"
+		class="net.cassiolandim.biomedcalib.dao.LaboratoryHibernateJpaDao"
+		autowire="byName" />
+		
+	<bean id="laboratorySimplePersistableService"
+		class="net.cassiolandim.biomedcalib.service.LaboratorySimplePersistenceService"
+		autowire="byName" />
+		
+	<!--
+		setup data generator that will add some data into the db when the app
+		starts up
+	-->
+	<bean id="dataGenerator" class="net.cassiolandim.biomedcalib.sampleDataGeneration.DataGenerator" autowire="byName" />
+		
 	<!-- setup wicket application -->
 	<bean id="wicketApplication" class="net.cassiolandim.biomedcalib.web.BiomedcalibApplication">
 	</bean>
