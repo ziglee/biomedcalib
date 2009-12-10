@@ -8,7 +8,7 @@ import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
 
 public class LaboratoryDataGenerator {
 
-	private static final String[] NAMES = { "CAPC" , "Atalaia" };
+	private static final String[] NAMES = { "CAPC" , "Atalaia", "Padrão", "INGOH", "Saluti", "Citocenter" };
 	
 	public static List<Laboratory> generateData(LaboratorySimplePersistableService laboratoryService){
 		List<Laboratory> list = new ArrayList<Laboratory>();

@@ -8,6 +8,8 @@ import net.cassiolandim.biomedcalib.entity.Laboratory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.trg.search.Search;
+
 @Transactional
 public class LaboratorySimplePersistenceService implements LaboratorySimplePersistableService {
 
@@ -23,7 +25,9 @@ public class LaboratorySimplePersistenceService implements LaboratorySimplePersi
 	}
 
 	public List<Laboratory> findAll() {
-		return laboratoryDao.findAll();
+		Search search = new Search();
+		search.addSort("name", false, true);
+		return laboratoryDao.search(search);
 	}
 
 	public void persist(Laboratory entity) {

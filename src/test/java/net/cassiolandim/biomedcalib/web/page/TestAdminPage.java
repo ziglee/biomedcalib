@@ -18,12 +18,12 @@ public class TestAdminPage {
 	@Before
 	public void setUp(){
 		tester = new BiomedcalibWicketTester();
-		tester.startPage(AdminPage.class);
+		tester.startPage(AdminHomePage.class);
 	}
 
 	@Test
 	public void testRenderMyPage(){
-		tester.assertRenderedPage(AdminPage.class);
+		tester.assertRenderedPage(AdminHomePage.class);
 	}
 	
 	@Test
