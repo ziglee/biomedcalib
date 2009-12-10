@@ -21,7 +21,7 @@ public class Start {
 	public static void main(final String[] args) {
 		Server server = new Server();
 		SocketConnector connector = new SocketConnector();
-		connector.setPort(8080);
+		connector.setPort(9090);
 		server.setConnectors(new Connector[] {connector});
 
 		WebAppContext context = new WebAppContext();

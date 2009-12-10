@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 public class LaboratoryListPage extends AdminBasePage {
@@ -18,6 +19,9 @@ public class LaboratoryListPage extends AdminBasePage {
 	private LaboratorySimplePersistableService laboratorySimplePersistableService;
 	
 	public LaboratoryListPage() {
+		FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
+		add(feedbackPanel);
+		
 		add(new ListView<Laboratory>("laboratories", new LaboratoryListLoadableDetachableModel(laboratorySimplePersistableService)){
 			@Override
 			protected void populateItem(ListItem<Laboratory> item){
@@ -36,7 +40,7 @@ public class LaboratoryListPage extends AdminBasePage {
 					@Override
 					public void onClick() {
 						laboratorySimplePersistableService.remove(laboratory);
-						info("Laboratório excluído com sucesso!");
+						info(getString("laboratory.delete.success"));
 					}
 				});
 			}

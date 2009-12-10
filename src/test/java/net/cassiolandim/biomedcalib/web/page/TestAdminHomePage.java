@@ -1,5 +1,7 @@
 package net.cassiolandim.biomedcalib.web.page;
 
+import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
+import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 import net.cassiolandim.biomedcalib.web.page.laboratory.LaboratoryListPage;
 
@@ -11,13 +13,20 @@ import org.junit.Test;
 /**
  * @author Cassio Landim
  */
-public class TestAdminPage {
+public class TestAdminHomePage {
 	
 	private WicketTester tester;
+	LaboratoryFixture laboratoryFixture;
 
 	@Before
 	public void setUp(){
 		tester = new BiomedcalibWicketTester();
+		
+		BiomedcalibApplicationForTesting app = (BiomedcalibApplicationForTesting)tester.getApplication();
+		
+		laboratoryFixture = new LaboratoryFixture();
+		laboratoryFixture.addStubs(app.context);
+		
 		tester.startPage(AdminHomePage.class);
 	}
 

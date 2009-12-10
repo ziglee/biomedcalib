@@ -12,8 +12,6 @@ import javax.persistence.Id;
 @Entity
 public class Laboratory extends BaseEntity {
 
-	private static final long serialVersionUID = 1L;
-
 	private Long id;
 	private String name;
 

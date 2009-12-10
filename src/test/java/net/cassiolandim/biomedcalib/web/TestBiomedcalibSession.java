@@ -23,6 +23,6 @@ public class TestBiomedcalibSession {
 		BiomedcalibSession session = (BiomedcalibSession)tester.getWicketSession();
 		User userInSession = session.getUser();
 		Assert.assertNotNull(userInSession);
-		Assert.assertEquals("Cassio Landim", userInSession.name);
+		Assert.assertEquals("Cassio Landim", userInSession.getName());
 	}
 }

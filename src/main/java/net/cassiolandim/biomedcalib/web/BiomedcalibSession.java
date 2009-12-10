@@ -17,7 +17,7 @@ public class BiomedcalibSession extends WebSession {
 	public BiomedcalibSession(Request request) {
 		super(request);
 		user = new User();
-		user.name = "Cassio Landim";
+		user.setName("Cassio Landim");
 	}
 
 	public static BiomedcalibSession get(){

@@ -39,7 +39,7 @@ public class LaboratoryEditPage extends AdminBasePage {
 			@Override
 			public void onSubmit() {
 				laboratorySimplePersistableService.save(laboratory);
-				info("Laboratório salvo com sucesso!");
+				info(getString("laboratory.save.success"));
 			}
 			
 		};

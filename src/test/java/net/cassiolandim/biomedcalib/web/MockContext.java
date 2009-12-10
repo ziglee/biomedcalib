@@ -15,8 +15,6 @@ public class MockContext extends AnnotApplicationContextMock {
 
 	public MockContext() {
 		InjectorHolder.setInjector(new AnnotSpringInjector(new ISpringContextLocator() {
-			private static final long serialVersionUID = 1L;
-
 			public ApplicationContext getSpringContext() {
 				return MockContext.this;
 			}
