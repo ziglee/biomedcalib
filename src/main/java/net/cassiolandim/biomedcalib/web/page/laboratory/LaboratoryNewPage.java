@@ -44,7 +44,7 @@ public class LaboratoryNewPage extends AdminBasePage {
 		};
 		form.add(save);
 		
-		Link list = new Link("list") {
+		Link list = new Link("listLink") {
 			@Override
 			public void onClick() {
 				setResponsePage(LaboratoryListPage.class);

@@ -5,7 +5,7 @@ import net.cassiolandim.biomedcalib.web.MockContext;
 
 public class LaboratoryFixture {
 	
-	private static final String[] NAMES = { "CAPC" , "Atalaia", "Padrão", "INGOH", "Saluti", "Citocenter" };
+	public static final String[] NAMES = { "CAPC" , "Atalaia", "Padrão", "INGOH", "Saluti", "Citocenter" };
 
 	private final LaboratoryData laboratoryData = new LaboratoryData();
 

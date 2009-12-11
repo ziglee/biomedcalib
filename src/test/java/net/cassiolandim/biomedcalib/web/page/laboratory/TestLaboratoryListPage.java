@@ -36,38 +36,49 @@ public class TestLaboratoryListPage {
 	}
 
 	@Test
-	public void testRenderMyPage(){
+	public void shouldRenderLaboratoryListPage(){
 		tester.assertRenderedPage(LaboratoryListPage.class);
 	}
 	
 	@Test
-	public void testAssertLaboratoriesList(){
+	public void containsNewLink() {
+		tester.assertComponent("newLink", Link.class);
+	}
+	
+	@Test
+	public void clickNewLinkShouldRenderLaboratoryNewPage() {
+		tester.clickLink("newLink");
+		tester.assertRenderedPage(LaboratoryNewPage.class);
+	}
+	
+	@Test
+	public void containsLaboratoriesList(){
 		tester.assertComponent("laboratories", ListView.class);
 	}
 	
 	@Test
-	public void testLaboratoriesContainsNameLabel() {
+	public void laboratoriesListViewContainsNameLabel() {
 		tester.assertComponent("laboratories:1:name", Label.class);
 	}
 	
 	@Test
-	public void testLaboratoriesContainsEditLink() {
+	public void laboratoriesListViewContainsEditLink() {
 		tester.assertComponent("laboratories:1:editLink", Link.class);
 	}
 	
 	@Test
-	public void testLaboratoriesContainsDeleteLink() {
+	public void laboratoriesListViewContainsDeleteLink() {
 		tester.assertComponent("laboratories:1:deleteLink", Link.class);
 	}
 	
 	@Test
-	public void testLaboratoriesClickEditLink() {
+	public void clickEditLinkFromLaboratoriesListViewShouldRenderLaboratoryEditPage() {
 		tester.clickLink("laboratories:1:editLink");
 		tester.assertRenderedPage(LaboratoryEditPage.class);
 	}
 	
 	@Test
-	public void testLaboratoriesClickDeleteLink() {
+	public void clickDeleteLinkFromLaboratoriesListViewShouldDeleteAndFeedbackInfoMessage() {
 		LaboratoryListPage page = (LaboratoryListPage)tester.getLastRenderedPage();
 		ListView<Laboratory> laboratories = (ListView<Laboratory>)page.get("laboratories");
 		
@@ -77,5 +88,7 @@ public class TestLaboratoryListPage {
 		tester.assertRenderedPage(LaboratoryListPage.class);
 		
 		Assert.assertEquals(5, laboratories.size());
+		
+		tester.assertInfoMessages(new String[]{"Laboratório excluído com sucesso!"});
 	}
 }

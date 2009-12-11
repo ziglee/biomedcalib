@@ -1,6 +1,7 @@
 package net.cassiolandim.biomedcalib.persistence;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
@@ -8,11 +9,11 @@ import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
 
 public class LaboratoryData {
 	
-	private final List<Laboratory> laboratorys = new ArrayList<Laboratory>();
+	private final List<Laboratory> laboratories = new ArrayList<Laboratory>();
 	private final MockLaboratoryService laboratoryService = new MockLaboratoryService();
 
 	public void newLaboratory(Laboratory laboratory) {
-		laboratorys.add(laboratory);
+		laboratories.add(laboratory);
 	}
 
 	public MockLaboratoryService getLaboratoryService() {
@@ -34,12 +35,12 @@ public class LaboratoryData {
 
 		public boolean remove(Laboratory laboratory) {
 			deleteCalled = true;
-			laboratorys.remove(find(laboratory.getId()));
+			laboratories.remove(find(laboratory.getId()));
 			return true;
 		}
 
 		public Laboratory find(Long id) {
-			for (Laboratory laboratory : laboratorys) {
+			for (Laboratory laboratory : laboratories) {
 				if (laboratory.getId() == id) {
 					return laboratory;
 				}
@@ -49,16 +50,18 @@ public class LaboratoryData {
 
 		public void persist(Laboratory laboratory) {
 			saveCalled = true;
-			laboratorys.add(laboratory);
+			laboratories.add(laboratory);
 		}
 
 		public void save(Laboratory laboratory) {
 			saveCalled = true;
-			laboratorys.add(laboratory);
+			Laboratory lab = find(laboratory.getId());
+			lab.setName(laboratory.getName());
 		}
 		
 		public List<Laboratory> findAll() {
-			return laboratorys;
+			Collections.sort(laboratories);
+			return laboratories;
 		}
 	}
 }
