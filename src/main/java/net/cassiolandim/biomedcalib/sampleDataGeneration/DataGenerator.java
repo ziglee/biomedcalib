@@ -8,6 +8,9 @@ import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * @author Cassio Landim
+ */
 public class DataGenerator implements InitializingBean {
 	
 	private LaboratorySimplePersistableService laboratorySimplePersistableService;

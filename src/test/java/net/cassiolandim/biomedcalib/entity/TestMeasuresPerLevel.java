@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author Cassio Landim
+ */
 public class TestMeasuresPerLevel {
 
 	private MeasuresPerLevel measures = new MeasuresPerLevel();

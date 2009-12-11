@@ -14,6 +14,9 @@ import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
 
+/**
+ * @author Cassio Landim
+ */
 public class LaboratoryNewPage extends AdminBasePage {
 
 	@SpringBean(name = "laboratorySimplePersistableService")

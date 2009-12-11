@@ -9,6 +9,9 @@ import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author Cassio Landim
+ */
 public class TestBiomedcalibSession {
 
 	private WicketTester tester;

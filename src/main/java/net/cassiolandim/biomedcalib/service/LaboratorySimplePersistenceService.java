@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.trg.search.Search;
 
+/**
+ * @author Cassio Landim
+ */
 @Transactional
 public class LaboratorySimplePersistenceService implements LaboratorySimplePersistableService {
 

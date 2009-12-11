@@ -7,6 +7,9 @@ import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
 
 import org.apache.wicket.model.LoadableDetachableModel;
 
+/**
+ * @author Cassio Landim
+ */
 public class LaboratoryListLoadableDetachableModel extends LoadableDetachableModel<List<Laboratory>> {
 	
 	private final LaboratorySimplePersistableService service;

@@ -1,6 +1,5 @@
 package net.cassiolandim.biomedcalib.web.page.laboratory;
 
-
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
 import net.cassiolandim.biomedcalib.web.model.LaboratoryListLoadableDetachableModel;
@@ -13,6 +12,9 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+/**
+ * @author Cassio Landim
+ */
 public class LaboratoryListPage extends AdminBasePage {
 
 	@SpringBean(name = "laboratorySimplePersistableService")

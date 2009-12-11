@@ -5,6 +5,9 @@ import net.cassiolandim.biomedcalib.service.SimplePersistableService;
 
 import org.apache.wicket.model.LoadableDetachableModel;
 
+/**
+ * @author Cassio Landim
+ */
 public class EntityLoadableDetachableModel<T extends BaseEntity> extends LoadableDetachableModel<T> {
 	
 	private final Long id;

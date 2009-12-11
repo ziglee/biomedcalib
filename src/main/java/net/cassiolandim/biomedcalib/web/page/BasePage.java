@@ -4,6 +4,9 @@ import net.cassiolandim.biomedcalib.web.BiomedcalibSession;
 
 import org.apache.wicket.markup.html.WebPage;
 
+/**
+ * @author Cassio Landim
+ */
 public class BasePage extends WebPage {
 
 	public BiomedcalibSession getBiomedicalSession(){

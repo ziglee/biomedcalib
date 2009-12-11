@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 import com.trg.dao.jpa.GenericDAOImpl;
 import com.trg.search.jpa.JPASearchProcessor;
 
+/**
+ * @author Cassio Landim
+ */
 @Repository
 public class BaseHibernateJpaDao<T, ID extends Serializable> extends GenericDAOImpl<T, ID> {
 

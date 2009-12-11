@@ -4,6 +4,9 @@ import org.apache.commons.math.stat.descriptive.moment.Mean;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * @author Cassio Landim
+ */
 public class TestMean {
 
 	@Test

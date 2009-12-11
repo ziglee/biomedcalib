@@ -7,6 +7,9 @@ import java.util.List;
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
 
+/**
+ * @author Cassio Landim
+ */
 public class LaboratoryData {
 
 	private static long idIncrement = 0;
@@ -29,6 +32,9 @@ public class LaboratoryData {
 		return laboratoryService.saveCalled;
 	}
 
+	/**
+	 * @author Cassio Landim
+	 */
 	private final class MockLaboratoryService implements LaboratorySimplePersistableService {
 
 		private boolean deleteCalled;

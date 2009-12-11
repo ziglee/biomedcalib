@@ -8,6 +8,9 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.PropertyModel;
 
+/**
+ * @author Cassio Landim
+ */
 public class NewMeasurePage extends BasePage {
 
 	MeasuresAggregate measuresAggregate;
