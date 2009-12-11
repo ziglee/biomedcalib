@@ -5,7 +5,9 @@ package net.cassiolandim.biomedcalib.math;
  */
 public abstract class MyMath {
 	
-	public static double coeffientOfVariation(double standartDeviation, double mean) {
+	private MyMath() {}
+	
+	public static double coeffientOfVariation(final double standartDeviation, final double mean) {
 		return (standartDeviation/mean) * 100;
 	}
 }

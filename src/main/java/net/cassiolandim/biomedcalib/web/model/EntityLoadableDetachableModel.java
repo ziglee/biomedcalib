@@ -7,7 +7,6 @@ import org.apache.wicket.model.LoadableDetachableModel;
 
 public class EntityLoadableDetachableModel<T extends BaseEntity> extends LoadableDetachableModel<T> {
 	
-	private static final long serialVersionUID = 1L;
 	private final Long id;
 	private final SimplePersistableService<T> simplePersistableService;
 

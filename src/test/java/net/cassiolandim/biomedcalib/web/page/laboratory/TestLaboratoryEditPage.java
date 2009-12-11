@@ -21,7 +21,7 @@ import org.junit.Test;
 public class TestLaboratoryEditPage {
 	
 	private WicketTester tester;
-	LaboratoryFixture laboratoryFixture;
+	private LaboratoryFixture laboratoryFixture;
 
 	@Before
 	public void setUp(){
@@ -90,5 +90,7 @@ public class TestLaboratoryEditPage {
 		LaboratoryEditPage page = (LaboratoryEditPage)tester.getLastRenderedPage();
 		Form<Laboratory> form = (Form<Laboratory>)page.get("form");
 		Assert.assertEquals("Circular", form.getModelObject().getName());
+		
+		tester.assertInfoMessages(new String[]{"Laboratório salvo com sucesso!"});
 	}
 }

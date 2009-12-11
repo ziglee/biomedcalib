@@ -6,7 +6,6 @@ import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.link.Link;
 
 /**
- * Homepage
  * @author Cassio Landim
  */
 public class HomePage extends BasePage {

@@ -20,7 +20,7 @@ import org.junit.Test;
 public class TestLaboratoryListPage {
 	
 	private WicketTester tester;
-	LaboratoryFixture laboratoryFixture;
+	private LaboratoryFixture laboratoryFixture;
 
 	@Before
 	public void setUp(){
