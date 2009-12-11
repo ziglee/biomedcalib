@@ -8,7 +8,8 @@ import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
 
 public class LaboratoryData {
-	
+
+	private static long idIncrement = 0;
 	private final List<Laboratory> laboratories = new ArrayList<Laboratory>();
 	private final MockLaboratoryService laboratoryService = new MockLaboratoryService();
 
@@ -50,6 +51,7 @@ public class LaboratoryData {
 
 		public void persist(Laboratory laboratory) {
 			saveCalled = true;
+			laboratory.setId(++idIncrement);
 			laboratories.add(laboratory);
 		}
 
