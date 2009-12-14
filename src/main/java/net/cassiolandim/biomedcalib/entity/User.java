@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
  * @author Cassio Landim
  */
 @Entity
-public class User extends BaseEntity implements Comparable<User> {
+public class User extends BaseEntity<User> {
 
 	private Long id;
 	private String name;
@@ -46,9 +46,28 @@ public class User extends BaseEntity implements Comparable<User> {
 	}
 	
 	public int compareTo(User user) {
-		if(this.name!=null && user.name!=null)
+		if(this.name != null && user.name != null)
 			return this.name.compareToIgnoreCase(user.name);
+		
+		if(this.id != null && user.id != null)
+			return this.id.compareTo(user.id);
+		
 		return 0;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		if(id != null)
+			sb.append("id: " + id.toString() + " ");
+	
+		if(name != null)
+			sb.append("name: " + name + " ");
+		
+		if(laboratory != null)
+			sb.append("lab: " + laboratory.getName());
+		
+		return sb.toString();
+	}
 }

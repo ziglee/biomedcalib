@@ -3,8 +3,8 @@ package net.cassiolandim.biomedcalib.sampleDataGeneration;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
-import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
-import net.cassiolandim.biomedcalib.service.UserSimplePersistableService;
+import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
+import net.cassiolandim.biomedcalib.service.UserPersistableService;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,14 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class DataGenerator implements InitializingBean {
 	
-	private LaboratorySimplePersistableService laboratorySimplePersistableService;
-	private UserSimplePersistableService userSimplePersistableService;
+	private LaboratoryPersistableService laboratorySimplePersistableService;
+	private UserPersistableService userSimplePersistableService;
 	
-	public void setLaboratorySimplePersistableService(LaboratorySimplePersistableService laboratorySimplePersistableService) {
+	public void setLaboratorySimplePersistableService(LaboratoryPersistableService laboratorySimplePersistableService) {
 		this.laboratorySimplePersistableService = laboratorySimplePersistableService;
 	}
 	
-	public void setUserSimplePersistableService(UserSimplePersistableService userSimplePersistableService) {
+	public void setUserSimplePersistableService(UserPersistableService userSimplePersistableService) {
 		this.userSimplePersistableService = userSimplePersistableService;
 	}
 	

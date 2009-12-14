@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
+import net.cassiolandim.biomedcalib.persistence.MockListPersistenceService;
 import net.cassiolandim.biomedcalib.persistence.UserFixture;
-import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 import net.cassiolandim.biomedcalib.web.page.laboratory.LaboratoryListPage;
@@ -34,7 +34,7 @@ public class TestAdminHomePage {
 		laboratoryFixture = new LaboratoryFixture();
 		laboratoryFixture.addStubs(app.context);
 		
-		LaboratorySimplePersistableService laboratorySimplePersistableService = laboratoryFixture.getLaboratoryData().getLaboratoryService();
+		MockListPersistenceService<Laboratory> laboratorySimplePersistableService = laboratoryFixture.getLaboratoryData().getLaboratoryService();
 		List<Laboratory> labs = laboratorySimplePersistableService.findAll();
 		
 		userFixture = new UserFixture();

@@ -1,7 +1,7 @@
 package net.cassiolandim.biomedcalib.web.page.user;
 
 import net.cassiolandim.biomedcalib.entity.User;
-import net.cassiolandim.biomedcalib.service.UserSimplePersistableService;
+import net.cassiolandim.biomedcalib.service.UserPersistableService;
 import net.cassiolandim.biomedcalib.web.model.UserListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
 
@@ -14,14 +14,14 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 public class UserListPage extends AdminBasePage {
 
-	@SpringBean(name = "userSimplePersistableService")
-	private UserSimplePersistableService userSimplePersistableService;
+	@SpringBean(name = "userPersistableService")
+	private UserPersistableService userPersistableService;
 	
 	public UserListPage() {
 		FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
 		add(feedbackPanel);
 		
-		add(new ListView<User>("users", new UserListLoadableDetachableModel(userSimplePersistableService)){
+		add(new ListView<User>("users", new UserListLoadableDetachableModel(userPersistableService)){
 			@Override
 			protected void populateItem(ListItem<User> item){
 				final User user = item.getModelObject();
@@ -38,7 +38,7 @@ public class UserListPage extends AdminBasePage {
 				item.add(new Link<UserListPage>("deleteLink"){
 					@Override
 					public void onClick() {
-						userSimplePersistableService.remove(user);
+						userPersistableService.remove(user);
 						info(getString("user.delete.success"));
 					}
 				});

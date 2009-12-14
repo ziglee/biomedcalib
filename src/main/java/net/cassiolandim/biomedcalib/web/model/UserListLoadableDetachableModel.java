@@ -3,7 +3,7 @@ package net.cassiolandim.biomedcalib.web.model;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.User;
-import net.cassiolandim.biomedcalib.service.UserSimplePersistableService;
+import net.cassiolandim.biomedcalib.service.UserPersistableService;
 
 import org.apache.wicket.model.LoadableDetachableModel;
 
@@ -12,9 +12,9 @@ import org.apache.wicket.model.LoadableDetachableModel;
  */
 public class UserListLoadableDetachableModel extends LoadableDetachableModel<List<User>> {
 	
-	private final UserSimplePersistableService service;
+	private final UserPersistableService service;
 
-	public UserListLoadableDetachableModel(UserSimplePersistableService service) {
+	public UserListLoadableDetachableModel(UserPersistableService service) {
 		this.service = service;
 	}
 

@@ -11,17 +11,10 @@ public class HomePage extends BasePage {
 	private static final long serialVersionUID = 1L;
 
     public HomePage(final PageParameters parameters) {
-    	add(new Link("adminHomeLink"){
+    	add(new Link<AdminHomePage>("adminHomeLink"){
 			@Override
 			public void onClick() {
 				setResponsePage(AdminHomePage.class);
-			}
-        });
-    	
-        add(new Link("newMeasureLink"){
-			@Override
-			public void onClick() {
-				//setResponsePage(NewMeasurePage.class);
 			}
         });
     }

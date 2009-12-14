@@ -1,7 +1,7 @@
 package net.cassiolandim.biomedcalib.web.model;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
-import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
+import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
 
 import org.easymock.EasyMock;
 import org.junit.Assert;
@@ -14,7 +14,7 @@ public class LaboratoryDetachableModelTest {
 	
 	@Test
 	public void testLoad() {
-		LaboratorySimplePersistableService service = EasyMock.createMock(LaboratorySimplePersistableService.class);
+		LaboratoryPersistableService service = EasyMock.createMock(LaboratoryPersistableService.class);
 		
 		Laboratory expected = new Laboratory();
 		expected.setId(new Long(007));

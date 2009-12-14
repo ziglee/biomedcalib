@@ -10,7 +10,7 @@ import javax.persistence.Id;
  * @author Cassio Landim
  */
 @Entity
-public class Laboratory extends BaseEntity implements Comparable<Laboratory> {
+public class Laboratory extends BaseEntity<Laboratory> {
 
 	private Long id;
 	private String name;
@@ -36,6 +36,9 @@ public class Laboratory extends BaseEntity implements Comparable<Laboratory> {
 	public int compareTo(Laboratory laboratory) {
 		if(this.name != null && laboratory.name != null)
 			return this.name.compareToIgnoreCase(laboratory.name);
+		
+		if(this.id != null && laboratory.id != null)
+			return this.id.compareTo(laboratory.id);
 		
 		return 0;
 	}

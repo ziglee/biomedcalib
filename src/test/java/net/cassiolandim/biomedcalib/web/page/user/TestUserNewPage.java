@@ -6,8 +6,8 @@ import junit.framework.Assert;
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.User;
 import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
+import net.cassiolandim.biomedcalib.persistence.MockListPersistenceService;
 import net.cassiolandim.biomedcalib.persistence.UserFixture;
-import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 
@@ -36,7 +36,7 @@ public class TestUserNewPage {
 		laboratoryFixture = new LaboratoryFixture();
 		laboratoryFixture.addStubs(app.context);
 
-		LaboratorySimplePersistableService laboratorySimplePersistableService = laboratoryFixture.getLaboratoryData().getLaboratoryService();
+		MockListPersistenceService<Laboratory> laboratorySimplePersistableService = laboratoryFixture.getLaboratoryData().getLaboratoryService();
 		List<Laboratory> labs = laboratorySimplePersistableService.findAll();
 		
 		userFixture = new UserFixture();

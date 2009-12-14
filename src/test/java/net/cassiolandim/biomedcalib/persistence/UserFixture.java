@@ -13,7 +13,7 @@ public class UserFixture {
 	private final UserData userData = new UserData();
 
 	public void addStubs(MockContext context, List<Laboratory> labs) {
-		context.putBean("userSimplePersistableService", userData.getUserService());
+		context.putBean("userPersistableService", userData.getUserService());
 		for (int i = 0; i < NAMES.length; i++) {
 			User user = new User();
 			user.setName(NAMES[i]);

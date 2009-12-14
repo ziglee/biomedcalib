@@ -12,14 +12,14 @@ import org.apache.wicket.markup.html.link.Link;
 public class AdminHomePage extends BasePage {
 
 	public AdminHomePage(PageParameters pageParameters) {
-		add(new Link("labListLink"){
+		add(new Link<LaboratoryListPage>("labListLink"){
 			@Override
 			public void onClick() {
 				setResponsePage(LaboratoryListPage.class);
 			}
 		});
 		
-		add(new Link("userListLink"){
+		add(new Link<UserListPage>("userListLink"){
 			@Override
 			public void onClick() {
 				setResponsePage(UserListPage.class);

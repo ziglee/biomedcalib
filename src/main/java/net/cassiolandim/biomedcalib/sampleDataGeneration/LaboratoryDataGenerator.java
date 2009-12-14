@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
-import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
+import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
 
 /**
  * @author Cassio Landim
@@ -13,7 +13,7 @@ public class LaboratoryDataGenerator {
 
 	private static final String[] NAMES = { "CAPC" , "Atalaia", "Padrão", "INGOH", "Saluti", "Citocenter" };
 	
-	public static List<Laboratory> generateData(LaboratorySimplePersistableService laboratoryService){
+	public static List<Laboratory> generateData(LaboratoryPersistableService laboratoryService){
 		List<Laboratory> list = new ArrayList<Laboratory>();
 		for (int i = 0; i < NAMES.length; i++){
 			Laboratory laboratory = new Laboratory();

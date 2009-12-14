@@ -6,8 +6,8 @@ import junit.framework.Assert;
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.User;
 import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
+import net.cassiolandim.biomedcalib.persistence.MockListPersistenceService;
 import net.cassiolandim.biomedcalib.persistence.UserFixture;
-import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 
@@ -39,7 +39,7 @@ public class TestUserEditPage {
 		laboratoryFixture = new LaboratoryFixture();
 		laboratoryFixture.addStubs(app.context);
 		
-		LaboratorySimplePersistableService laboratorySimplePersistableService = laboratoryFixture.getLaboratoryData().getLaboratoryService();
+		MockListPersistenceService<Laboratory> laboratorySimplePersistableService = laboratoryFixture.getLaboratoryData().getLaboratoryService();
 		List<Laboratory> labs = laboratorySimplePersistableService.findAll();
 		
 		userFixture = new UserFixture();
@@ -85,6 +85,13 @@ public class TestUserEditPage {
 	@Test
 	public void formContainsLaboratoryDropDownChoice(){
 		tester.assertComponent("form:laboratory", DropDownChoice.class);
+	}
+	
+	@Test
+	public void formLaboratoryDropDownChoiceShouldContainFirstLaboratoryFromDataArray(){
+		UserEditPage page = (UserEditPage)tester.getLastRenderedPage();
+		DropDownChoice<Laboratory> laboratoryDropDownChoice = (DropDownChoice<Laboratory>)page.get("form:laboratory");
+		Assert.assertEquals(LaboratoryFixture.NAMES[0], laboratoryDropDownChoice.getModelObject().getName());
 	}
 	
 	@Test

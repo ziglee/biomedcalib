@@ -1,11 +1,10 @@
 package net.cassiolandim.biomedcalib.persistence;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
-import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
+import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
 
 /**
  * @author Cassio Landim
@@ -13,12 +12,12 @@ import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
 public class LaboratoryData {
 
 	private static long idIncrement = 0;
-	private final List<Laboratory> laboratories = new ArrayList<Laboratory>();
-	private final MockLaboratoryService laboratoryService = new MockLaboratoryService();
+	private final List<Laboratory> list = new ArrayList<Laboratory>();
+	private final MockLaboratoryService laboratoryService = new MockLaboratoryService(list);
 
 	public void newLaboratory(Laboratory laboratory) {
 		laboratory.setId(++idIncrement);
-		laboratories.add(laboratory);
+		list.add(laboratory);
 	}
 
 	public MockLaboratoryService getLaboratoryService() {
@@ -26,41 +25,20 @@ public class LaboratoryData {
 	}
 
 	public boolean isLaboratoryDaoDeleteCalled() {
-		return laboratoryService.deleteCalled;
+		return laboratoryService.getDeleteCalled();
 	}
 
 	public boolean isLaboratoryDaoSaveCalled() {
-		return laboratoryService.saveCalled;
+		return laboratoryService.getSaveCalled();
 	}
 
 	/**
 	 * @author Cassio Landim
 	 */
-	private final class MockLaboratoryService implements LaboratorySimplePersistableService {
+	private final class MockLaboratoryService extends MockListPersistenceService<Laboratory> implements LaboratoryPersistableService {
 
-		private boolean deleteCalled;
-		private boolean saveCalled;
-
-		public boolean remove(Laboratory laboratory) {
-			deleteCalled = true;
-			laboratories.remove(find(laboratory.getId()));
-			return true;
-		}
-
-		public Laboratory find(Long id) {
-			for (Laboratory laboratory : laboratories) {
-				if (laboratory.getId().equals(id)) {
-					return laboratory;
-				}
-			}
-			return null;
-		}
-
-		public void persist(Laboratory laboratory) {
-			laboratory.setId(++idIncrement);
-			laboratories.add(laboratory);
-
-			saveCalled = true;
+		public MockLaboratoryService(List<Laboratory> list) {
+			super(list);
 		}
 
 		public void save(Laboratory laboratory) {
@@ -71,12 +49,7 @@ public class LaboratoryData {
 				persist(laboratory);
 			}
 			
-			saveCalled = true;
-		}
-		
-		public List<Laboratory> findAll() {
-			Collections.sort(laboratories);
-			return laboratories;
+			setSaveCalled(true);
 		}
 	}
 }

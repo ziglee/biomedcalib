@@ -3,7 +3,7 @@ package net.cassiolandim.biomedcalib.web.model;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
-import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
+import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
 
 import org.apache.wicket.model.LoadableDetachableModel;
 
@@ -12,9 +12,9 @@ import org.apache.wicket.model.LoadableDetachableModel;
  */
 public class LaboratoryListLoadableDetachableModel extends LoadableDetachableModel<List<Laboratory>> {
 	
-	private final LaboratorySimplePersistableService service;
+	private final LaboratoryPersistableService service;
 
-	public LaboratoryListLoadableDetachableModel(LaboratorySimplePersistableService service) {
+	public LaboratoryListLoadableDetachableModel(LaboratoryPersistableService service) {
 		this.service = service;
 	}
 

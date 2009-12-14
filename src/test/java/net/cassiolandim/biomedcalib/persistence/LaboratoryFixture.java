@@ -13,7 +13,7 @@ public class LaboratoryFixture {
 	private final LaboratoryData laboratoryData = new LaboratoryData();
 
 	public void addStubs(MockContext context) {
-		context.putBean("laboratorySimplePersistableService", laboratoryData.getLaboratoryService());
+		context.putBean("laboratoryPersistableService", laboratoryData.getLaboratoryService());
 		for (int i = 0; i < NAMES.length; i++) {
 			Laboratory lab = new Laboratory();
 			lab.setName(NAMES[i]);

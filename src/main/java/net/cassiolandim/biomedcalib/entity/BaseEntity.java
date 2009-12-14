@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 /**
  * @author Cassio Landim
+ * @param <T>
  */
-public abstract class BaseEntity implements Serializable, HasId {
+public abstract class BaseEntity<T> implements Serializable, HasId, Comparable<T> {
 	
 }

@@ -1,7 +1,7 @@
 package net.cassiolandim.biomedcalib.web.page.laboratory;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
-import net.cassiolandim.biomedcalib.service.LaboratorySimplePersistableService;
+import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
 import net.cassiolandim.biomedcalib.web.model.LaboratoryListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
 
@@ -17,38 +17,38 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
  */
 public class LaboratoryListPage extends AdminBasePage {
 
-	@SpringBean(name = "laboratorySimplePersistableService")
-	private LaboratorySimplePersistableService laboratorySimplePersistableService;
+	@SpringBean(name = "laboratoryPersistableService")
+	private LaboratoryPersistableService laboratoryPersistableService;
 	
 	public LaboratoryListPage() {
 		FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
 		add(feedbackPanel);
 		
-		add(new ListView<Laboratory>("laboratories", new LaboratoryListLoadableDetachableModel(laboratorySimplePersistableService)){
+		add(new ListView<Laboratory>("laboratories", new LaboratoryListLoadableDetachableModel(laboratoryPersistableService)){
 			@Override
 			protected void populateItem(ListItem<Laboratory> item){
 				final Laboratory laboratory = item.getModelObject();
 				
 				item.add(new Label("name", laboratory.getName()));
 				
-				item.add(new Link("editLink"){
+				item.add(new Link<LaboratoryEditPage>("editLink"){
 					@Override
 					public void onClick() {
 						setResponsePage(new LaboratoryEditPage(laboratory));
 					}
 				});
 				
-				item.add(new Link("deleteLink"){
+				item.add(new Link<LaboratoryListPage>("deleteLink"){
 					@Override
 					public void onClick() {
-						laboratorySimplePersistableService.remove(laboratory);
+						laboratoryPersistableService.remove(laboratory);
 						info(getString("laboratory.delete.success"));
 					}
 				});
 			}
 		});
 		
-		add(new Link("newLink"){
+		add(new Link<LaboratoryEditPage>("newLink"){
 			@Override
 			public void onClick() {
 				setResponsePage(new LaboratoryEditPage());
