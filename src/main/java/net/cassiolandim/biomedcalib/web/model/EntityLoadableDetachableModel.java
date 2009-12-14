@@ -10,13 +10,17 @@ import org.apache.wicket.model.LoadableDetachableModel;
  */
 public class EntityLoadableDetachableModel<T extends BaseEntity> extends LoadableDetachableModel<T> {
 	
-	private final Long id;
+	private Long id;
 	private final SimplePersistableService<T> simplePersistableService;
 
 	public EntityLoadableDetachableModel(T entity, SimplePersistableService<T> simplePersistableService) {
 		super(entity);
 		this.id = entity.getId();
 		this.simplePersistableService = simplePersistableService;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	@Override

@@ -15,9 +15,9 @@ public class LaboratoryFixture {
 	public void addStubs(MockContext context) {
 		context.putBean("laboratorySimplePersistableService", laboratoryData.getLaboratoryService());
 		for (int i = 0; i < NAMES.length; i++) {
-			Laboratory busLine = new Laboratory();
-			busLine.setName(NAMES[i]);
-			laboratoryData.newLaboratory(busLine);
+			Laboratory lab = new Laboratory();
+			lab.setName(NAMES[i]);
+			laboratoryData.newLaboratory(lab);
 		}
 	}
 

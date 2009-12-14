@@ -17,6 +17,7 @@ public class LaboratoryData {
 	private final MockLaboratoryService laboratoryService = new MockLaboratoryService();
 
 	public void newLaboratory(Laboratory laboratory) {
+		laboratory.setId(++idIncrement);
 		laboratories.add(laboratory);
 	}
 
@@ -48,7 +49,7 @@ public class LaboratoryData {
 
 		public Laboratory find(Long id) {
 			for (Laboratory laboratory : laboratories) {
-				if (laboratory.getId() == id) {
+				if (laboratory.getId().equals(id)) {
 					return laboratory;
 				}
 			}
@@ -56,15 +57,21 @@ public class LaboratoryData {
 		}
 
 		public void persist(Laboratory laboratory) {
-			saveCalled = true;
 			laboratory.setId(++idIncrement);
 			laboratories.add(laboratory);
+
+			saveCalled = true;
 		}
 
 		public void save(Laboratory laboratory) {
+			Laboratory labFound = find(laboratory.getId());
+			if(labFound != null){
+				labFound.setName(laboratory.getName());
+			}else{
+				persist(laboratory);
+			}
+			
 			saveCalled = true;
-			Laboratory lab = find(laboratory.getId());
-			lab.setName(laboratory.getName());
 		}
 		
 		public List<Laboratory> findAll() {

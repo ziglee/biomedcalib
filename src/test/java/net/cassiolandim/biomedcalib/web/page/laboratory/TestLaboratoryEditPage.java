@@ -86,11 +86,10 @@ public class TestLaboratoryEditPage {
 		Assert.assertTrue(laboratoryFixture.getLaboratoryData().isLaboratoryDaoSaveCalled());
 		
 		tester.assertRenderedPage(LaboratoryEditPage.class);
+		tester.assertInfoMessages(new String[]{"Laboratório salvo com sucesso!"});
 		
 		LaboratoryEditPage page = (LaboratoryEditPage)tester.getLastRenderedPage();
 		Form<Laboratory> form = (Form<Laboratory>)page.get("form");
 		Assert.assertEquals("Circular", form.getModelObject().getName());
-		
-		tester.assertInfoMessages(new String[]{"Laboratório salvo com sucesso!"});
 	}
 }

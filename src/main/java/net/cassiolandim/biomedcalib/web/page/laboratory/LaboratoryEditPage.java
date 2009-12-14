@@ -23,11 +23,15 @@ public class LaboratoryEditPage extends AdminBasePage {
 	@SpringBean(name = "laboratorySimplePersistableService")
 	private LaboratorySimplePersistableService laboratorySimplePersistableService;
 	
+	public LaboratoryEditPage() {
+		this(new Laboratory());
+	}
+	
 	public LaboratoryEditPage(final Laboratory laboratory) {
 		FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
 		add(feedbackPanel);
 		
-		EntityLoadableDetachableModel<Laboratory> model = new EntityLoadableDetachableModel<Laboratory>(laboratory, laboratorySimplePersistableService);
+		final EntityLoadableDetachableModel<Laboratory> model = new EntityLoadableDetachableModel<Laboratory>(laboratory, laboratorySimplePersistableService);
 		
 		Form<Laboratory> form = new Form<Laboratory>("form", model);
 		add(form);
@@ -42,20 +46,13 @@ public class LaboratoryEditPage extends AdminBasePage {
 			@Override
 			public void onSubmit() {
 				laboratorySimplePersistableService.save(laboratory);
+				model.setId(laboratory.getId());
 				info(getString("laboratory.save.success"));
 			}
-			
 		};
 		form.add(save);
 		
-		Link list = new Link("listLink") {
-			@Override
-			public void onClick() {
-				setResponsePage(LaboratoryListPage.class);
-			}
-		};
-		add(list);
-		
+		add(new LaboratoryListLink("listLink"));
 		addAdminHomeLink();
 	}
 }

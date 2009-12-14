@@ -51,7 +51,7 @@ public class LaboratoryListPage extends AdminBasePage {
 		add(new Link("newLink"){
 			@Override
 			public void onClick() {
-				setResponsePage(new LaboratoryNewPage());
+				setResponsePage(new LaboratoryEditPage());
 			}
 		});
 		

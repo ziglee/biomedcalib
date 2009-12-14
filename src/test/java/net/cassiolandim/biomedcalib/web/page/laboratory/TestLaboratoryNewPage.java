@@ -6,10 +6,8 @@ import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 
-import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -37,41 +35,15 @@ public class TestLaboratoryNewPage {
 	}
 
 	@Test
-	public void shouldRenderLaboratoryNewPage(){
-		tester.assertRenderedPage(LaboratoryNewPage.class);
-	}
-	
-	@Test
-	public void containsListLink() {
-		tester.assertComponent("listLink", Link.class);
-	}
-	
-	@Test
-	public void clickListLinkShouldRenderLaboratoryListPage() {
-		tester.clickLink("listLink");
-		tester.assertRenderedPage(LaboratoryListPage.class);
-	}
-	
-	@Test
-	public void containsForm(){
-		tester.assertComponent("form", Form.class);
-	}
-	
-	@Test
-	public void formContainsNameTextField(){
-		tester.assertComponent("form:name", TextField.class);
+	public void shouldRenderLaboratoryEditPage(){
+		tester.assertRenderedPage(LaboratoryEditPage.class);
 	}
 	
 	@Test
 	public void formNameTextFieldShouldBeEmpty(){
-		LaboratoryNewPage page = (LaboratoryNewPage)tester.getLastRenderedPage();
+		LaboratoryEditPage page = (LaboratoryEditPage)tester.getLastRenderedPage();
 		TextField<String> nameTextField = (TextField<String>)page.get("form:name");
 		Assert.assertEquals("", nameTextField.getDefaultModelObjectAsString());
-	}
-	
-	@Test
-	public void formContainsSaveButton(){
-		tester.assertComponent("form:save", Button.class);
 	}
 	
 	@Test

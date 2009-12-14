@@ -23,7 +23,7 @@
 
 	<filter-mapping>
   		<filter-name>wicket.biomedcalib</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/app/*</url-pattern>
 	</filter-mapping>
 
 	<listener>
@@ -35,4 +35,7 @@
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 </web-app>

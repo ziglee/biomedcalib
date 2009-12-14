@@ -2,7 +2,6 @@ package net.cassiolandim.biomedcalib.web.page;
 
 import net.cassiolandim.biomedcalib.web.BiomedcalibSession;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
-import net.cassiolandim.biomedcalib.web.page.measure.NewMeasurePage;
 
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.util.tester.WicketTester;
@@ -29,10 +28,14 @@ public class TestHomePage {
 	}
 	
 	@Test
-	public void testClickNewMeasureLink(){
-		tester.assertComponent("newMeasureLink", Link.class);
-		tester.clickLink("newMeasureLink");
-		tester.assertRenderedPage(NewMeasurePage.class);
+	public void containsAdminHomeLink() {
+		tester.assertComponent("adminHomeLink", Link.class);
+	}
+	
+	@Test
+	public void clickAdminHomeLinkShouldRenderAdminHomePage(){
+		tester.clickLink("adminHomeLink");
+		tester.assertRenderedPage(AdminHomePage.class);
 	}
 	
 	@Test

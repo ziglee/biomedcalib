@@ -9,6 +9,7 @@ import net.cassiolandim.biomedcalib.web.page.AdminHomePage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Assert;
 import org.junit.Before;
@@ -41,14 +42,19 @@ public class TestLaboratoryListPage {
 	}
 	
 	@Test
+	public void containsFeedbackPanel() {
+		tester.assertComponent("feedback", FeedbackPanel.class);
+	}
+	
+	@Test
 	public void containsNewLink() {
 		tester.assertComponent("newLink", Link.class);
 	}
 	
 	@Test
-	public void clickNewLinkShouldRenderLaboratoryNewPage() {
+	public void clickNewLinkShouldRenderLaboratoryEditPage() {
 		tester.clickLink("newLink");
-		tester.assertRenderedPage(LaboratoryNewPage.class);
+		tester.assertRenderedPage(LaboratoryEditPage.class);
 	}
 	
 	@Test
@@ -83,12 +89,13 @@ public class TestLaboratoryListPage {
 		ListView<Laboratory> laboratories = (ListView<Laboratory>)page.get("laboratories");
 		
 		Assert.assertEquals(6, laboratories.size());
+		Assert.assertFalse(laboratoryFixture.getLaboratoryData().isLaboratoryDaoDeleteCalled());
 		
 		tester.clickLink("laboratories:1:deleteLink");
 		tester.assertRenderedPage(LaboratoryListPage.class);
+		tester.assertInfoMessages(new String[]{"Laboratório excluído com sucesso!"});
 		
 		Assert.assertEquals(5, laboratories.size());
-		
-		tester.assertInfoMessages(new String[]{"Laboratório excluído com sucesso!"});
+		Assert.assertTrue(laboratoryFixture.getLaboratoryData().isLaboratoryDaoDeleteCalled());
 	}
 }
