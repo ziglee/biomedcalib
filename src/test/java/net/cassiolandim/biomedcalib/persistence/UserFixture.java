@@ -4,11 +4,12 @@ import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.User;
+import net.cassiolandim.biomedcalib.sampleDataGeneration.UserDataGenerator;
 import net.cassiolandim.biomedcalib.web.MockContext;
 
 public class UserFixture {
 
-	public static final String[] NAMES = { "Cássio" , "Cíntia", "Landmary", "Maclemes" };
+	public static final String[] NAMES = UserDataGenerator.NAMES;
 	
 	private final UserData userData = new UserData();
 

@@ -2,6 +2,7 @@ package net.cassiolandim.biomedcalib.web.page.laboratory;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
+import net.cassiolandim.biomedcalib.sampleDataGeneration.LaboratoryDataGenerator;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 import net.cassiolandim.biomedcalib.web.page.AdminHomePage;
@@ -68,6 +69,13 @@ public class TestLaboratoryListPage {
 	}
 	
 	@Test
+	public void laboratoriesListViewNameLabelShouldBeTheFirstNameFromArray() {
+		LaboratoryListPage page = (LaboratoryListPage)tester.getLastRenderedPage();
+		Label nameLabel = (Label)page.get("laboratories:1:name");
+		Assert.assertEquals(LaboratoryDataGenerator.NAMES[0], nameLabel.getDefaultModelObjectAsString());
+	}
+	
+	@Test
 	public void laboratoriesListViewContainsEditLink() {
 		tester.assertComponent("laboratories:1:editLink", Link.class);
 	}
@@ -86,6 +94,8 @@ public class TestLaboratoryListPage {
 	@Test
 	public void clickDeleteLinkFromLaboratoriesListViewShouldDeleteAndFeedbackInfoMessage() {
 		LaboratoryListPage page = (LaboratoryListPage)tester.getLastRenderedPage();
+
+		@SuppressWarnings("unchecked")
 		ListView<Laboratory> laboratories = (ListView<Laboratory>)page.get("laboratories");
 		
 		Assert.assertEquals(6, laboratories.size());

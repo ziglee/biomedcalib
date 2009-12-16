@@ -15,7 +15,7 @@ import org.springframework.context.ApplicationContext;
  * @author Cassio Landim
  */
 public abstract class BaseBiomedcalibApplication extends WebApplication {
-
+	
 	@Override
 	public Class<? extends Page> getHomePage() {
 		return HomePage.class;

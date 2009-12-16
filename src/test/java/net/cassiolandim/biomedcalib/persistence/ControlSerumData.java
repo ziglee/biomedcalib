@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
+import net.cassiolandim.biomedcalib.service.ControlSerumPersistableService;
 
 /**
  * @author Cassio Landim
@@ -34,16 +35,20 @@ public class ControlSerumData {
 	/**
 	 * @author Cassio Landim
 	 */
-	private final class MockControlSerumService extends MockListPersistenceService<ControlSerum> {
+	private final class MockControlSerumService extends MockListPersistenceService<ControlSerum>  implements ControlSerumPersistableService {
 
 		public MockControlSerumService(List<ControlSerum> list) {
 			super(list);
 		}
 		
 		public void save(ControlSerum controlSerum) {
-			ControlSerum labFound = find(controlSerum.getId());
-			if(labFound != null){
-				labFound.setName(controlSerum.getName());
+			ControlSerum controlSerumFound = find(controlSerum.getId());
+			if(controlSerumFound != null){
+				controlSerumFound.setName(controlSerum.getName());
+				controlSerumFound.setMinimum(controlSerum.getMinimum());
+				controlSerumFound.setMaximum(controlSerum.getMaximum());
+				controlSerumFound.setStandardDeviation(controlSerum.getStandardDeviation());
+				controlSerumFound.setCoefficientOfVariation(controlSerum.getCoefficientOfVariation());
 			}else{
 				persist(controlSerum);
 			}

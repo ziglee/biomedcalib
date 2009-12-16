@@ -7,6 +7,7 @@ import net.cassiolandim.biomedcalib.entity.User;
 import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
 import net.cassiolandim.biomedcalib.persistence.MockListPersistenceService;
 import net.cassiolandim.biomedcalib.persistence.UserFixture;
+import net.cassiolandim.biomedcalib.sampleDataGeneration.UserDataGenerator;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 import net.cassiolandim.biomedcalib.web.page.AdminHomePage;
@@ -80,6 +81,13 @@ public class TestUserListPage {
 	}
 	
 	@Test
+	public void usersListViewNameLabelShouldBeTheFirstNameFromArray() {
+		UserListPage page = (UserListPage)tester.getLastRenderedPage();
+		Label nameLabel = (Label)page.get("users:1:name");
+		Assert.assertEquals(UserDataGenerator.NAMES[1], nameLabel.getDefaultModelObjectAsString());
+	}
+	
+	@Test
 	public void usersListViewContainsEditLink() {
 		tester.assertComponent("users:1:editLink", Link.class);
 	}
@@ -98,6 +106,8 @@ public class TestUserListPage {
 	@Test
 	public void clickDeleteLinkFromLaboratoriesListViewShouldDeleteAndFeedbackInfoMessage() {
 		UserListPage page = (UserListPage)tester.getLastRenderedPage();
+		
+		@SuppressWarnings("unchecked")
 		ListView<User> users = (ListView<User>)page.get("users");
 		
 		Assert.assertEquals(4, users.size());

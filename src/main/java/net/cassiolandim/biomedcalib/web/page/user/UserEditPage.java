@@ -45,6 +45,7 @@ public class UserEditPage extends AdminBasePage {
 		
 		ChoiceRenderer<Laboratory> choiceRenderer = new ChoiceRenderer<Laboratory>("name","id");
 		DropDownChoice<Laboratory> labs = new DropDownChoice<Laboratory>("laboratory", new PropertyModel<Laboratory>(user, "laboratory"), new LaboratoryListLoadableDetachableModel(laboratoryPersistableService));
+		labs.setLabel(new ResourceModel("laboratory"));
 		labs.setRequired(true);
 		labs.setChoiceRenderer(choiceRenderer);
 		form.add(labs);

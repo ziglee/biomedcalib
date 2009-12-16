@@ -1,0 +1,53 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <head>  
+        <title>Biomedcalib - Listagem de Soros Controle</title>
+    </head>
+    <body>
+        <strong>Listagem de Soros Controle</strong>
+        <hr/>
+        
+        <a wicket:id="adminHomeLink">[home]</a>
+        |
+        <a wicket:id="newLink">[novo]</a>
+        <hr/>
+        
+        <div wicket:id="feedback"></div>
+        
+        <table>
+        	<tr>
+        		<th>
+        			Nome
+        		</th>
+        		<th>
+        			Mínimo
+        		</th>
+        		<th>
+        			Máximo
+        		</th>
+        		<th>
+        			Média
+        		</th>
+        		<th>
+        			Desvio padrão
+        		</th>
+        		<th>
+        			Coeficiente de variação
+        		</th>
+        		<th>
+        		</th>
+        		<th>
+        		</th>
+        	</tr>
+        	<tr wicket:id="controlSerums">
+        		<td wicket:id="name">[nome]</td>
+        		<td wicket:id="minimum">[minimo]</td>
+        		<td wicket:id="maximum">[maximum]</td>
+        		<td wicket:id="mean">[mean]</td>
+        		<td wicket:id="standardDeviation">[standardDeviation]</td>
+        		<td wicket:id="coefficientOfVariation">[coefficientOfVariation]</td>
+        		<td><a wicket:id="editLink">[editar]</a></td>
+        		<td><a wicket:id="deleteLink">[excluir]</a></td>
+        	</tr>
+        </table>
+    </body>
+</html>

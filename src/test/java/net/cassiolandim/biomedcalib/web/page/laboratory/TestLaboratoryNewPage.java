@@ -42,7 +42,10 @@ public class TestLaboratoryNewPage {
 	@Test
 	public void formNameTextFieldShouldBeEmpty(){
 		LaboratoryEditPage page = (LaboratoryEditPage)tester.getLastRenderedPage();
+
+		@SuppressWarnings("unchecked")
 		TextField<String> nameTextField = (TextField<String>)page.get("form:name");
+		
 		Assert.assertEquals("", nameTextField.getDefaultModelObjectAsString());
 	}
 	
@@ -60,7 +63,10 @@ public class TestLaboratoryNewPage {
 		tester.assertRenderedPage(LaboratoryEditPage.class);
 		
 		LaboratoryEditPage page = (LaboratoryEditPage)tester.getLastRenderedPage();
+
+		@SuppressWarnings("unchecked")
 		Form<Laboratory> form = (Form<Laboratory>)page.get("form");
+		
 		Assert.assertEquals("PDCA", form.getModelObject().getName());
 		
 		tester.assertInfoMessages(new String[]{"Laboratório salvo com sucesso!"});

@@ -54,7 +54,10 @@ public class TestUserNewPage {
 	@Test
 	public void formNameTextFieldShouldBeEmpty(){
 		UserEditPage page = (UserEditPage)tester.getLastRenderedPage();
+
+		@SuppressWarnings("unchecked")
 		TextField<String> nameTextField = (TextField<String>)page.get("form:name");
+		
 		Assert.assertEquals("", nameTextField.getDefaultModelObjectAsString());
 	}
 	
@@ -73,7 +76,10 @@ public class TestUserNewPage {
 		tester.assertRenderedPage(UserEditPage.class);
 		
 		UserEditPage page = (UserEditPage)tester.getLastRenderedPage();
+
+		@SuppressWarnings("unchecked")
 		Form<User> form = (Form<User>)page.get("form");
+		
 		Assert.assertEquals("Novo nome", form.getModelObject().getName());
 		Assert.assertEquals(LaboratoryFixture.NAMES[5], form.getModelObject().getLaboratory().getName());
 		

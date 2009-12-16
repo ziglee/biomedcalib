@@ -69,12 +69,20 @@
 		class="net.cassiolandim.biomedcalib.dao.UserHibernateJpaDao"
 		autowire="byName" />
 		
+	<bean id="controlSerumDao"
+		class="net.cassiolandim.biomedcalib.dao.ControlSerumHibernateJpaDao"
+		autowire="byName" />
+		
 	<bean id="laboratoryPersistableService"
 		class="net.cassiolandim.biomedcalib.service.LaboratoryDaoPersistenceService"
 		autowire="byName" />
 		
 	<bean id="userPersistableService"
 		class="net.cassiolandim.biomedcalib.service.UserDaoPersistenceService"
+		autowire="byName" />
+		
+	<bean id="controlSerumPersistableService"
+		class="net.cassiolandim.biomedcalib.service.ControlSerumDaoPersistenceService"
 		autowire="byName" />
 		
 	<!--

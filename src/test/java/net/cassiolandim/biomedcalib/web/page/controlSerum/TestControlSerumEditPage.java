@@ -1,8 +1,8 @@
-package net.cassiolandim.biomedcalib.web.page.laboratory;
+package net.cassiolandim.biomedcalib.web.page.controlSerum;
 
 import junit.framework.Assert;
-import net.cassiolandim.biomedcalib.entity.Laboratory;
-import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
+import net.cassiolandim.biomedcalib.entity.ControlSerum;
+import net.cassiolandim.biomedcalib.persistence.ControlSerumFixture;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 
@@ -18,10 +18,10 @@ import org.junit.Test;
 /**
  * @author Cassio Landim
  */
-public class TestLaboratoryEditPage {
+public class TestControlSerumEditPage {
 	
 	private WicketTester tester;
-	private LaboratoryFixture laboratoryFixture;
+	private ControlSerumFixture controlSerumFixture;
 
 	@Before
 	public void setUp(){
@@ -29,16 +29,16 @@ public class TestLaboratoryEditPage {
 		
 		BiomedcalibApplicationForTesting app = (BiomedcalibApplicationForTesting)tester.getApplication();
 		
-		laboratoryFixture = new LaboratoryFixture();
-		laboratoryFixture.addStubs(app.context);
+		controlSerumFixture = new ControlSerumFixture();
+		controlSerumFixture.addStubs(app.context);
 
-		tester.startPage(LaboratoryListPage.class);
-		tester.clickLink("laboratories:1:editLink");
+		tester.startPage(ControlSerumListPage.class);
+		tester.clickLink("controlSerums:1:editLink");
 	}
 
 	@Test
-	public void shouldRenderLaboratoryEditPage(){
-		tester.assertRenderedPage(LaboratoryEditPage.class);
+	public void shouldRenderControlSerumEditPage(){
+		tester.assertRenderedPage(ControlSerumEditPage.class);
 	}
 	
 	@Test
@@ -47,9 +47,9 @@ public class TestLaboratoryEditPage {
 	}
 	
 	@Test
-	public void clickListLinkShouldRenderLaboratoryListPage() {
+	public void clickListLinkShouldRenderControlSerumListPage() {
 		tester.clickLink("listLink");
-		tester.assertRenderedPage(LaboratoryListPage.class);
+		tester.assertRenderedPage(ControlSerumListPage.class);
 	}
 	
 	@Test
@@ -64,12 +64,12 @@ public class TestLaboratoryEditPage {
 	
 	@Test
 	public void formNameTextFieldShouldContainFirstNameFromDataArray(){
-		LaboratoryEditPage page = (LaboratoryEditPage)tester.getLastRenderedPage();
+		ControlSerumEditPage page = (ControlSerumEditPage)tester.getLastRenderedPage();
 
 		@SuppressWarnings("unchecked")
 		TextField<String> nameTextField = (TextField<String>)page.get("form:name");
 		
-		Assert.assertEquals(LaboratoryFixture.NAMES[0], nameTextField.getDefaultModelObjectAsString());
+		Assert.assertEquals(ControlSerumFixture.NAMES[1], nameTextField.getDefaultModelObjectAsString());
 	}
 	
 	@Test
@@ -81,20 +81,24 @@ public class TestLaboratoryEditPage {
 	public void clickSaveButton() {
 		FormTester formTester = tester.newFormTester("form");
 		formTester.setValue("name", "Circular");
+		formTester.setValue("minimum", "90");
+		formTester.setValue("maximum", "100");
+		formTester.setValue("standardDeviation", "15");
+		formTester.setValue("coefficientOfVariation", "50");
 		
-		Assert.assertFalse(laboratoryFixture.getLaboratoryData().isLaboratoryDaoSaveCalled());
+		Assert.assertFalse(controlSerumFixture.getControlSerumData().isControlSerumDaoSaveCalled());
 		
 		formTester.submit("save");
 		
-		Assert.assertTrue(laboratoryFixture.getLaboratoryData().isLaboratoryDaoSaveCalled());
+		Assert.assertTrue(controlSerumFixture.getControlSerumData().isControlSerumDaoSaveCalled());
 		
-		tester.assertRenderedPage(LaboratoryEditPage.class);
-		tester.assertInfoMessages(new String[]{"Laboratório salvo com sucesso!"});
+		tester.assertRenderedPage(ControlSerumEditPage.class);
+		tester.assertInfoMessages(new String[]{"Soro controle salvo com sucesso!"});
 		
-		LaboratoryEditPage page = (LaboratoryEditPage)tester.getLastRenderedPage();
+		ControlSerumEditPage page = (ControlSerumEditPage)tester.getLastRenderedPage();
 
 		@SuppressWarnings("unchecked")
-		Form<Laboratory> form = (Form<Laboratory>)page.get("form");
+		Form<ControlSerum> form = (Form<ControlSerum>)page.get("form");
 		
 		Assert.assertEquals("Circular", form.getModelObject().getName());
 	}

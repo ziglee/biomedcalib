@@ -357,6 +357,9 @@
 						<buildcommand>
 							com.stateofflow.eclipse.metrics.MetricsBuilder
 						</buildcommand>
+						<buildcommand>
+							wicketbench.associatedMarkupAuditor
+						</buildcommand>
 					</additionalBuildcommands>
 					<downloadSources>true</downloadSources>
 				</configuration>

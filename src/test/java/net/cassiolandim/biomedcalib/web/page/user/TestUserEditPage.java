@@ -78,7 +78,10 @@ public class TestUserEditPage {
 	@Test
 	public void formNameTextFieldShouldContainFirstNameFromDataArray(){
 		UserEditPage page = (UserEditPage)tester.getLastRenderedPage();
+		
+		@SuppressWarnings("unchecked")
 		TextField<String> nameTextField = (TextField<String>)page.get("form:name");
+		
 		Assert.assertEquals(UserFixture.NAMES[1], nameTextField.getDefaultModelObjectAsString());
 	}
 	
@@ -90,7 +93,10 @@ public class TestUserEditPage {
 	@Test
 	public void formLaboratoryDropDownChoiceShouldContainFirstLaboratoryFromDataArray(){
 		UserEditPage page = (UserEditPage)tester.getLastRenderedPage();
+		
+		@SuppressWarnings("unchecked")
 		DropDownChoice<Laboratory> laboratoryDropDownChoice = (DropDownChoice<Laboratory>)page.get("form:laboratory");
+
 		Assert.assertEquals(LaboratoryFixture.NAMES[0], laboratoryDropDownChoice.getModelObject().getName());
 	}
 	
@@ -115,7 +121,10 @@ public class TestUserEditPage {
 		tester.assertInfoMessages(new String[]{"Usuário salvo com sucesso!"});
 		
 		UserEditPage page = (UserEditPage)tester.getLastRenderedPage();
+
+		@SuppressWarnings("unchecked")
 		Form<User> form = (Form<User>)page.get("form");
+		
 		Assert.assertEquals("Nome alterado", form.getModelObject().getName());
 		Assert.assertEquals(LaboratoryFixture.NAMES[5], form.getModelObject().getLaboratory().getName());
 	}

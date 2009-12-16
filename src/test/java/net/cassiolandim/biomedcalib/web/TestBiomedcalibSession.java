@@ -32,10 +32,10 @@ public class TestBiomedcalibSession {
 	}
 	
 	@Test
-	public void testThereIsUserInSession(){
+	public void shouldHaveUserInSession(){
 		BiomedcalibSession session = (BiomedcalibSession)tester.getWicketSession();
 		User userInSession = session.getUser();
 		Assert.assertNotNull(userInSession);
-		Assert.assertEquals("Cassio Landim", userInSession.getName());
+		Assert.assertEquals("Cassio session user", userInSession.getName());
 	}
 }

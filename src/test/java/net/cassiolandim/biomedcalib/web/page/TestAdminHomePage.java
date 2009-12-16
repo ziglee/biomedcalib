@@ -3,11 +3,13 @@ package net.cassiolandim.biomedcalib.web.page;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
+import net.cassiolandim.biomedcalib.persistence.ControlSerumFixture;
 import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
 import net.cassiolandim.biomedcalib.persistence.MockListPersistenceService;
 import net.cassiolandim.biomedcalib.persistence.UserFixture;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
+import net.cassiolandim.biomedcalib.web.page.controlSerum.ControlSerumListPage;
 import net.cassiolandim.biomedcalib.web.page.laboratory.LaboratoryListPage;
 import net.cassiolandim.biomedcalib.web.page.user.UserListPage;
 
@@ -22,8 +24,6 @@ import org.junit.Test;
 public class TestAdminHomePage {
 	
 	private WicketTester tester;
-	LaboratoryFixture laboratoryFixture;
-	UserFixture userFixture;
 
 	@Before
 	public void setUp(){
@@ -31,13 +31,16 @@ public class TestAdminHomePage {
 		
 		BiomedcalibApplicationForTesting app = (BiomedcalibApplicationForTesting)tester.getApplication();
 		
-		laboratoryFixture = new LaboratoryFixture();
+		LaboratoryFixture laboratoryFixture = new LaboratoryFixture();
 		laboratoryFixture.addStubs(app.context);
+		
+		ControlSerumFixture controlSerumFixture = new ControlSerumFixture();
+		controlSerumFixture.addStubs(app.context);
 		
 		MockListPersistenceService<Laboratory> laboratorySimplePersistableService = laboratoryFixture.getLaboratoryData().getLaboratoryService();
 		List<Laboratory> labs = laboratorySimplePersistableService.findAll();
 		
-		userFixture = new UserFixture();
+		UserFixture userFixture = new UserFixture();
 		userFixture.addStubs(app.context, labs);
 		
 		tester.startPage(AdminHomePage.class);
@@ -60,5 +63,12 @@ public class TestAdminHomePage {
 		tester.assertComponent("userListLink", Link.class);
 		tester.clickLink("userListLink");
 		tester.assertRenderedPage(UserListPage.class);
+	}
+	
+	@Test
+	public void testGotoControlSerumListingPage(){
+		tester.assertComponent("controlSerumListLink", Link.class);
+		tester.clickLink("controlSerumListLink");
+		tester.assertRenderedPage(ControlSerumListPage.class);
 	}
 }

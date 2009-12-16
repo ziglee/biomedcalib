@@ -5,7 +5,7 @@ import org.apache.wicket.markup.html.link.Link;
 /**
  * @author Cassio Landim
  */
-class UserListLink extends Link<UserListPage> {
+public class UserListLink extends Link<UserListPage> {
 	
 	public UserListLink(String id) {
 		super(id);

@@ -1,15 +1,18 @@
 package net.cassiolandim.biomedcalib.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.apache.commons.math.stat.descriptive.moment.Mean;
 
 /**
  * @author Cassio Landim
  */
+@Entity
 public class ControlSerum extends BaseEntity<ControlSerum> {
 
 	private Long id;
@@ -18,6 +21,9 @@ public class ControlSerum extends BaseEntity<ControlSerum> {
 	private Double maximum;
 	private Double standardDeviation;
 	private Double coefficientOfVariation;
+	
+	public final static double RANGE_MINIMUM = -200d;
+	public final static double RANGE_MAXIMUM = 200d;
 
 	@Id
 	@Column(name="control_serum_id")
@@ -79,7 +85,11 @@ public class ControlSerum extends BaseEntity<ControlSerum> {
 		return 0;
 	}
 
+	@Transient
 	public Double getMean() {
+		if(minimum == null && maximum == null)
+			return 0d;
+		
 		Mean mean = new Mean();
 		mean.increment(minimum);
 		mean.increment(maximum);

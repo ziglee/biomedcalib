@@ -12,7 +12,7 @@ import net.cassiolandim.biomedcalib.service.UserPersistableService;
  */
 public class UserDataGenerator {
 
-	private static final String[] NAMES = { "Cássio" , "Cíntia", "Landmary", "Maclemes" };
+	public static final String[] NAMES = { "Cássio" , "Cíntia", "Landmary", "Maclemes" };
 	
 	public static List<User> generateData(UserPersistableService userService, List<Laboratory> laboratories){
 		List<User> list = new ArrayList<User>();

@@ -1,6 +1,7 @@
 package net.cassiolandim.biomedcalib.persistence;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
+import net.cassiolandim.biomedcalib.sampleDataGeneration.LaboratoryDataGenerator;
 import net.cassiolandim.biomedcalib.web.MockContext;
 
 /**
@@ -8,7 +9,7 @@ import net.cassiolandim.biomedcalib.web.MockContext;
  */
 public class LaboratoryFixture {
 	
-	public static final String[] NAMES = { "CAPC" , "Atalaia", "Padrão", "INGOH", "Saluti", "Citocenter" };
+	public static final String[] NAMES = LaboratoryDataGenerator.NAMES;
 
 	private final LaboratoryData laboratoryData = new LaboratoryData();
 
