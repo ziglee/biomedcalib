@@ -1,6 +1,8 @@
+Java web app using Wicket, Hibernate (JPA) and Spring
+
 To access this project:
 
-1 - Run net.cassiolandim.biomedcalib.Start
+1 - Run net.cassiolandim.biomedcalib.Start class
 2 - Point browser to http://localhost:9090/biomedcalib
 
 Blog: http://cassiolandim.net
