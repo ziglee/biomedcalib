@@ -19,7 +19,7 @@ public class User extends BaseEntity<User> {
 	private Laboratory laboratory;
 	
 	@Id
-	@Column(name="user_id")
+	@Column(name="id_user")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
@@ -37,7 +37,7 @@ public class User extends BaseEntity<User> {
 	}
 	
 	@ManyToOne(optional=false)
-	@JoinColumn(name="laboratory_id")
+	@JoinColumn(name="id_laboratory")
 	public Laboratory getLaboratory() {
 		return laboratory;
 	}
@@ -48,9 +48,6 @@ public class User extends BaseEntity<User> {
 	public int compareTo(User user) {
 		if(this.name != null && user.name != null)
 			return this.name.compareToIgnoreCase(user.name);
-		
-		if(this.id != null && user.id != null)
-			return this.id.compareTo(user.id);
 		
 		return 0;
 	}

@@ -9,32 +9,33 @@ import org.junit.Test;
  */
 public class TestMeasuresPerLevel {
 
-	private MeasuresPerLevel measures = new MeasuresPerLevel();
-	private Measure m01 = new Measure(112);
-	private Measure m02 = new Measure(115);
-	private Measure m03 = new Measure(103);
-	private Measure m04 = new Measure(107);
-	private Measure m05 = new Measure(116);
-	private Measure m06 = new Measure(108);
-	private Measure m07 = new Measure(115);
-	private Measure m08 = new Measure(111);
-	private Measure m09 = new Measure(106);
-	private Measure m10 = new Measure(110);
-	private Measure m11 = new Measure(102);
-	private Measure m12 = new Measure(100);
-	private Measure m13 = new Measure(104);
-	private Measure m14 = new Measure(105);
-	private Measure m15 = new Measure(107);
-	private Measure m16 = new Measure(116);
-	private Measure m17 = new Measure(117);
-	private Measure m18 = new Measure(116);
-	private Measure m19 = new Measure(105);
-	private Measure m20 = new Measure(100);
-	private Measure m21 = new Measure(94);
-	private Measure m22 = new Measure(98);
-	private Measure m23 = new Measure(92);
-	private Measure m24 = new Measure(94);
-	private Measure m25 = new Measure(96);
+	private MeasuresAggregate measuresAggregate = new MeasuresAggregate(new Laboratory());
+	private MeasuresPerLevel measures = new MeasuresPerLevel(measuresAggregate);
+	private Measure m01 = new Measure(measures);
+	private Measure m02 = new Measure(measures);
+	private Measure m03 = new Measure(measures);
+	private Measure m04 = new Measure(measures);
+	private Measure m05 = new Measure(measures);
+	private Measure m06 = new Measure(measures);
+	private Measure m07 = new Measure(measures);
+	private Measure m08 = new Measure(measures);
+	private Measure m09 = new Measure(measures);
+	private Measure m10 = new Measure(measures);
+	private Measure m11 = new Measure(measures);
+	private Measure m12 = new Measure(measures);
+	private Measure m13 = new Measure(measures);
+	private Measure m14 = new Measure(measures);
+	private Measure m15 = new Measure(measures);
+	private Measure m16 = new Measure(measures);
+	private Measure m17 = new Measure(measures);
+	private Measure m18 = new Measure(measures);
+	private Measure m19 = new Measure(measures);
+	private Measure m20 = new Measure(measures);
+	private Measure m21 = new Measure(measures);
+	private Measure m22 = new Measure(measures);
+	private Measure m23 = new Measure(measures);
+	private Measure m24 = new Measure(measures);
+	private Measure m25 = new Measure(measures);
 	
 	@Before
 	public void setUp(){
@@ -63,6 +64,32 @@ public class TestMeasuresPerLevel {
 		measures.addMeasure(m23);
 		measures.addMeasure(m24);
 		measures.addMeasure(m25);
+		
+		m01.setValue(112L);
+		m02.setValue(115L);
+		m03.setValue(103L);
+		m04.setValue(107L);
+		m05.setValue(116L);
+		m06.setValue(108L);
+		m07.setValue(115L);
+		m08.setValue(111L);
+		m09.setValue(106L);
+		m10.setValue(110L);
+		m11.setValue(102L);
+		m12.setValue(100L);
+		m13.setValue(104L);
+		m14.setValue(105L);
+		m15.setValue(107L);
+		m16.setValue(116L);
+		m17.setValue(117L);
+		m18.setValue(116L);
+		m19.setValue(105L);
+		m20.setValue(100L);
+		m21.setValue(94L);
+		m22.setValue(98L);
+		m23.setValue(92L);
+		m24.setValue(94L);
+		m25.setValue(96L);
 	}
 	
 	@Test

@@ -1,5 +1,7 @@
 package net.cassiolandim.biomedcalib.web.page;
 
+import net.cassiolandim.biomedcalib.web.page.measure.MeasureListPage;
+
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.link.Link;
 
@@ -15,6 +17,13 @@ public class HomePage extends BasePage {
 			@Override
 			public void onClick() {
 				setResponsePage(AdminHomePage.class);
+			}
+        });
+    	
+    	add(new Link<MeasureListPage>("measureListLink"){
+			@Override
+			public void onClick() {
+				setResponsePage(MeasureListPage.class);
 			}
         });
     }

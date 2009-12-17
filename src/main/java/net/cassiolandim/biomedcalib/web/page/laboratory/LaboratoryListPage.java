@@ -1,8 +1,10 @@
 package net.cassiolandim.biomedcalib.web.page.laboratory;
 
+import java.util.List;
+
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
-import net.cassiolandim.biomedcalib.web.model.LaboratoryListLoadableDetachableModel;
+import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
 
 import org.apache.wicket.markup.html.basic.Label;
@@ -24,7 +26,7 @@ public class LaboratoryListPage extends AdminBasePage {
 		FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
 		add(feedbackPanel);
 		
-		add(new ListView<Laboratory>("laboratories", new LaboratoryListLoadableDetachableModel(laboratoryPersistableService)){
+		add(new ListView<Laboratory>("laboratories", new EntityListLoadableDetachableModel<Laboratory, List<Laboratory>>(laboratoryPersistableService)){
 			@Override
 			protected void populateItem(ListItem<Laboratory> item){
 				final Laboratory laboratory = item.getModelObject();

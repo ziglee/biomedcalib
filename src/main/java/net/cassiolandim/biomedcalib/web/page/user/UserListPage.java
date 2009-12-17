@@ -1,8 +1,10 @@
 package net.cassiolandim.biomedcalib.web.page.user;
 
+import java.util.List;
+
 import net.cassiolandim.biomedcalib.entity.User;
 import net.cassiolandim.biomedcalib.service.UserPersistableService;
-import net.cassiolandim.biomedcalib.web.model.UserListLoadableDetachableModel;
+import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
 
 import org.apache.wicket.markup.html.basic.Label;
@@ -21,7 +23,7 @@ public class UserListPage extends AdminBasePage {
 		FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
 		add(feedbackPanel);
 		
-		add(new ListView<User>("users", new UserListLoadableDetachableModel(userPersistableService)){
+		add(new ListView<User>("users", new EntityListLoadableDetachableModel<User, List<User>>(userPersistableService)){
 			@Override
 			protected void populateItem(ListItem<User> item){
 				final User user = item.getModelObject();

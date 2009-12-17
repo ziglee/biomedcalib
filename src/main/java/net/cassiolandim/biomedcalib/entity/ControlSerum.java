@@ -26,7 +26,7 @@ public class ControlSerum extends BaseEntity<ControlSerum> {
 	public final static double RANGE_MAXIMUM = 200d;
 
 	@Id
-	@Column(name="control_serum_id")
+	@Column(name="id_control_serum")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
@@ -79,9 +79,6 @@ public class ControlSerum extends BaseEntity<ControlSerum> {
 		if(this.name != null && controleSerum.name != null)
 			return this.name.compareToIgnoreCase(controleSerum.name);
 
-		if(this.id != null && controleSerum.id != null)
-			return this.id.compareTo(controleSerum.id);
-		
 		return 0;
 	}
 

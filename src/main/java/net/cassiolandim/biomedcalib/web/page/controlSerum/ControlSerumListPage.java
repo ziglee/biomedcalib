@@ -1,8 +1,10 @@
 package net.cassiolandim.biomedcalib.web.page.controlSerum;
 
+import java.util.List;
+
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
 import net.cassiolandim.biomedcalib.service.ControlSerumPersistableService;
-import net.cassiolandim.biomedcalib.web.model.ControlSerumListLoadableDetachableModel;
+import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
 
 import org.apache.wicket.markup.html.basic.Label;
@@ -25,7 +27,7 @@ public class ControlSerumListPage extends AdminBasePage {
 		FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
 		add(feedbackPanel);
 		
-		add(new ListView<ControlSerum>("controlSerums", new ControlSerumListLoadableDetachableModel(controlSerumPersistableService)){
+		add(new ListView<ControlSerum>("controlSerums", new EntityListLoadableDetachableModel<ControlSerum, List<ControlSerum>>(controlSerumPersistableService)){
 			@Override
 			protected void populateItem(ListItem<ControlSerum> item){
 				final ControlSerum controlSerum = item.getModelObject();

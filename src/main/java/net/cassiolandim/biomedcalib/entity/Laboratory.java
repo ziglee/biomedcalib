@@ -16,7 +16,7 @@ public class Laboratory extends BaseEntity<Laboratory> {
 	private String name;
 
 	@Id
-	@Column(name="laboratory_id")
+	@Column(name="id_laboratory")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;
@@ -36,9 +36,6 @@ public class Laboratory extends BaseEntity<Laboratory> {
 	public int compareTo(Laboratory laboratory) {
 		if(this.name != null && laboratory.name != null)
 			return this.name.compareToIgnoreCase(laboratory.name);
-		
-		if(this.id != null && laboratory.id != null)
-			return this.id.compareTo(laboratory.id);
 		
 		return 0;
 	}

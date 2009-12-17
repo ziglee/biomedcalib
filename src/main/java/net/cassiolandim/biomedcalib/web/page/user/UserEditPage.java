@@ -1,11 +1,13 @@
 package net.cassiolandim.biomedcalib.web.page.user;
 
+import java.util.List;
+
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.User;
 import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
 import net.cassiolandim.biomedcalib.service.UserPersistableService;
+import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.model.EntityLoadableDetachableModel;
-import net.cassiolandim.biomedcalib.web.model.LaboratoryListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
 
 import org.apache.wicket.markup.html.form.Button;
@@ -43,8 +45,10 @@ public class UserEditPage extends AdminBasePage {
 		Form<User> form = new Form<User>("form", model);
 		add(form);
 		
+		EntityListLoadableDetachableModel<Laboratory, List<Laboratory>> labListModel = new EntityListLoadableDetachableModel<Laboratory, List<Laboratory>>(laboratoryPersistableService);
+		
 		ChoiceRenderer<Laboratory> choiceRenderer = new ChoiceRenderer<Laboratory>("name","id");
-		DropDownChoice<Laboratory> labs = new DropDownChoice<Laboratory>("laboratory", new PropertyModel<Laboratory>(user, "laboratory"), new LaboratoryListLoadableDetachableModel(laboratoryPersistableService));
+		DropDownChoice<Laboratory> labs = new DropDownChoice<Laboratory>("laboratory", new PropertyModel<Laboratory>(user, "laboratory"), labListModel);
 		labs.setLabel(new ResourceModel("laboratory"));
 		labs.setRequired(true);
 		labs.setChoiceRenderer(choiceRenderer);
