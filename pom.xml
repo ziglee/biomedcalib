@@ -60,7 +60,27 @@
 			<name>Apache Snapshots</name>
 			<url>http://people.apache.org/repo/m2-snapshot-repository</url>
 		</repository>
+		<repository>
+		   <id>org.bindgen</id>
+		   <name>Bindgen Repository</name>
+		   <url>http://repo.joist.ws</url>
+		   <snapshots><enabled>false</enabled></snapshots>
+	  	</repository>
+		<repository>
+		   <id>org.bindgen.wicket</id>
+		   <name>Bindgen Wicket Repository</name>
+		   <url>http://bindgen-wicket.googlecode.com/svn/maven2</url>
+		   <snapshots><enabled>false</enabled></snapshots>
+		</repository>
 	</repositories>
+	
+	<pluginRepositories>
+  		<pluginRepository>
+	   		<id>maven-annotation-plugin</id>
+		   	<name>maven-annotation-processor Repository</name>
+		   	<url>http://maven-annotation-plugin.googlecode.com/svn/trunk/mavenrepo</url>
+  		</pluginRepository>
+	</pluginRepositories>
 	
 	<reporting>
 		<plugins>
@@ -116,6 +136,8 @@
 		<jetty.version>6.1.11</jetty.version>
 		<slf4j.version>1.5.6</slf4j.version>
 		<spring.version>2.5.6</spring.version>
+		<bindgen.version>2.5</bindgen.version>
+  		<bindgen.wicket.version>1.0</bindgen.wicket.version>
 	</properties>
 	
 	<dependencies>
@@ -280,6 +302,13 @@
 			<artifactId>trg-search-jpa-hibernate</artifactId>
 			<version>0.5.0</version>
 		</dependency>
+		
+		<!-- BINDING -->
+		<dependency>
+  			<groupId>org.bindgen.wicket</groupId>
+  			<artifactId>bindgen-wicket</artifactId>
+  			<version>${bindgen.wicket.version}</version>
+ 		</dependency>
 	</dependencies>
 
 	<build>
@@ -322,12 +351,27 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.6</source>
+					<target>1.6</target>
 					<optimize>true</optimize>
 					<debug>true</debug>
+					<compilerArgument>-proc:none</compilerArgument>
 				</configuration>
 			</plugin>
+			<plugin>
+		    	<groupId>org.bsc.maven</groupId>
+		    	<artifactId>maven-processor-plugin</artifactId>
+		    	<executions>
+		     		<execution>
+				    	<id>process</id>
+				      	<goals>
+				       		<goal>process</goal>
+				      	</goals>
+		      			<phase>generate-sources</phase>
+		     		</execution>
+		    	</executions>
+		   		<dependencies/>
+		  	</plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
@@ -361,6 +405,26 @@
 							wicketbench.associatedMarkupAuditor
 						</buildcommand>
 					</additionalBuildcommands>
+					<additionalConfig>
+      					<file>
+	       					<name>.factorypath</name>
+	       					<content>
+								<![CDATA[<factorypath>
+								  <factorypathentry kind="VARJAR" id="M2_REPO/org/bindgen/bindgen/${bindgen.version}/bindgen-${bindgen.version}.jar" enabled="true" runInBatchMode="false"/>
+								  </factorypath>]]>
+	       					</content>
+	      					</file>
+      					<file>
+				       		<name>.settings/org.eclipse.jdt.apt.core.prefs</name>
+				       		<content>
+								<![CDATA[
+								eclipse.preferences.version=1
+								org.eclipse.jdt.apt.aptEnabled=true
+								org.eclipse.jdt.apt.genSrcDir=target/generated-sources/apt/main/java
+								org.eclipse.jdt.apt.reconcileEnabled=true]]>
+							</content>
+				      	</file>
+     				</additionalConfig>
 					<downloadSources>true</downloadSources>
 				</configuration>
 			</plugin>

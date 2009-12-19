@@ -2,6 +2,7 @@
   <classpathentry kind="src" path="src/conf" including="**" excluding="**/*.java"/>
   <classpathentry kind="src" path="src/main/java"/>
   <classpathentry kind="src" path="src/test/java" output="target/test-classes"/>
+  <classpathentry kind="src" path="target/generated-sources/apt/main/java"/>
   <classpathentry kind="output" path="target/classes"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
   <classpathentry kind="var" path="M2_REPO/com/trg/trg-dao/0.5.0/trg-dao-0.5.0.jar" sourcepath="M2_REPO/com/trg/trg-dao/0.5.0/trg-dao-0.5.0-sources.jar"/>
@@ -43,6 +44,8 @@
   <classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-spring/1.4.3/wicket-spring-1.4.3.jar" sourcepath="M2_REPO/org/apache/wicket/wicket-spring/1.4.3/wicket-spring-1.4.3-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-ioc/1.4.3/wicket-ioc-1.4.3.jar" sourcepath="M2_REPO/org/apache/wicket/wicket-ioc/1.4.3/wicket-ioc-1.4.3-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3.jar" sourcepath="M2_REPO/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/bindgen/wicket/bindgen-wicket/1.0/bindgen-wicket-1.0.jar" sourcepath="M2_REPO/org/bindgen/wicket/bindgen-wicket/1.0/bindgen-wicket-1.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/bindgen/bindgen/2.5/bindgen-2.5.jar" sourcepath="M2_REPO/org/bindgen/bindgen/2.5/bindgen-2.5-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/easymock/easymock/2.3/easymock-2.3.jar" sourcepath="M2_REPO/org/easymock/easymock/2.3/easymock-2.3-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate/3.2.6.ga/hibernate-3.2.6.ga.jar" sourcepath="M2_REPO/org/hibernate/hibernate/3.2.6.ga/hibernate-3.2.6.ga-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/net/sf/ehcache/ehcache/1.2.3/ehcache-1.2.3.jar" sourcepath="M2_REPO/net/sf/ehcache/ehcache/1.2.3/ehcache-1.2.3-sources.jar"/>

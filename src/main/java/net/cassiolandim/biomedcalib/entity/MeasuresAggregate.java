@@ -11,10 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.bindgen.Bindable;
+
 /**
  * @author Cassio Landim
  */
 @Entity
+@Bindable
 public class MeasuresAggregate extends BaseEntity<MeasuresAggregate>{
 
 	private Long id;

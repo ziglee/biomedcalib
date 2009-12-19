@@ -18,11 +18,13 @@ import net.cassiolandim.biomedcalib.math.MyMath;
 
 import org.apache.commons.math.stat.descriptive.moment.Mean;
 import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
+import org.bindgen.Bindable;
 
 /**
  * @author Cassio Landim
  */
 @Entity
+@Bindable
 public class MeasuresPerLevel extends BaseEntity<MeasuresPerLevel>{
 
 	private Long id;

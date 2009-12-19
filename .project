@@ -12,6 +12,9 @@
     <buildCommand>
       <name>com.stateofflow.eclipse.metrics.MetricsBuilder</name>
     </buildCommand>
+    <buildCommand>
+      <name>wicketbench.associatedMarkupAuditor</name>
+    </buildCommand>
   </buildSpec>
   <natures>
     <nature>org.eclipse.jdt.core.javanature</nature>

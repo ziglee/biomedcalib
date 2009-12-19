@@ -1,6 +1,7 @@
 package net.cassiolandim.biomedcalib.web.page.laboratory;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
+import net.cassiolandim.biomedcalib.entity.LaboratoryBinding;
 import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
 import net.cassiolandim.biomedcalib.web.model.EntityLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
@@ -35,7 +36,9 @@ public class LaboratoryEditPage extends AdminBasePage {
 		Form<Laboratory> form = new Form<Laboratory>("form", model);
 		add(form);
 		
-		TextField<String> name = new TextField<String>("name", new PropertyModel<String>(laboratory, "name"));
+		LaboratoryBinding binding = new LaboratoryBinding();
+		
+		TextField<String> name = new TextField<String>("name", new PropertyModel<String>(laboratory, binding.name().getPath()));
 		name.setLabel(new ResourceModel("name"));
 		name.setRequired(true);
 		name.add(StringValidator.maximumLength(50));

@@ -8,10 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.bindgen.Bindable;
+
 /**
  * @author Cassio Landim
  */
 @Entity
+@Bindable
 public class User extends BaseEntity<User> {
 
 	private Long id;

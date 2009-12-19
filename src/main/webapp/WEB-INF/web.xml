@@ -5,6 +5,15 @@
 	 version="2.4">
 
 	<display-name>biomedcalib</display-name>
+    
+    <!-- Enable the filters for Hibernate -->
+    <filter>
+		<filter-name>openEntityManagerInViewFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+		</filter-class>
+	</filter>
+	<!-- END hibernate filters -->
 	
 	<filter>
         <filter-name>wicket.biomedcalib</filter-name>
@@ -20,6 +29,13 @@
 		</init-param>
 		--> 
     </filter>
+
+	<!-- Enable the filters for Hibernate -->
+    <filter-mapping>
+        <filter-name>openEntityManagerInViewFilter</filter-name>
+        <url-pattern>/app/*</url-pattern>
+    </filter-mapping>
+	<!-- END hibernate filters -->
 
 	<filter-mapping>
   		<filter-name>wicket.biomedcalib</filter-name>

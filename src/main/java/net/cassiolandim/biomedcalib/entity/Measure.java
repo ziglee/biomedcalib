@@ -9,10 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.bindgen.Bindable;
+
 /**
  * @author Cassio Landim
  */
 @Entity
+@Bindable
 public class Measure extends BaseEntity<Measure>{
 
 	private Long id;
@@ -20,7 +23,11 @@ public class Measure extends BaseEntity<Measure>{
 	private Long value;
 	private MeasuresPerLevel measuresPerLevel;
 	
+	private Measure() {
+	}
+	
 	public Measure(MeasuresPerLevel measuresPerLevel) {
+		this();
 		setMeasuresPerLevel(measuresPerLevel);
 	}
 	
