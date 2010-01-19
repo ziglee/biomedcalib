@@ -39,7 +39,7 @@ public class MeasuresDataGenerator {
 		mpl2.addMeasure(createMeasure(mpl1, "15/12/2009", 102L));
 		mpl2.addMeasure(createMeasure(mpl1, "16/12/2009", 103L));
 		
-		measuresAggregateService.save(entity);
+		measuresAggregateService.persist(entity);
 		list.add(entity);
 		
 		return list;

@@ -51,6 +51,9 @@ public class MeasuresAggregateDaoPersistenceService implements MeasuresAggregate
 	}
 
 	public void persist(MeasuresAggregate entity) {
+		persist(entity.getMeasures1());
+		persist(entity.getMeasures2());
+		persist(entity.getMeasures3());
 		measuresAggregateDao.persist(entity);
 	}
 
@@ -59,20 +62,17 @@ public class MeasuresAggregateDaoPersistenceService implements MeasuresAggregate
 	}
 
 	public void save(MeasuresAggregate entity) {
-		save(entity.getMeasures1());
-		save(entity.getMeasures2());
-		save(entity.getMeasures3());
 		measuresAggregateDao.save(entity);
 	}
 
-	private void save(MeasuresPerLevel measurePerLevel) {
+	private void persist(MeasuresPerLevel measurePerLevel) {
 		for(Measure measure : measurePerLevel.getMeasures()){
-			save(measure);
+			persist(measure);
 		}
-		measuresPerLevelDao.save(measurePerLevel);
+		measuresPerLevelDao.persist(measurePerLevel);
 	}
 
-	private void save(Measure measure) {
-		measureDao.save(measure);
+	private void persist(Measure measure) {
+		measureDao.persist(measure);
 	}
 }

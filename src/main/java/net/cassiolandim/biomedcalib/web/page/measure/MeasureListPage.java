@@ -2,6 +2,7 @@ package net.cassiolandim.biomedcalib.web.page.measure;
 
 import java.util.List;
 
+import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregateBinding;
 import net.cassiolandim.biomedcalib.service.MeasuresAggregatePersistableService;
@@ -47,5 +48,16 @@ public class MeasureListPage extends BasePage {
 		        });
 			}
 		});
+		
+		add(new Link<MeasureDetailsPage>("newLink"){
+			@Override
+			public void onClick() {
+				Laboratory laboratory = getBiomedicalSession().getLaboratory();
+				MeasuresAggregate measuresAggregate = new MeasuresAggregate(laboratory);
+				//FIXME: setResponsePage(new MeasureDetailsEditPage(measuresAggregate));
+			}
+        });
+		
+		addHomeLink();
 	}
 }

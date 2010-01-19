@@ -6,13 +6,15 @@
         <strong>Listagem de Medições</strong>
         <hr/>
         
+        <a wicket:id="homeLink">[home]</a>
+        |
+        <a wicket:id="newLink">[novo]</a>
+        <hr/>
+        
         <div wicket:id="feedback"></div>
         
         <table>
         	<tr>
-        		<th>
-        			
-        		</th>
         		<th>
         			Data de criação
         		</th>
@@ -25,13 +27,16 @@
         		<th>
         			Nível 3
         		</th>
+        		<th>
+        			
+        		</th>
         	</tr>
         	<tr wicket:id="measureAggregates">
-        		<td><a wicket:id="measureDetailsLink">#</a></td>
         		<td wicket:id="creationDate">[data de criação]</td>
         		<td wicket:id="measures1.controlSerum.name">[nivel 1]</td>
         		<td wicket:id="measures2.controlSerum.name">[nivel 2]</td>
         		<td wicket:id="measures3.controlSerum.name">[nivel 3]</td>
+        		<td><a wicket:id="measureDetailsLink">[detalhes]</a></td>
         	</tr>
         </table>
     </body>

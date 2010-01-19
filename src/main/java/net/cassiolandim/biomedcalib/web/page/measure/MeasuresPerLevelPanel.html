@@ -4,27 +4,40 @@
     <body>
     	<wicket:panel>
 		<table>
-			<tr>
-				<th colspan="2">
-					<span wicket:id="controlSerum">[soro controle]</span>
-				</th>
-			</tr>
-			<tr>
-				<th>
-					Data
-				</th>
-				<th>
-					Valor
-				</th>
-			</tr>
-			<tr wicket:id="measures">
-				<td>
-					<span wicket:id="date">[data]</span>
-				</td>
-				<td>
-					<span wicket:id="value">[valor]</span>
-				</td>
-			</tr>
+			<thead>
+				<tr>
+					<th colspan="2">
+						<span wicket:id="controlSerum">[soro controle]</span>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>
+						Data
+					</th>
+					<th>
+						Valor
+					</th>
+				</tr>
+				<tr wicket:id="measures">
+					<td>
+						<span wicket:id="date">[data]</span>
+					</td>
+					<td>
+						<span wicket:id="value">[valor]</span>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="2">
+						Média: <span wicket:id="mean">[média]</span><br/>
+						Desvio padrão: <span wicket:id="standardDeviation">[desvio padrão]</span><br/>
+						Coeficiente de variação: <span wicket:id="coefficientOfVariation">[coeficiente de variação]</span>
+					</td>
+				</tr>
+			</tfoot>
 		</table>
 		</wicket:panel>
     </body>

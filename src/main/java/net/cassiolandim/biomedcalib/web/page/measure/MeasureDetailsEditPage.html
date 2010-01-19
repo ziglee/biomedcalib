@@ -9,8 +9,6 @@
         <a wicket:id="homeLink">[home]</a>
         |
         <a wicket:id="measureListLink">[listagem]</a>
-        |
-        <a wicket:id="editLink">[editar]</a>
         <hr/>
         
         <table>
@@ -23,8 +21,14 @@
         		</td>
         	</tr>
         	<tr>
-        		<td colspan="2">
-        			Observações: <span wicket:id="observation">[observações]</span>
+        		<td>
+        			Observações:
+        		</td>
+        		<td>
+        			<form wicket:id="form">
+        				<textarea wicket:id="observation">[observações]</textarea>
+        				<button wicket:id="save">Salvar</button>
+					</form>
         		</td>
         	</tr>
         </table>
@@ -33,12 +37,15 @@
         	<tr>
         		<td>
        				<span wicket:id="measures1">[medidas1]</span>
+       				<a wicket:id="editMeasures1" target="editMeasures1">editar</a>
         		</td>
         		<td>
        				<span wicket:id="measures2">[medidas2]</span>
+       				<a wicket:id="editMeasures2" target="editMeasures2">editar</a>
         		</td>
         		<td>
        				<span wicket:id="measures3">[medidas3]</span>
+       				<a wicket:id="editMeasures3" target="editMeasures3">editar</a>
         		</td>
         	</tr>
         </table>

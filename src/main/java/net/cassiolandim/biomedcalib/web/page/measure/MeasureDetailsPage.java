@@ -6,6 +6,7 @@ import net.cassiolandim.biomedcalib.web.model.EntityLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.BasePage;
 
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -23,8 +24,24 @@ public class MeasureDetailsPage extends BasePage {
 		add(new Label("creationDate"));
 		add(new Label("laboratory.name"));
 		add(new Label("observation"));
-		add(new MeasuresPerLevelPanel("measures1", measuresAggregate.getMeasures1()));
-		add(new MeasuresPerLevelPanel("measures2", measuresAggregate.getMeasures2()));
-		add(new MeasuresPerLevelPanel("measures3", measuresAggregate.getMeasures3()));
+		add(new MeasuresPerLevelPanel("measures1", measuresAggregate.getMeasures1().getId()));
+		add(new MeasuresPerLevelPanel("measures2", measuresAggregate.getMeasures2().getId()));
+		add(new MeasuresPerLevelPanel("measures3", measuresAggregate.getMeasures3().getId()));
+    	
+    	add(new Link<MeasureListPage>("measureListLink"){
+			@Override
+			public void onClick() {
+				setResponsePage(MeasureListPage.class);
+			}
+        });
+    	
+    	add(new Link<MeasureListPage>("editLink"){
+			@Override
+			public void onClick() {
+				setResponsePage(new MeasureDetailsEditPage(measuresAggregate.getId()));
+			}
+        });
+
+		addHomeLink();
 	}
 }

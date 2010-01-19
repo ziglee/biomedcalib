@@ -24,6 +24,8 @@ public class Measure extends BaseEntity<Measure>{
 	private MeasuresPerLevel measuresPerLevel;
 	
 	private Measure() {
+		value = new Long(0);
+		date = new Date();
 	}
 	
 	public Measure(MeasuresPerLevel measuresPerLevel) {

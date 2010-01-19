@@ -1,5 +1,6 @@
 package net.cassiolandim.biomedcalib.web;
 
+import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.User;
 
 import org.apache.wicket.Request;
@@ -26,5 +27,9 @@ public class BiomedcalibSession extends WebSession {
 
 	public synchronized User getUser() {
 		return user;
+	}
+	
+	public synchronized Laboratory getLaboratory() {
+		return user.getLaboratory();
 	}
 }

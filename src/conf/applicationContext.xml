@@ -99,6 +99,10 @@
 		class="net.cassiolandim.biomedcalib.service.MeasuresAggregateDaoPersistenceService"
 		autowire="byName" />
 		
+	<bean id="measuresPerLevelPersistableService"
+		class="net.cassiolandim.biomedcalib.service.MeasuresPerLevelDaoPersistenceService"
+		autowire="byName" />
+		
 	<!--
 		setup data generator that will add some data into the db when the app
 		starts up
