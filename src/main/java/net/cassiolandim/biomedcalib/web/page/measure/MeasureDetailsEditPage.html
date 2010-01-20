@@ -11,41 +11,50 @@
         <a wicket:id="measureListLink">[listagem]</a>
         <hr/>
         
-        <table>
-        	<tr>
-        		<td>
-        			Laboratório: <span wicket:id="laboratory.name">[laboratorio]</span>
-        		</td>
-        		<td>
-        			Data de criação: <span wicket:id="creationDate">[data de criação]</span>
-        		</td>
-        	</tr>
-        	<tr>
-        		<td>
-        			Observações:
-        		</td>
-        		<td>
-        			<form wicket:id="form">
-        				<textarea wicket:id="observation">[observações]</textarea>
-        				<button wicket:id="save">Salvar</button>
-					</form>
-        		</td>
-        	</tr>
-        </table>
+		<form wicket:id="form">
+	        <table border="1">
+	        	<tr>
+	        		<td>
+	        			Laboratório:
+	        		</td>
+	        		<td>
+	        			<span wicket:id="laboratory.name">[laboratorio]</span>
+	        		</td>
+	        	</tr>
+	        	<tr>
+	        		<td>
+	        			Data de criação:
+	        		</td>
+	        		<td>
+	       				<input wicket:id="creationDate" />
+	        		</td>
+	        	</tr>
+	        	<tr>
+	        		<td>
+	        			Observações:
+	        		</td>
+	        		<td>
+	       				<textarea wicket:id="observation">[observações]</textarea>
+	        		</td>
+	        	</tr>
+	        	<tr>
+	        		<td colspan="2">
+	       				<button wicket:id="save">Salvar</button>
+	        		</td>
+	        	</tr>
+	        </table>
+       	</form>
         
-        <table>
+        <table border="1">
         	<tr>
         		<td>
        				<span wicket:id="measures1">[medidas1]</span>
-       				<a wicket:id="editMeasures1" target="editMeasures1">editar</a>
         		</td>
         		<td>
        				<span wicket:id="measures2">[medidas2]</span>
-       				<a wicket:id="editMeasures2" target="editMeasures2">editar</a>
         		</td>
         		<td>
        				<span wicket:id="measures3">[medidas3]</span>
-       				<a wicket:id="editMeasures3" target="editMeasures3">editar</a>
         		</td>
         	</tr>
         </table>

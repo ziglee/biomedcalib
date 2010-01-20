@@ -100,7 +100,7 @@ public class MeasuresAggregate extends BaseEntity<MeasuresAggregate>{
 		this.observation = observation;
 	}
 	
-	@Column(nullable=false,updatable=false)
+	@Column(nullable=false,updatable=true)
 	public Date getCreationDate() {
 		return creationDate;
 	}

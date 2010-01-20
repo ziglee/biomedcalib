@@ -13,7 +13,6 @@ import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.util.convert.ConversionException;
 
 /**
  * DateChooser
@@ -28,13 +27,14 @@ import org.apache.wicket.util.convert.ConversionException;
  */
 public class DateChooser extends FormComponent<Date> {
 
-	private DropDownChoice<Integer> day;
-	private DropDownChoice<Integer> month;
-	private DropDownChoice<Integer> year;
+	private final DropDownChoice<Integer> day;
+	private final DropDownChoice<Integer> month;
+	private final DropDownChoice<Integer> year;
 	
     public DateChooser(final String id, IModel<Date> model) {
         super(id);
-
+        setType(Date.class);
+        
         if (model == null) {
             model = new Model<Date>(new Date());
         } else if (model.getObject() == null) {

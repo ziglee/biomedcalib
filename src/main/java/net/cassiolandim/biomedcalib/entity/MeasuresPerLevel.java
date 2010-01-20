@@ -70,6 +70,9 @@ public class MeasuresPerLevel extends BaseEntity<MeasuresPerLevel>{
 	public void addMeasure(Measure measure) {
 		measures.add(measure);
 	}
+	public void removeMeasure(Measure measure) {
+		measures.remove(measure);
+	}
 
 	@OneToOne
 	public MeasuresAggregate getMeasuresAggregate() {
