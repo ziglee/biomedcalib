@@ -1,5 +1,6 @@
 package net.cassiolandim.biomedcalib.web.page.measure;
 
+import net.cassiolandim.biomedcalib.entity.Measure;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
 import net.cassiolandim.biomedcalib.service.MeasuresAggregatePersistableService;
 import net.cassiolandim.biomedcalib.web.model.EntityLoadableDetachableModel;
@@ -7,7 +8,11 @@ import net.cassiolandim.biomedcalib.web.page.BasePage;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.repeater.Item;
+import org.apache.wicket.markup.repeater.data.DataView;
+import org.apache.wicket.markup.repeater.data.ListDataProvider;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 public class MeasureDetailsPage extends BasePage {
@@ -23,10 +28,23 @@ public class MeasureDetailsPage extends BasePage {
 		
 		add(new Label("creationDate"));
 		add(new Label("laboratory.name"));
+		add(new Label("controlSerum.name"));
 		add(new Label("observation"));
-		add(new MeasuresPerLevelPanel("measures1", measuresAggregate.getMeasures1().getId()));
-		add(new MeasuresPerLevelPanel("measures2", measuresAggregate.getMeasures2().getId()));
-		add(new MeasuresPerLevelPanel("measures3", measuresAggregate.getMeasures3().getId()));
+		add(new Label("mean", new PropertyModel<MeasuresAggregate>(detachModel, "mean")));
+		add(new Label("standardDeviation", new PropertyModel<MeasuresAggregate>(detachModel, "standardDeviation")));
+		add(new Label("coefficientOfVariation", new PropertyModel<MeasuresAggregate>(detachModel, "cofficientOfVariation")));
+
+		DataView<Measure> dataView = new DataView<Measure>("measures", new ListDataProvider<Measure>(measuresAggregate.getMeasures())) {
+			@Override
+			protected void populateItem(final Item<Measure> item){
+				final Measure measure = (Measure)item.getModelObject();
+				CompoundPropertyModel<Measure> compoundModel = new CompoundPropertyModel<Measure>(measure);
+				item.setModel(compoundModel);
+				item.add(new Label("date"));
+				item.add(new Label("value"));
+			}
+		};
+		add(dataView);
     	
     	add(new Link<MeasureListPage>("measureListLink"){
 			@Override

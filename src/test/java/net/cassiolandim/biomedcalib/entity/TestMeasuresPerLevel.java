@@ -10,60 +10,59 @@ import org.junit.Test;
 public class TestMeasuresPerLevel {
 
 	private MeasuresAggregate measuresAggregate = new MeasuresAggregate(new Laboratory());
-	private MeasuresPerLevel measures = new MeasuresPerLevel(measuresAggregate);
-	private Measure m01 = new Measure(measures);
-	private Measure m02 = new Measure(measures);
-	private Measure m03 = new Measure(measures);
-	private Measure m04 = new Measure(measures);
-	private Measure m05 = new Measure(measures);
-	private Measure m06 = new Measure(measures);
-	private Measure m07 = new Measure(measures);
-	private Measure m08 = new Measure(measures);
-	private Measure m09 = new Measure(measures);
-	private Measure m10 = new Measure(measures);
-	private Measure m11 = new Measure(measures);
-	private Measure m12 = new Measure(measures);
-	private Measure m13 = new Measure(measures);
-	private Measure m14 = new Measure(measures);
-	private Measure m15 = new Measure(measures);
-	private Measure m16 = new Measure(measures);
-	private Measure m17 = new Measure(measures);
-	private Measure m18 = new Measure(measures);
-	private Measure m19 = new Measure(measures);
-	private Measure m20 = new Measure(measures);
-	private Measure m21 = new Measure(measures);
-	private Measure m22 = new Measure(measures);
-	private Measure m23 = new Measure(measures);
-	private Measure m24 = new Measure(measures);
-	private Measure m25 = new Measure(measures);
+	private Measure m01 = new Measure(measuresAggregate);
+	private Measure m02 = new Measure(measuresAggregate);
+	private Measure m03 = new Measure(measuresAggregate);
+	private Measure m04 = new Measure(measuresAggregate);
+	private Measure m05 = new Measure(measuresAggregate);
+	private Measure m06 = new Measure(measuresAggregate);
+	private Measure m07 = new Measure(measuresAggregate);
+	private Measure m08 = new Measure(measuresAggregate);
+	private Measure m09 = new Measure(measuresAggregate);
+	private Measure m10 = new Measure(measuresAggregate);
+	private Measure m11 = new Measure(measuresAggregate);
+	private Measure m12 = new Measure(measuresAggregate);
+	private Measure m13 = new Measure(measuresAggregate);
+	private Measure m14 = new Measure(measuresAggregate);
+	private Measure m15 = new Measure(measuresAggregate);
+	private Measure m16 = new Measure(measuresAggregate);
+	private Measure m17 = new Measure(measuresAggregate);
+	private Measure m18 = new Measure(measuresAggregate);
+	private Measure m19 = new Measure(measuresAggregate);
+	private Measure m20 = new Measure(measuresAggregate);
+	private Measure m21 = new Measure(measuresAggregate);
+	private Measure m22 = new Measure(measuresAggregate);
+	private Measure m23 = new Measure(measuresAggregate);
+	private Measure m24 = new Measure(measuresAggregate);
+	private Measure m25 = new Measure(measuresAggregate);
 	
 	@Before
 	public void setUp(){
-		measures.addMeasure(m01);
-		measures.addMeasure(m02);
-		measures.addMeasure(m03);
-		measures.addMeasure(m04);
-		measures.addMeasure(m05);
-		measures.addMeasure(m06);
-		measures.addMeasure(m07);
-		measures.addMeasure(m08);
-		measures.addMeasure(m09);
-		measures.addMeasure(m10);
-		measures.addMeasure(m11);
-		measures.addMeasure(m12);
-		measures.addMeasure(m13);
-		measures.addMeasure(m14);
-		measures.addMeasure(m15);
-		measures.addMeasure(m16);
-		measures.addMeasure(m17);
-		measures.addMeasure(m18);
-		measures.addMeasure(m19);
-		measures.addMeasure(m20);
-		measures.addMeasure(m21);
-		measures.addMeasure(m22);
-		measures.addMeasure(m23);
-		measures.addMeasure(m24);
-		measures.addMeasure(m25);
+		measuresAggregate.addMeasure(m01);
+		measuresAggregate.addMeasure(m02);
+		measuresAggregate.addMeasure(m03);
+		measuresAggregate.addMeasure(m04);
+		measuresAggregate.addMeasure(m05);
+		measuresAggregate.addMeasure(m06);
+		measuresAggregate.addMeasure(m07);
+		measuresAggregate.addMeasure(m08);
+		measuresAggregate.addMeasure(m09);
+		measuresAggregate.addMeasure(m10);
+		measuresAggregate.addMeasure(m11);
+		measuresAggregate.addMeasure(m12);
+		measuresAggregate.addMeasure(m13);
+		measuresAggregate.addMeasure(m14);
+		measuresAggregate.addMeasure(m15);
+		measuresAggregate.addMeasure(m16);
+		measuresAggregate.addMeasure(m17);
+		measuresAggregate.addMeasure(m18);
+		measuresAggregate.addMeasure(m19);
+		measuresAggregate.addMeasure(m20);
+		measuresAggregate.addMeasure(m21);
+		measuresAggregate.addMeasure(m22);
+		measuresAggregate.addMeasure(m23);
+		measuresAggregate.addMeasure(m24);
+		measuresAggregate.addMeasure(m25);
 		
 		m01.setValue(112L);
 		m02.setValue(115L);
@@ -94,16 +93,16 @@ public class TestMeasuresPerLevel {
 	
 	@Test
 	public void testMean(){
-		Assert.assertEquals(105.959, measures.getMean(), 0.001);
+		Assert.assertEquals(105.959, measuresAggregate.getMean(), 0.001);
 	}
 	
 	@Test
 	public void testStandardDeviation(){
-		Assert.assertEquals(7.683, measures.getStandardDeviation(), 0.001);
+		Assert.assertEquals(7.683, measuresAggregate.getStandardDeviation(), 0.001);
 	}
 	
 	@Test
 	public void testCofficientOfVariation(){
-		Assert.assertEquals(7.251, measures.getCofficientOfVariation(), 0.001);
+		Assert.assertEquals(7.251, measuresAggregate.getCofficientOfVariation(), 0.001);
 	}
 }

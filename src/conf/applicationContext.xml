@@ -75,10 +75,6 @@
 		class="net.cassiolandim.biomedcalib.dao.MeasureHibernateJpaDao"
 		autowire="byName" />
 		
-	<bean id="measuresPerLevelDao"
-		class="net.cassiolandim.biomedcalib.dao.MeasuresPerLevelHibernateJpaDao"
-		autowire="byName" />
-		
 	<bean id="measuresAggregateDao"
 		class="net.cassiolandim.biomedcalib.dao.MeasuresAggregateHibernateJpaDao"
 		autowire="byName" />
@@ -97,10 +93,6 @@
 		
 	<bean id="measuresAggregatePersistableService"
 		class="net.cassiolandim.biomedcalib.service.MeasuresAggregateDaoPersistenceService"
-		autowire="byName" />
-		
-	<bean id="measuresPerLevelPersistableService"
-		class="net.cassiolandim.biomedcalib.service.MeasuresPerLevelDaoPersistenceService"
 		autowire="byName" />
 		
 	<!--

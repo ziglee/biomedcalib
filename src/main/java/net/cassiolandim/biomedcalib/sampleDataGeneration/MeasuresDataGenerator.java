@@ -9,7 +9,6 @@ import net.cassiolandim.biomedcalib.entity.ControlSerum;
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.Measure;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
-import net.cassiolandim.biomedcalib.entity.MeasuresPerLevel;
 import net.cassiolandim.biomedcalib.service.MeasuresAggregatePersistableService;
 
 /**
@@ -24,20 +23,10 @@ public class MeasuresDataGenerator {
 		
 		MeasuresAggregate entity = new MeasuresAggregate(laboratories.get(0));
 		entity.setObservation("observação");
-		
-		MeasuresPerLevel mpl1 = entity.getMeasures1();
-		MeasuresPerLevel mpl2 = entity.getMeasures2();
-		MeasuresPerLevel mpl3 = entity.getMeasures3();
-		
-		mpl1.setControlSerum(controlSerums.get(0));
-		mpl2.setControlSerum(controlSerums.get(1));
-		mpl3.setControlSerum(controlSerums.get(2));
-		
-		mpl1.addMeasure(createMeasure(mpl1, "16/12/2009", 110L));
-		mpl1.addMeasure(createMeasure(mpl1, "17/12/2009", 101L));
-		mpl1.addMeasure(createMeasure(mpl1, "18/12/2009", 99L));
-		mpl2.addMeasure(createMeasure(mpl1, "15/12/2009", 102L));
-		mpl2.addMeasure(createMeasure(mpl1, "16/12/2009", 103L));
+		entity.setControlSerum(controlSerums.get(0));
+		entity.addMeasure(createMeasure(entity, "16/12/2009", 110L));
+		entity.addMeasure(createMeasure(entity, "17/12/2009", 101L));
+		entity.addMeasure(createMeasure(entity, "18/12/2009", 99L));
 		
 		measuresAggregateService.persist(entity);
 		list.add(entity);
@@ -45,8 +34,8 @@ public class MeasuresDataGenerator {
 		return list;
 	}
 	
-	private static Measure createMeasure(MeasuresPerLevel mpl, String date, long value) throws ParseException{
-		Measure measure = new Measure(mpl);
+	private static Measure createMeasure(MeasuresAggregate ma, String date, long value) throws ParseException{
+		Measure measure = new Measure(ma);
 		measure.setDate(dateFormat.parse(date));
 		measure.setValue(value);
 		return measure;

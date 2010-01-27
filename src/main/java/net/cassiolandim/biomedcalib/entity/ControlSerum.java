@@ -8,13 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 import org.apache.commons.math.stat.descriptive.moment.Mean;
-import org.bindgen.Bindable;
 
 /**
  * @author Cassio Landim
  */
 @Entity
-@Bindable
 public class ControlSerum extends BaseEntity<ControlSerum> {
 
 	private Long id;

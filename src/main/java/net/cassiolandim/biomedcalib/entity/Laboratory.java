@@ -6,13 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.bindgen.Bindable;
-
 /**
  * @author Cassio Landim
  */
 @Entity
-@Bindable
 public class Laboratory extends BaseEntity<Laboratory> {
 
 	private Long id;

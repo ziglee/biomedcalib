@@ -1,7 +1,6 @@
 package net.cassiolandim.biomedcalib.web.page.controlSerum;
 
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
-import net.cassiolandim.biomedcalib.entity.ControlSerumBinding;
 import net.cassiolandim.biomedcalib.service.ControlSerumPersistableService;
 import net.cassiolandim.biomedcalib.web.model.EntityLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
@@ -40,36 +39,34 @@ public class ControlSerumEditPage extends AdminBasePage {
 		Form<ControlSerum> form = new Form<ControlSerum>("form", model);
 		add(form);
 		
-		ControlSerumBinding binding = new ControlSerumBinding();
-		
-		TextField<String> name = new TextField<String>("name", new PropertyModel<String>(controlSerum, binding.name().getPath()));
+		TextField<String> name = new TextField<String>("name", new PropertyModel<String>(controlSerum, "name"));
 		name.setLabel(new ResourceModel("name"));
 		name.setRequired(true);
 		name.add(StringValidator.maximumLength(50));
 		form.add(name);
 		
-		TextField<Double> minimum = new TextField<Double>("minimum", new PropertyModel<Double>(controlSerum, binding.minimum().getPath()));
+		TextField<Double> minimum = new TextField<Double>("minimum", new PropertyModel<Double>(controlSerum, "minimum"));
 		minimum.setLabel(new ResourceModel("minimum"));
 		minimum.setRequired(true);
 		minimum.add(doubleRangeValidator);
 		form.add(minimum);
 		
-		TextField<Double> maximum = new TextField<Double>("maximum", new PropertyModel<Double>(controlSerum, binding.maximum().getPath()));
+		TextField<Double> maximum = new TextField<Double>("maximum", new PropertyModel<Double>(controlSerum, "maximum"));
 		maximum.setLabel(new ResourceModel("maximum"));
 		maximum.setRequired(true);
 		maximum.add(doubleRangeValidator);
 		form.add(maximum);
 		
-		Label mean = new Label("mean", new PropertyModel<Double>(controlSerum, binding.mean().getPath()));
+		Label mean = new Label("mean", new PropertyModel<Double>(controlSerum, "mean"));
 		form.add(mean);
 		
-		TextField<Double> standardDeviation = new TextField<Double>("standardDeviation", new PropertyModel<Double>(controlSerum, binding.standardDeviation().getPath()));
+		TextField<Double> standardDeviation = new TextField<Double>("standardDeviation", new PropertyModel<Double>(controlSerum, "standardDeviation"));
 		standardDeviation.setLabel(new ResourceModel("standardDeviation"));
 		standardDeviation.setRequired(true);
 		standardDeviation.add(doubleRangeValidator);
 		form.add(standardDeviation);
 		
-		TextField<Double> coefficientOfVariation = new TextField<Double>("coefficientOfVariation", new PropertyModel<Double>(controlSerum, binding.coefficientOfVariation().getPath()));
+		TextField<Double> coefficientOfVariation = new TextField<Double>("coefficientOfVariation", new PropertyModel<Double>(controlSerum, "coefficientOfVariation"));
 		coefficientOfVariation.setLabel(new ResourceModel("coefficientOfVariation"));
 		coefficientOfVariation.setRequired(true);
 		coefficientOfVariation.add(doubleRangeValidator);

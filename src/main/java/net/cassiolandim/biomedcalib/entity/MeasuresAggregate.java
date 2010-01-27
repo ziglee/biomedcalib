@@ -1,6 +1,8 @@
 package net.cassiolandim.biomedcalib.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,30 +11,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
-import org.bindgen.Bindable;
+import net.cassiolandim.biomedcalib.math.MyMath;
+
+import org.apache.commons.math.stat.descriptive.moment.Mean;
+import org.apache.commons.math.stat.descriptive.moment.StandardDeviation;
 
 /**
  * @author Cassio Landim
  */
 @Entity
-@Bindable
 public class MeasuresAggregate extends BaseEntity<MeasuresAggregate>{
 
 	private Long id;
 	private Laboratory laboratory;
-	private MeasuresPerLevel measures1;
-	private MeasuresPerLevel measures2;
-	private MeasuresPerLevel measures3;
+	private ControlSerum controlSerum;
 	private String observation;
 	private Date creationDate;
-	
-	private MeasuresAggregate() {
-		setMeasures1(new MeasuresPerLevel(this));
-		setMeasures2(new MeasuresPerLevel(this));
-		setMeasures3(new MeasuresPerLevel(this));
+	private List<Measure> measures;
+
+	public MeasuresAggregate() {
 		setCreationDate(new Date());
+		setMeasures(new ArrayList<Measure>());
 	}
 	
 	public MeasuresAggregate(Laboratory laboratory) {
@@ -58,38 +60,14 @@ public class MeasuresAggregate extends BaseEntity<MeasuresAggregate>{
 	private void setLaboratory(Laboratory laboratory) {
 		this.laboratory = laboratory;
 	}
-
-	@OneToOne
-	@JoinColumn(name = "id_measures_per_level_1", 
-			insertable = true, 
-			updatable = true) 
-	public MeasuresPerLevel getMeasures1() {
-		return measures1;
+	
+	@ManyToOne(optional=false)
+	@JoinColumn(name="id_control_serum")
+	public ControlSerum getControlSerum() {
+		return controlSerum;
 	}
-	private void setMeasures1(MeasuresPerLevel measures1) {
-		this.measures1 = measures1;
-	}
-
-	@OneToOne
-	@JoinColumn(name = "id_measures_per_level_2", 
-			insertable = true, 
-			updatable = true) 
-	public MeasuresPerLevel getMeasures2() {
-		return measures2;
-	}
-	private void setMeasures2(MeasuresPerLevel measures2) {
-		this.measures2 = measures2;
-	}
-
-	@OneToOne
-	@JoinColumn(name = "id_measures_per_level_3", 
-			insertable = true, 
-			updatable = true) 
-	public MeasuresPerLevel getMeasures3() {
-		return measures3;
-	}
-	private void setMeasures3(MeasuresPerLevel measures3) {
-		this.measures3 = measures3;
+	public void setControlSerum(ControlSerum controlSerum) {
+		this.controlSerum = controlSerum;
 	}
 
 	@Column(nullable=true,length=1500)
@@ -109,14 +87,53 @@ public class MeasuresAggregate extends BaseEntity<MeasuresAggregate>{
 	}
 
 	public int compareTo(MeasuresAggregate ma) {
-		int comparison = 0;
-		
-		if(this.laboratory != null && ma.laboratory != null)
-			comparison = this.laboratory.compareTo(ma.laboratory);
+		int comparison = this.laboratory.compareTo(ma.laboratory);
 		
 		if(comparison == 0)
 			comparison = this.creationDate.compareTo(ma.creationDate);
+
+		if(comparison == 0)
+			comparison = this.controlSerum.compareTo(ma.controlSerum);
 		
 		return comparison;
+	}
+	
+	@OneToMany
+	public List<Measure> getMeasures() {
+		return measures;
+	}
+	private void setMeasures(List<Measure> measures) {
+		this.measures = measures;
+	}
+	public void addMeasure(Measure measure) {
+		measures.add(measure);
+	}
+	public void removeMeasure(Measure measure) {
+		measures.remove(measure);
+	}
+
+	@Transient
+	public double getMean() {
+		Mean mean = new Mean();
+		
+		for(Measure measure : measures)
+			mean.increment(measure.getValue());
+		
+		return mean.getResult();
+	}
+	
+	@Transient
+	public double getStandardDeviation(){
+		StandardDeviation sd = new StandardDeviation();
+		
+		for(Measure measure : measures)
+			sd.increment(measure.getValue());
+		
+		return sd.getResult();
+	}
+
+	@Transient
+	public double getCofficientOfVariation() {
+		return MyMath.coeffientOfVariation(getStandardDeviation(), getMean());
 	}
 }

@@ -2,9 +2,7 @@ package net.cassiolandim.biomedcalib.web.page.measure;
 
 import java.util.List;
 
-import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
-import net.cassiolandim.biomedcalib.entity.MeasuresAggregateBinding;
 import net.cassiolandim.biomedcalib.service.MeasuresAggregatePersistableService;
 import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.BasePage;
@@ -33,12 +31,8 @@ public class MeasureListPage extends BasePage {
 				CompoundPropertyModel<MeasuresAggregate> compoundModel = new CompoundPropertyModel<MeasuresAggregate>(measureAggregate);
 				item.setModel(compoundModel);
 				
-				MeasuresAggregateBinding binding = new MeasuresAggregateBinding();
-
-				item.add(new Label(binding.creationDate().getPath()));
-				item.add(new Label(binding.measures1().controlSerum().name().getPath()));
-				item.add(new Label(binding.measures2().controlSerum().name().getPath()));
-				item.add(new Label(binding.measures3().controlSerum().name().getPath()));
+				item.add(new Label("creationDate"));
+				item.add(new Label("controlSerum.name"));
 				
 				item.add(new Link<MeasureDetailsPage>("measureDetailsLink"){
 					@Override
@@ -52,9 +46,7 @@ public class MeasureListPage extends BasePage {
 		add(new Link<MeasureDetailsPage>("newLink"){
 			@Override
 			public void onClick() {
-				Laboratory laboratory = getBiomedicalSession().getLaboratory();
-				MeasuresAggregate measuresAggregate = new MeasuresAggregate(laboratory);
-				//FIXME: setResponsePage(new MeasureDetailsEditPage(measuresAggregate));
+				setResponsePage(new MeasureDetailsNewPage());
 			}
         });
 		

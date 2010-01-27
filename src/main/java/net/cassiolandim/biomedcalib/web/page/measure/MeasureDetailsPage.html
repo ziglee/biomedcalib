@@ -13,34 +13,73 @@
         <a wicket:id="editLink">[editar]</a>
         <hr/>
         
-        <table>
+        <table border="1">
         	<tr>
         		<td>
-        			Laboratório: <span wicket:id="laboratory.name">[laboratorio]</span>
+        			Laboratório:
         		</td>
         		<td>
-        			Data de criação: <span wicket:id="creationDate">[data de criação]</span>
+        			<span wicket:id="laboratory.name">[laboratorio]</span>
         		</td>
         	</tr>
         	<tr>
-        		<td colspan="2">
-        			Observações: <span wicket:id="observation">[observações]</span>
+        		<td>
+        			Soro controle:
+        		</td>
+        		<td>
+        			<span wicket:id="controlSerum.name">[soro controle]</span>
+        		</td>
+        	</tr>
+        	<tr>
+        		<td>
+        			Data de criação:
+        		</td>
+        		<td>
+        			<span wicket:id="creationDate">[data de criação]</span>
+        		</td>
+        	</tr>
+        	<tr>
+        		<td>
+        			Observações:
+        		</td>
+        		<td>
+        			<span wicket:id="observation">[observações]</span>
         		</td>
         	</tr>
         </table>
         
-        <table>
-        	<tr>
-        		<td>
-       				<span wicket:id="measures1">[medidas1]</span>
-        		</td>
-        		<td>
-       				<span wicket:id="measures2">[medidas2]</span>
-        		</td>
-        		<td>
-       				<span wicket:id="measures3">[medidas3]</span>
-        		</td>
-        	</tr>
-        </table>
+        <br/>
+        	
+        <table border="1">
+			<thead>
+				<tr>
+					<th>
+						Data
+					</th>
+					<th>
+						Valor
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr wicket:id="measures">
+					<td>
+						<span wicket:id="date">[data]</span>
+					</td>
+					<td>
+						<span wicket:id="value">[valor]</span>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="2">
+						Média: <span wicket:id="mean">[média]</span><br/>
+						Desvio padrão: <span wicket:id="standardDeviation">[desvio padrão]</span><br/>
+						Coeficiente de variação: <span wicket:id="coefficientOfVariation">[coeficiente de variação]</span>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
     </body>
 </html>

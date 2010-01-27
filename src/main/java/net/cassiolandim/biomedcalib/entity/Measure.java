@@ -9,28 +9,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.bindgen.Bindable;
-
 /**
  * @author Cassio Landim
  */
 @Entity
-@Bindable
 public class Measure extends BaseEntity<Measure>{
 
 	private Long id;
 	private Date date;
 	private Long value;
-	private MeasuresPerLevel measuresPerLevel;
+	private MeasuresAggregate measureAggregate;
 	
 	private Measure() {
 		value = new Long(0);
 		date = new Date();
 	}
 	
-	public Measure(MeasuresPerLevel measuresPerLevel) {
+	public Measure(MeasuresAggregate measureAggregate) {
 		this();
-		setMeasuresPerLevel(measuresPerLevel);
+		setMeasureAggregate(measureAggregate);
 	}
 	
 	@Id
@@ -60,11 +57,11 @@ public class Measure extends BaseEntity<Measure>{
 	}
 	
 	@ManyToOne
-	public MeasuresPerLevel getMeasuresPerLevel() {
-		return measuresPerLevel;
+	public MeasuresAggregate getMeasureAggregate() {
+		return measureAggregate;
 	}
-	private void setMeasuresPerLevel(MeasuresPerLevel measuresPerLevel) {
-		this.measuresPerLevel = measuresPerLevel;
+	public void setMeasureAggregate(MeasuresAggregate measureAggregate) {
+		this.measureAggregate = measureAggregate;
 	}
 	
 	public int compareTo(Measure measure) {

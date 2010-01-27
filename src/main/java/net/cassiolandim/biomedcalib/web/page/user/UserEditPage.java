@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.User;
-import net.cassiolandim.biomedcalib.entity.UserBinding;
 import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
 import net.cassiolandim.biomedcalib.service.UserPersistableService;
 import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
@@ -48,16 +47,14 @@ public class UserEditPage extends AdminBasePage {
 		
 		EntityListLoadableDetachableModel<Laboratory, List<Laboratory>> labListModel = new EntityListLoadableDetachableModel<Laboratory, List<Laboratory>>(laboratoryPersistableService);
 		
-		UserBinding binding = new UserBinding();
-		
 		ChoiceRenderer<Laboratory> choiceRenderer = new ChoiceRenderer<Laboratory>("name","id");
-		DropDownChoice<Laboratory> labs = new DropDownChoice<Laboratory>("laboratory", new PropertyModel<Laboratory>(user, binding.laboratory().getPath()), labListModel);
+		DropDownChoice<Laboratory> labs = new DropDownChoice<Laboratory>("laboratory", new PropertyModel<Laboratory>(user, "laboratory"), labListModel);
 		labs.setLabel(new ResourceModel("laboratory"));
 		labs.setRequired(true);
 		labs.setChoiceRenderer(choiceRenderer);
 		form.add(labs);
 		
-		TextField<String> name = new TextField<String>("name", new PropertyModel<String>(user, binding.name().getPath()));
+		TextField<String> name = new TextField<String>("name", new PropertyModel<String>(user, "name"));
 		name.setLabel(new ResourceModel("name"));
 		name.setRequired(true);
 		name.add(StringValidator.maximumLength(50));
