@@ -29,6 +29,10 @@ public class BiomedcalibSession extends WebSession {
 		return user;
 	}
 	
+	public synchronized void setUser(User user) {
+		this.user = user;
+	}
+	
 	public synchronized Laboratory getLaboratory() {
 		return user.getLaboratory();
 	}

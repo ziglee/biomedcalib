@@ -1,11 +1,16 @@
 package net.cassiolandim.biomedcalib.web.page.measure;
 
 import java.util.Date;
+import java.util.List;
 
 import net.cassiolandim.biomedcalib.Constants;
+import net.cassiolandim.biomedcalib.entity.ControlSerum;
 import net.cassiolandim.biomedcalib.entity.Measure;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
+import net.cassiolandim.biomedcalib.service.ControlSerumPersistableService;
 import net.cassiolandim.biomedcalib.service.MeasuresAggregatePersistableService;
+import net.cassiolandim.biomedcalib.service.UserPersistableService;
+import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.BasePage;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -13,6 +18,8 @@ import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.ChoiceRenderer;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
@@ -22,6 +29,7 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.ListDataProvider;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 public class MeasureDetailsEditPage extends BasePage {
@@ -29,14 +37,31 @@ public class MeasureDetailsEditPage extends BasePage {
 	@SpringBean(name = "measuresAggregatePersistableService")
 	private MeasuresAggregatePersistableService measuresAggregatePersistableService;
 	
+	@SpringBean(name = "controlSerumPersistableService")
+	private ControlSerumPersistableService controlSerumPersistableService;
+
+	@SpringBean(name = "userPersistableService")
+	private UserPersistableService userPersistableService;
+	
+	private final MeasuresAggregate measuresAggregate;
+	
+	public MeasureDetailsEditPage() {
+		getBiomedicalSession().setUser(userPersistableService.findAll().get(0));
+		measuresAggregate = new MeasuresAggregate(getBiomedicalSession().getLaboratory());
+		pageConstructor();
+	}
+	
 	public MeasureDetailsEditPage(final Long measuresAggregateId) {
+		measuresAggregate = measuresAggregatePersistableService.find(measuresAggregateId);
+		pageConstructor();
+	}
+	
+	private void pageConstructor(){
 		this.setOutputMarkupId(true);
 		addHomeLink();
 
 		FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
 		add(feedbackPanel);
-		
-		final MeasuresAggregate measuresAggregate = measuresAggregatePersistableService.find(measuresAggregateId);
 		
 		Form<MeasuresAggregate> form = new Form<MeasuresAggregate>("form");
 		add(form);
@@ -55,9 +80,14 @@ public class MeasureDetailsEditPage extends BasePage {
 				new PropertyModel<String>(measuresAggregate, "observation"));
 		form.add(observationTextArea);
 		
-		Label controlSerumName = new Label("controlSerum.name", 
-				new PropertyModel<String>(measuresAggregate, "controlSerum.name"));
-		form.add(controlSerumName);
+		EntityListLoadableDetachableModel<ControlSerum, List<ControlSerum>> controlSerumListModel = new EntityListLoadableDetachableModel<ControlSerum, List<ControlSerum>>(controlSerumPersistableService);
+		
+		ChoiceRenderer<ControlSerum> choiceRenderer = new ChoiceRenderer<ControlSerum>("name","id");
+		DropDownChoice<ControlSerum> controlSerums = new DropDownChoice<ControlSerum>("controlSerum", new PropertyModel<ControlSerum>(measuresAggregate, "controlSerum"), controlSerumListModel);
+		controlSerums.setLabel(new ResourceModel("controlSerum"));
+		controlSerums.setRequired(true);
+		controlSerums.setChoiceRenderer(choiceRenderer);
+		form.add(controlSerums);
 		
 		form.add(new Label("mean", new PropertyModel<MeasuresAggregate>(measuresAggregate, "mean")));
 		form.add(new Label("standardDeviation", new PropertyModel<MeasuresAggregate>(measuresAggregate, "standardDeviation")));

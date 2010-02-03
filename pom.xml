@@ -38,8 +38,22 @@
 			<email>ziglee at gmail.com</email>
 		</developer>
 	</developers>
+	
+	<distributionManagement>
+	    <snapshotRepository>
+	        <id>Cassio-PC</id>
+	        <name>Cassio-PC-snapshots</name>
+	        <url>http://localhost:8081/artifactory/libs-snapshots-local</url>
+	    </snapshotRepository>
+	</distributionManagement>
 
 	<repositories>
+		<repository>
+		    <id>Cassio-PC</id>
+		    <name>Cassio-PC-releases</name>
+		    <url>http://localhost:8081/artifactory/wicket-snaps</url>
+		</repository>
+<!-- 
 		<repository>
 			<id>maven2-repository.dev.java.net</id>
 			<name>Java.net Repository for Maven</name>
@@ -60,6 +74,7 @@
 			<name>Apache Snapshots</name>
 			<url>http://people.apache.org/repo/m2-snapshot-repository</url>
 		</repository>
+		 -->
 	</repositories>
 	
 	<pluginRepositories>
@@ -127,6 +142,14 @@
 	</properties>
 	
 	<dependencies>
+		<!-- 
+		<dependency>
+			<groupId>cewolf</groupId>
+			<artifactId>cewolf</artifactId>
+			<version>1.0</version>
+		</dependency>
+		 -->
+		 
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>

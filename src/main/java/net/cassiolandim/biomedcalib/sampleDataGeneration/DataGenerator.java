@@ -42,7 +42,7 @@ public class DataGenerator implements InitializingBean {
 	public void afterPropertiesSet() throws Exception {
 		List<Laboratory> laboratories = LaboratoryDataGenerator.generateData(laboratoryPersistableService);
 		UserDataGenerator.generateData(userPersistableService, laboratories);
-		List<ControlSerum> controlSerums = ControlSerumDataGenerator.generateData(controlSerumPersistableService);
+		List<ControlSerum> controlSerums = ControlSerumDataGenerator.generateData(controlSerumPersistableService, laboratories);
 		MeasuresDataGenerator.generateData(measuresAggregatePersistableService, laboratories, controlSerums);
 	}
 }

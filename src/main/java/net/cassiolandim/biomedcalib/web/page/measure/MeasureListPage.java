@@ -46,7 +46,7 @@ public class MeasureListPage extends BasePage {
 		add(new Link<MeasureDetailsPage>("newLink"){
 			@Override
 			public void onClick() {
-				setResponsePage(new MeasureDetailsNewPage());
+				setResponsePage(new MeasureDetailsEditPage());
 			}
         });
 		

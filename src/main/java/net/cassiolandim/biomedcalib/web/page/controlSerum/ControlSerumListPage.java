@@ -33,12 +33,14 @@ public class ControlSerumListPage extends AdminBasePage {
 				final ControlSerum controlSerum = item.getModelObject();
 				
 				item.setModel(new CompoundPropertyModel<ControlSerum>(controlSerum));
+				item.add(new Label("laboratory.name"));
 				item.add(new Label("name"));
 				item.add(new Label("minimum"));
 				item.add(new Label("maximum"));
 				item.add(new Label("mean"));
 				item.add(new Label("standardDeviation"));
 				item.add(new Label("coefficientOfVariation"));
+				item.add(new Label("statusString"));
 				
 				item.add(new Link<ControlSerumEditPage>("editLink"){
 					@Override
