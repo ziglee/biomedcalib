@@ -16,7 +16,10 @@ public class User extends BaseEntity<User> {
 
 	private Long id;
 	private String name;
+	private String login;
+	private String passwordHash;
 	private Laboratory laboratory;
+	private Boolean admin;
 	
 	@Id
 	@Column(name="id_user")
@@ -34,6 +37,30 @@ public class User extends BaseEntity<User> {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Column(nullable=false,length=30)
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	@Column(nullable=false)
+	public String getPasswordHash() {
+		return passwordHash;
+	}
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+	
+	@Column(nullable=false)
+	public Boolean getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
 	}
 	
 	@ManyToOne(optional=false)

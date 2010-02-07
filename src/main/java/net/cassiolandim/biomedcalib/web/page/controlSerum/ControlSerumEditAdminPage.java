@@ -2,14 +2,19 @@ package net.cassiolandim.biomedcalib.web.page.controlSerum;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
+import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.service.ControlSerumPersistableService;
+import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
+import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.model.EntityLoadableDetachableModel;
-import net.cassiolandim.biomedcalib.web.page.BasePage;
+import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
@@ -26,18 +31,19 @@ import org.apache.wicket.validation.validator.StringValidator;
 /**
  * @author Cassio Landim
  */
-public class ControlSerumEditPage extends BasePage {
+public class ControlSerumEditAdminPage extends AdminBasePage {
+
+	@SpringBean(name = "laboratoryPersistableService")
+	private LaboratoryPersistableService laboratoryPersistableService;
 
 	@SpringBean(name = "controlSerumPersistableService")
 	private ControlSerumPersistableService controlSerumPersistableService;
 	
-	public ControlSerumEditPage() {
+	public ControlSerumEditAdminPage() {
 		this(new ControlSerum());
 	}
 	
-	public ControlSerumEditPage(final ControlSerum controlSerum) {
-		controlSerum.setLaboratory(getBiomedicalSession().getLaboratory());
-		
+	public ControlSerumEditAdminPage(final ControlSerum controlSerum) {
 		RangeValidator<Double> doubleRangeValidator = new RangeValidator<Double>(ControlSerum.RANGE_MINIMUM, ControlSerum.RANGE_MAXIMUM);
 		
 		FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
@@ -47,6 +53,15 @@ public class ControlSerumEditPage extends BasePage {
 		
 		Form<ControlSerum> form = new Form<ControlSerum>("form", model);
 		add(form);
+		
+		EntityListLoadableDetachableModel<Laboratory, List<Laboratory>> labListModel = new EntityListLoadableDetachableModel<Laboratory, List<Laboratory>>(laboratoryPersistableService);
+		
+		ChoiceRenderer<Laboratory> labChoiceRenderer = new ChoiceRenderer<Laboratory>("name","id");
+		DropDownChoice<Laboratory> labs = new DropDownChoice<Laboratory>("laboratory", new PropertyModel<Laboratory>(controlSerum, "laboratory"), labListModel);
+		labs.setLabel(new ResourceModel("laboratory"));
+		labs.setRequired(true);
+		labs.setChoiceRenderer(labChoiceRenderer);
+		form.add(labs);
 		
 		IChoiceRenderer<Integer> statusChoiceRenderer = new IChoiceRenderer<Integer>() {
 			@Override
@@ -114,7 +129,7 @@ public class ControlSerumEditPage extends BasePage {
 		};
 		form.add(save);
 		
-		add(new ControlSerumListLink("listLink"));
-		addHomeLink();
+		add(new ControlSerumListAdminLink("listLink"));
+		addAdminHomeLink();
 	}
 }

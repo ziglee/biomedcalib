@@ -22,25 +22,37 @@ public class UserDaoPersistenceService implements UserPersistableService {
 	public void setUserDao(UserDao dao){
 		this.userDao = dao;
 	}
-	
+
+	@Override
 	public User find(Long id) {
 		return userDao.find(id);
 	}
 
+	@Override
+	public User findByLogin(String login) {
+		Search search = new Search();
+		search.addFilterEqual("login", login);
+		return userDao.searchUnique(search);
+	}
+
+	@Override
 	public List<User> findAll() {
 		Search search = new Search();
 		search.addSort("name", false, true);
 		return userDao.search(search);
 	}
 
+	@Override
 	public void persist(User entity) {
 		userDao.persist(entity);
 	}
 
+	@Override
 	public boolean remove(User entity) {
 		return userDao.remove(entity);
 	}
 
+	@Override
 	public void save(User entity) {
 		userDao.save(entity);
 	}

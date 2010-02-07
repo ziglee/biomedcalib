@@ -30,18 +30,18 @@ public class TestControlSerumNewPage {
 		controlSerumFixture = new ControlSerumFixture();
 		controlSerumFixture.addStubs(app.context);
 
-		tester.startPage(ControlSerumListPage.class);
+		tester.startPage(ControlSerumListAdminPage.class);
 		tester.clickLink("newLink");
 	}
 
 	@Test
 	public void shouldRenderControlSerumEditPage(){
-		tester.assertRenderedPage(ControlSerumEditPage.class);
+		tester.assertRenderedPage(ControlSerumEditAdminPage.class);
 	}
 	
 	@Test
 	public void formNameTextFieldShouldBeEmpty(){
-		ControlSerumEditPage page = (ControlSerumEditPage)tester.getLastRenderedPage();
+		ControlSerumEditAdminPage page = (ControlSerumEditAdminPage)tester.getLastRenderedPage();
 
 		@SuppressWarnings("unchecked")
 		TextField<String> nameTextField = (TextField<String>)page.get("form:name");
@@ -64,9 +64,9 @@ public class TestControlSerumNewPage {
 		
 		Assert.assertTrue(controlSerumFixture.getControlSerumData().isControlSerumDaoSaveCalled());
 		
-		tester.assertRenderedPage(ControlSerumEditPage.class);
+		tester.assertRenderedPage(ControlSerumEditAdminPage.class);
 		
-		ControlSerumEditPage page = (ControlSerumEditPage)tester.getLastRenderedPage();
+		ControlSerumEditAdminPage page = (ControlSerumEditAdminPage)tester.getLastRenderedPage();
 
 		@SuppressWarnings("unchecked")
 		Form<ControlSerum> form = (Form<ControlSerum>)page.get("form");

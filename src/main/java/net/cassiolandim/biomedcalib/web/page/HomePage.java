@@ -1,9 +1,13 @@
 package net.cassiolandim.biomedcalib.web.page;
 
+import net.cassiolandim.biomedcalib.component.UserLoggedStatusPanel;
+import net.cassiolandim.biomedcalib.web.page.controlSerum.ControlSerumListPage;
 import net.cassiolandim.biomedcalib.web.page.measure.MeasureListPage;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.link.Link;
+
+import sun.rmi.log.LogOutputStream;
 
 /**
  * @author Cassio Landim
@@ -20,11 +24,20 @@ public class HomePage extends BasePage {
 			}
         });
     	
+    	add(new Link<ControlSerumListPage>("controlSerumListLink"){
+			@Override
+			public void onClick() {
+				setResponsePage(ControlSerumListPage.class);
+			}
+        });
+    	
     	add(new Link<MeasureListPage>("measureListLink"){
 			@Override
 			public void onClick() {
 				setResponsePage(MeasureListPage.class);
 			}
         });
+    	
+    	add(new UserLoggedStatusPanel("userStatus", HomePage.class));
     }
 }

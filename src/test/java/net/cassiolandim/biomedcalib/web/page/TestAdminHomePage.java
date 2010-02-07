@@ -9,7 +9,7 @@ import net.cassiolandim.biomedcalib.persistence.MockListPersistenceService;
 import net.cassiolandim.biomedcalib.persistence.UserFixture;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
-import net.cassiolandim.biomedcalib.web.page.controlSerum.ControlSerumListPage;
+import net.cassiolandim.biomedcalib.web.page.controlSerum.ControlSerumListAdminPage;
 import net.cassiolandim.biomedcalib.web.page.laboratory.LaboratoryListPage;
 import net.cassiolandim.biomedcalib.web.page.user.UserListPage;
 
@@ -69,6 +69,6 @@ public class TestAdminHomePage {
 	public void testGotoControlSerumListingPage(){
 		tester.assertComponent("controlSerumListLink", Link.class);
 		tester.clickLink("controlSerumListLink");
-		tester.assertRenderedPage(ControlSerumListPage.class);
+		tester.assertRenderedPage(ControlSerumListAdminPage.class);
 	}
 }

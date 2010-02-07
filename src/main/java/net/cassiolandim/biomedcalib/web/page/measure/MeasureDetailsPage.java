@@ -1,10 +1,13 @@
 package net.cassiolandim.biomedcalib.web.page.measure;
 
+import net.cassiolandim.biomedcalib.component.MeasuresAggregateHistogramChartImage;
+import net.cassiolandim.biomedcalib.component.MeasuresAggregateLineChartImage;
 import net.cassiolandim.biomedcalib.entity.Measure;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
 import net.cassiolandim.biomedcalib.service.MeasuresAggregatePersistableService;
 import net.cassiolandim.biomedcalib.web.model.EntityLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.BasePage;
+import net.cassiolandim.biomedcalib.web.page.controlSerum.ControlSerumEditPage;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -28,11 +31,29 @@ public class MeasureDetailsPage extends BasePage {
 		
 		add(new Label("creationDate"));
 		add(new Label("laboratory.name"));
-		add(new Label("controlSerum.name"));
 		add(new Label("observation"));
 		add(new Label("mean", new PropertyModel<MeasuresAggregate>(detachModel, "mean")));
 		add(new Label("standardDeviation", new PropertyModel<MeasuresAggregate>(detachModel, "standardDeviation")));
 		add(new Label("coefficientOfVariation", new PropertyModel<MeasuresAggregate>(detachModel, "cofficientOfVariation")));
+		
+		Link<ControlSerumEditPage> controlSerumEditLink = new Link<ControlSerumEditPage>("controlSerumEditLink"){
+			@Override
+			public void onClick() {
+				setResponsePage(new ControlSerumEditPage(measuresAggregate.getControlSerum()));
+			}
+		};
+		add(controlSerumEditLink);
+		
+		add(new Label("controlSerum.name"));
+		add(new Label("controlSerum.mean"));
+		add(new Label("controlSerum.minimum"));
+		add(new Label("controlSerum.maximum"));
+		add(new Label("controlSerum.standardDeviation"));
+		add(new Label("controlSerum.coefficientOfVariation"));
+		add(new Label("controlSerum.statusString"));
+		
+		add(new MeasuresAggregateLineChartImage("lineChart", measuresAggregateId));
+		add(new MeasuresAggregateHistogramChartImage("histogramChart", measuresAggregateId));
 
 		DataView<Measure> dataView = new DataView<Measure>("measures", new ListDataProvider<Measure>(measuresAggregate.getMeasures())) {
 			@Override
@@ -40,6 +61,7 @@ public class MeasureDetailsPage extends BasePage {
 				final Measure measure = (Measure)item.getModelObject();
 				CompoundPropertyModel<Measure> compoundModel = new CompoundPropertyModel<Measure>(measure);
 				item.setModel(compoundModel);
+				item.add(new Label("index", Integer.toString(item.getIndex() + 1)));
 				item.add(new Label("date"));
 				item.add(new Label("value"));
 			}

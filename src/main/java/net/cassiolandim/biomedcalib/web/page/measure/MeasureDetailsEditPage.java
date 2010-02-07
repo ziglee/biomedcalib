@@ -3,13 +3,13 @@ package net.cassiolandim.biomedcalib.web.page.measure;
 import java.util.Date;
 import java.util.List;
 
-import net.cassiolandim.biomedcalib.Constants;
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
 import net.cassiolandim.biomedcalib.entity.Measure;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
 import net.cassiolandim.biomedcalib.service.ControlSerumPersistableService;
 import net.cassiolandim.biomedcalib.service.MeasuresAggregatePersistableService;
 import net.cassiolandim.biomedcalib.service.UserPersistableService;
+import net.cassiolandim.biomedcalib.util.Constants;
 import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.BasePage;
 
@@ -80,7 +80,12 @@ public class MeasureDetailsEditPage extends BasePage {
 				new PropertyModel<String>(measuresAggregate, "observation"));
 		form.add(observationTextArea);
 		
-		EntityListLoadableDetachableModel<ControlSerum, List<ControlSerum>> controlSerumListModel = new EntityListLoadableDetachableModel<ControlSerum, List<ControlSerum>>(controlSerumPersistableService);
+		EntityListLoadableDetachableModel<ControlSerum, List<ControlSerum>> controlSerumListModel = new EntityListLoadableDetachableModel<ControlSerum, List<ControlSerum>>(controlSerumPersistableService){
+			@Override
+			protected List<ControlSerum> load() {
+				return controlSerumPersistableService.findAllActive();
+			}
+		};
 		
 		ChoiceRenderer<ControlSerum> choiceRenderer = new ChoiceRenderer<ControlSerum>("name","id");
 		DropDownChoice<ControlSerum> controlSerums = new DropDownChoice<ControlSerum>("controlSerum", new PropertyModel<ControlSerum>(measuresAggregate, "controlSerum"), controlSerumListModel);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
+import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.service.ControlSerumPersistableService;
 
 /**
@@ -54,6 +55,18 @@ public class ControlSerumData {
 			}
 			
 			setSaveCalled(true);
+		}
+
+		@Override
+		public List<ControlSerum> findAllActive() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public List<ControlSerum> findByLaboratory(Laboratory laboratory) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 	}
 }

@@ -39,7 +39,7 @@ public class TestControlSerumListPage {
 
 	@Test
 	public void shouldRenderControlSerumListPage(){
-		tester.assertRenderedPage(ControlSerumListPage.class);
+		tester.assertRenderedPage(ControlSerumListAdminPage.class);
 	}
 	
 	@Test
@@ -55,7 +55,7 @@ public class TestControlSerumListPage {
 	@Test
 	public void clickNewLinkShouldRenderControlSerumEditPage() {
 		tester.clickLink("newLink");
-		tester.assertRenderedPage(ControlSerumEditPage.class);
+		tester.assertRenderedPage(ControlSerumEditAdminPage.class);
 	}
 	
 	@Test
@@ -70,7 +70,7 @@ public class TestControlSerumListPage {
 	
 	@Test
 	public void controlSerumsListViewNameLabelShouldBeTheFirstNameFromArray() {
-		ControlSerumListPage page = (ControlSerumListPage)tester.getLastRenderedPage();
+		ControlSerumListAdminPage page = (ControlSerumListAdminPage)tester.getLastRenderedPage();
 		Label nameLabel = (Label)page.get("controlSerums:1:name");
 		Assert.assertEquals(ControlSerumDataGenerator.NAMES[1], nameLabel.getDefaultModelObjectAsString());
 	}
@@ -88,12 +88,12 @@ public class TestControlSerumListPage {
 	@Test
 	public void clickEditLinkFromLaboratoriesListViewShouldRenderControlSerumEditPage() {
 		tester.clickLink("controlSerums:1:editLink");
-		tester.assertRenderedPage(ControlSerumEditPage.class);
+		tester.assertRenderedPage(ControlSerumEditAdminPage.class);
 	}
 	
 	@Test
 	public void clickDeleteLinkFromLaboratoriesListViewShouldDeleteAndFeedbackInfoMessage() {
-		ControlSerumListPage page = (ControlSerumListPage)tester.getLastRenderedPage();
+		ControlSerumListAdminPage page = (ControlSerumListAdminPage)tester.getLastRenderedPage();
 
 		@SuppressWarnings("unchecked")
 		ListView<ControlSerum> controlSerums = (ListView<ControlSerum>)page.get("controlSerums");
@@ -102,7 +102,7 @@ public class TestControlSerumListPage {
 		Assert.assertFalse(controlSerumFixture.getControlSerumData().isControlSerumDaoDeleteCalled());
 		
 		tester.clickLink("controlSerums:1:deleteLink");
-		tester.assertRenderedPage(ControlSerumListPage.class);
+		tester.assertRenderedPage(ControlSerumListAdminPage.class);
 		tester.assertInfoMessages(new String[]{"Soro controle excluído com sucesso!"});
 		
 		Assert.assertEquals(3, controlSerums.size());

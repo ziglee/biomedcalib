@@ -52,5 +52,11 @@ public class UserData {
 
 			setSaveCalled(true);
 		}
+
+		@Override
+		public User findByLogin(String login) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	}
 }

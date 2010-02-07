@@ -24,9 +24,16 @@ public abstract class BaseBiomedcalibApplication extends WebApplication {
 	@Override
 	protected void init(){
 		super.init();
+		
 		addComponentInstantiationListener(new SpringComponentInjector(this, context()));
-		getMarkupSettings().setStripWicketTags(true);
+		
 		mountBookmarkablePage("admin", AdminHomePage.class);
+		
+		BiomedcalibAuthorizationStrategy strategy = new BiomedcalibAuthorizationStrategy();
+		
+		getSecuritySettings().setAuthorizationStrategy(strategy);
+		getSecuritySettings().setUnauthorizedComponentInstantiationListener(strategy);
+		getMarkupSettings().setStripWicketTags(true);
 	}
 	
 	@Override

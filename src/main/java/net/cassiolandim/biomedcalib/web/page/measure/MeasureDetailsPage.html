@@ -13,73 +13,162 @@
         <a wicket:id="editLink">[editar]</a>
         <hr/>
         
-        <table border="1">
+        <table>
         	<tr>
         		<td>
-        			Laboratório:
+			        <table border="1">
+			        	<tr>
+			        		<td>
+			        			<b>Laboratório:</b>
+			        		</td>
+			        		<td>
+			        			<b><span wicket:id="laboratory.name">[laboratorio]</span></b>
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td>
+			        			Data de criação:
+			        		</td>
+			        		<td>
+			        			<span wicket:id="creationDate">[data de criação]</span>
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td>
+			        			Observações:
+			        		</td>
+			        		<td>
+			        			<span wicket:id="observation">[observações]</span>
+			        		</td>
+			        	</tr>
+			        </table>
         		</td>
         		<td>
-        			<span wicket:id="laboratory.name">[laboratorio]</span>
-        		</td>
-        	</tr>
-        	<tr>
-        		<td>
-        			Soro controle:
-        		</td>
-        		<td>
-        			<span wicket:id="controlSerum.name">[soro controle]</span>
-        		</td>
-        	</tr>
-        	<tr>
-        		<td>
-        			Data de criação:
-        		</td>
-        		<td>
-        			<span wicket:id="creationDate">[data de criação]</span>
-        		</td>
-        	</tr>
-        	<tr>
-        		<td>
-        			Observações:
-        		</td>
-        		<td>
-        			<span wicket:id="observation">[observações]</span>
+			        <table border="1">
+			        	<tr>
+			        		<td>
+			        			<b>Soro controle:</b>
+			        		</td>
+			        		<td>
+			        			<b><span wicket:id="controlSerum.name">[soro controle]</span></b>
+			        		</td>
+			        		<td colspan="2">
+			        			<a wicket:id="controlSerumEditLink">[editar]</a>
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td>
+			        			Mínimo:
+			        		</td>
+			        		<td>
+			        			<span wicket:id="controlSerum.minimum">[minimo]</span>
+			        		</td>
+			        		<td>
+			        			Máximo:
+			        		</td>
+			        		<td>
+			        			<span wicket:id="controlSerum.maximum">[maximo]</span>
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td>
+			        			Desvio padrão:
+			        		</td>
+			        		<td>
+			        			<span wicket:id="controlSerum.standardDeviation">[standardDeviation]</span>
+			        		</td>
+			        		<td>
+			        			Coeficiente de variação:
+			        		</td>
+			        		<td>
+			        			<span wicket:id="controlSerum.coefficientOfVariation">[coefficientOfVariation]</span>
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<td>
+			        			Média:
+			        		</td>
+			        		<td>
+			        			<span wicket:id="controlSerum.mean">[media]</span>
+			        		</td>
+			        		<td>
+			        			Status:
+			        		</td>
+			        		<td>
+			        			<span wicket:id="controlSerum.statusString">[status]</span>
+			        		</td>
+			        	</tr>
+			        </table>
         		</td>
         	</tr>
         </table>
         
         <br/>
-        	
+        
         <table border="1">
-			<thead>
-				<tr>
-					<th>
-						Data
-					</th>
-					<th>
-						Valor
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr wicket:id="measures">
-					<td>
-						<span wicket:id="date">[data]</span>
-					</td>
-					<td>
-						<span wicket:id="value">[valor]</span>
-					</td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="2">
-						Média: <span wicket:id="mean">[média]</span><br/>
-						Desvio padrão: <span wicket:id="standardDeviation">[desvio padrão]</span><br/>
-						Coeficiente de variação: <span wicket:id="coefficientOfVariation">[coeficiente de variação]</span>
-					</td>
-				</tr>
-			</tfoot>
-		</table>
+        	<tr>
+        		<td>
+			        <table border="1">
+						<thead>
+							<tr>
+								<th>
+									Corrida
+								</th>
+								<th>
+									Data
+								</th>
+								<th>
+									Valor
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr wicket:id="measures">
+								<td>
+									<span wicket:id="index">[index]</span>
+								</td>
+								<td>
+									<span wicket:id="date">[data]</span>
+								</td>
+								<td>
+									<span wicket:id="value">[valor]</span>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="3">
+									Média: <span wicket:id="mean">[média]</span>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									Desvio padrão: <span wicket:id="standardDeviation">[desvio padrão]</span>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									Coeficiente de variação: <span wicket:id="coefficientOfVariation">[coeficiente de variação]</span>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+        		</td>
+        		<td>
+        			<table>
+        				<tr>
+        					<td>
+        						<img wicket:id="lineChart"/>
+        					</td>
+        				</tr>
+			        	<tr>
+			        		<td>
+			        			<img wicket:id="histogramChart"/>
+			        		</td>
+			        	</tr>
+        			</table>
+        		</td>
+        	</tr>
+        </table>
     </body>
 </html>

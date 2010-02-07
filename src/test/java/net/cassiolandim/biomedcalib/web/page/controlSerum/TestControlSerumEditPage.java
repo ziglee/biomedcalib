@@ -32,13 +32,13 @@ public class TestControlSerumEditPage {
 		controlSerumFixture = new ControlSerumFixture();
 		controlSerumFixture.addStubs(app.context);
 
-		tester.startPage(ControlSerumListPage.class);
+		tester.startPage(ControlSerumListAdminPage.class);
 		tester.clickLink("controlSerums:1:editLink");
 	}
 
 	@Test
 	public void shouldRenderControlSerumEditPage(){
-		tester.assertRenderedPage(ControlSerumEditPage.class);
+		tester.assertRenderedPage(ControlSerumEditAdminPage.class);
 	}
 	
 	@Test
@@ -49,7 +49,7 @@ public class TestControlSerumEditPage {
 	@Test
 	public void clickListLinkShouldRenderControlSerumListPage() {
 		tester.clickLink("listLink");
-		tester.assertRenderedPage(ControlSerumListPage.class);
+		tester.assertRenderedPage(ControlSerumListAdminPage.class);
 	}
 	
 	@Test
@@ -64,7 +64,7 @@ public class TestControlSerumEditPage {
 	
 	@Test
 	public void formNameTextFieldShouldContainFirstNameFromDataArray(){
-		ControlSerumEditPage page = (ControlSerumEditPage)tester.getLastRenderedPage();
+		ControlSerumEditAdminPage page = (ControlSerumEditAdminPage)tester.getLastRenderedPage();
 
 		@SuppressWarnings("unchecked")
 		TextField<String> nameTextField = (TextField<String>)page.get("form:name");
@@ -92,10 +92,10 @@ public class TestControlSerumEditPage {
 		
 		Assert.assertTrue(controlSerumFixture.getControlSerumData().isControlSerumDaoSaveCalled());
 		
-		tester.assertRenderedPage(ControlSerumEditPage.class);
+		tester.assertRenderedPage(ControlSerumEditAdminPage.class);
 		tester.assertInfoMessages(new String[]{"Soro controle salvo com sucesso!"});
 		
-		ControlSerumEditPage page = (ControlSerumEditPage)tester.getLastRenderedPage();
+		ControlSerumEditAdminPage page = (ControlSerumEditAdminPage)tester.getLastRenderedPage();
 
 		@SuppressWarnings("unchecked")
 		Form<ControlSerum> form = (Form<ControlSerum>)page.get("form");

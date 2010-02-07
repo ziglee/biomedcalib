@@ -17,8 +17,6 @@ public class BiomedcalibSession extends WebSession {
 	
 	public BiomedcalibSession(Request request) {
 		super(request);
-		this.user = new User();
-		this.user.setName("Cassio session user");
 	}
 
 	public static BiomedcalibSession get(){
@@ -35,5 +33,9 @@ public class BiomedcalibSession extends WebSession {
 	
 	public synchronized Laboratory getLaboratory() {
 		return user.getLaboratory();
+	}
+	
+	public boolean isAuthenticated(){
+		return (user != null);
 	}
 }

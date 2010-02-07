@@ -6,7 +6,7 @@
         <strong>Edição de Laboratório</strong>
         <hr/>
         
-        <a wicket:id="homeLink">[home]</a>
+        <a wicket:id="adminHomeLink">[home]</a>
         |
         <a wicket:id="listLink">[listagem]</a>
         <hr/>
@@ -15,6 +15,17 @@
         <br/>
         <form wicket:id="form">
 	        <table>
+	        	<tr>
+	        		<td>
+	        			Laboratório:
+	        		</td>
+	        		<td>
+	        			<select wicket:id="laboratory">
+	        				<option>[opções]</option>
+	        			</select>
+	        		</td>
+	        	</tr>
+	        	
 	        	<tr>
 	        		<td>
 	        			Nome:

@@ -46,6 +46,26 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
+	<servlet>
+		<servlet-name>measuresAggregateLineChart</servlet-name>
+		<servlet-class>net.cassiolandim.biomedcalib.chart.MeasuresAggregateLineChartServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>measuresAggregateLineChart</servlet-name>
+		<url-pattern>/app/measuresAggregateLine.chart</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>measuresAggregateHistogramChart</servlet-name>
+		<servlet-class>net.cassiolandim.biomedcalib.chart.MeasuresAggregateHistogramChartServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>measuresAggregateHistogramChart</servlet-name>
+		<url-pattern>/app/measuresAggregateHistogram.chart</url-pattern>
+	</servlet-mapping>
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
