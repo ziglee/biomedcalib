@@ -1,15 +1,21 @@
 package net.cassiolandim.biomedcalib.web.page.signInOut;
 
+import net.cassiolandim.biomedcalib.web.BiomedcalibSession;
+
 import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.markup.html.WebPage;
 
-public class SignOutPage extends Page {
+/**
+ * @author Cassio Landim
+ */
+public class SignOutPage extends WebPage {
 	
-	public static final String REDIRECTPAGE_PARAM = "redirectpage";
+	public static final String REDIRECT_TO_PAGE_PARAM = "redirectpage";
 
 	@SuppressWarnings("unchecked")
 	public SignOutPage(final PageParameters parameters) {
-		String page = parameters.getString(REDIRECTPAGE_PARAM);
+		String page = parameters.getString(REDIRECT_TO_PAGE_PARAM);
 		
 		Class<? extends Page> pageClass;
 		if (page != null) {
@@ -22,7 +28,8 @@ public class SignOutPage extends Page {
 			pageClass = getApplication().getHomePage();
 		}
 		
-		getSession().invalidate();
+		BiomedcalibSession.get().setUser(null);
+		BiomedcalibSession.get().invalidate();
 		
 		setResponsePage(pageClass);
 	}

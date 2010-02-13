@@ -21,7 +21,7 @@ public class UserLoggedStatusPanel extends Panel {
 		add(new Label("name", new PropertyModel<String>(this, "session.user.name")));
 		
 		PageParameters parameters = new PageParameters();
-		parameters.add(SignOutPage.REDIRECTPAGE_PARAM, logoutPageClass.getName());
+		parameters.add(SignOutPage.REDIRECT_TO_PAGE_PARAM, logoutPageClass.getName());
 
 		add(new BookmarkablePageLink<SignOutPage>("signout", SignOutPage.class, parameters) {
 			@Override

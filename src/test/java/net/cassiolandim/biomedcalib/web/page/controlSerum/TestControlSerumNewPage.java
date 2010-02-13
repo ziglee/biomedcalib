@@ -1,8 +1,13 @@
 package net.cassiolandim.biomedcalib.web.page.controlSerum;
 
+import java.util.List;
+
 import junit.framework.Assert;
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
+import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.persistence.ControlSerumFixture;
+import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
+import net.cassiolandim.biomedcalib.persistence.MockListPersistenceService;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 
@@ -20,6 +25,7 @@ public class TestControlSerumNewPage {
 	
 	private WicketTester tester;
 	private ControlSerumFixture controlSerumFixture;
+	private LaboratoryFixture laboratoryFixture;
 
 	@Before
 	public void setUp(){
@@ -27,8 +33,14 @@ public class TestControlSerumNewPage {
 		
 		BiomedcalibApplicationForTesting app = (BiomedcalibApplicationForTesting)tester.getApplication();
 		
+		laboratoryFixture = new LaboratoryFixture();
+		laboratoryFixture.addStubs(app.context);
+		
+		MockListPersistenceService<Laboratory> laboratorySimplePersistableService = laboratoryFixture.getLaboratoryData().getLaboratoryService();
+		List<Laboratory> labs = laboratorySimplePersistableService.findAll();
+		
 		controlSerumFixture = new ControlSerumFixture();
-		controlSerumFixture.addStubs(app.context);
+		controlSerumFixture.addStubs(app.context, labs);
 
 		tester.startPage(ControlSerumListAdminPage.class);
 		tester.clickLink("newLink");
@@ -57,6 +69,7 @@ public class TestControlSerumNewPage {
 		formTester.setValue("maximum", "100");
 		formTester.setValue("standardDeviation", "15");
 		formTester.setValue("coefficientOfVariation", "50");
+		formTester.select("laboratory", 2);
 		
 		Assert.assertFalse(controlSerumFixture.getControlSerumData().isControlSerumDaoSaveCalled());
 		

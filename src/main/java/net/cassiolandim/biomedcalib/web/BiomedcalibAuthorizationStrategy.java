@@ -1,6 +1,7 @@
 package net.cassiolandim.biomedcalib.web;
 
 import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
+import net.cassiolandim.biomedcalib.web.page.BasePage;
 import net.cassiolandim.biomedcalib.web.page.signInOut.SignInPage;
 
 import org.apache.wicket.Component;
@@ -18,8 +19,11 @@ public class BiomedcalibAuthorizationStrategy implements IAuthorizationStrategy,
 
 	@Override
 	public <T extends Component> boolean isInstantiationAuthorized(Class<T> componentClass) {
+		BiomedcalibSession biomedcalibSession = BiomedcalibSession.get();
 		if(AdminBasePage.class.isAssignableFrom(componentClass)){
-			return BiomedcalibSession.get().isAuthenticated();
+			return biomedcalibSession.isAdmin();
+		}else if(BasePage.class.isAssignableFrom(componentClass)){
+			return biomedcalibSession.isAuthenticated();
 		}
 		return true;
 	}

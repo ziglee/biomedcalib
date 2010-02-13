@@ -1,11 +1,9 @@
 package net.cassiolandim.biomedcalib.web.page;
 
-import net.cassiolandim.biomedcalib.web.BiomedcalibSession;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.util.tester.WicketTester;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,11 +34,5 @@ public class TestHomePage {
 	public void clickAdminHomeLinkShouldRenderAdminHomePage(){
 		tester.clickLink("adminHomeLink");
 		tester.assertRenderedPage(AdminHomePage.class);
-	}
-	
-	@Test
-	public void shouldReturnBiomedcalibSession(){
-		HomePage page = (HomePage)tester.getLastRenderedPage();
-		Assert.assertEquals(BiomedcalibSession.class, page.getBiomedicalSession().getClass());
 	}
 }

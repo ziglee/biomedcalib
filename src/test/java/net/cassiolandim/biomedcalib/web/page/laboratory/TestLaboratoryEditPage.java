@@ -89,7 +89,7 @@ public class TestLaboratoryEditPage {
 		Assert.assertTrue(laboratoryFixture.getLaboratoryData().isLaboratoryDaoSaveCalled());
 		
 		tester.assertRenderedPage(LaboratoryEditPage.class);
-		tester.assertInfoMessages(new String[]{"Laboratório salvo com sucesso!"});
+		tester.assertInfoMessages(new String[]{"LaboratÃ³rio salvo com sucesso!"});
 		
 		LaboratoryEditPage page = (LaboratoryEditPage)tester.getLastRenderedPage();
 

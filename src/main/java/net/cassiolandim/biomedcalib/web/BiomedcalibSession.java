@@ -38,4 +38,8 @@ public class BiomedcalibSession extends WebSession {
 	public boolean isAuthenticated(){
 		return (user != null);
 	}
+	
+	public boolean isAdmin(){
+		return (isAuthenticated() && user.getAdmin());
+	}
 }

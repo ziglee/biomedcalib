@@ -118,7 +118,7 @@ public class TestUserEditPage {
 		Assert.assertTrue(userFixture.getUserData().isUserDaoSaveCalled());
 		
 		tester.assertRenderedPage(UserEditPage.class);
-		tester.assertInfoMessages(new String[]{"Usu·rio salvo com sucesso!"});
+		tester.assertInfoMessages(new String[]{"Usu√°rio salvo com sucesso!"});
 		
 		UserEditPage page = (UserEditPage)tester.getLastRenderedPage();
 

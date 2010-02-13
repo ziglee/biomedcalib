@@ -14,8 +14,11 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.Radio;
+import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -60,6 +63,18 @@ public class UserEditPage extends AdminBasePage {
 		name.add(StringValidator.maximumLength(50));
 		form.add(name);
 		
+		RadioGroup<Boolean> active = new RadioGroup<Boolean>("active", new PropertyModel<Boolean>(user, "active"));
+		active.add(new Radio<Boolean>("true", new Model<Boolean>(true)));
+		active.add(new Radio<Boolean>("false", new Model<Boolean>(false)));
+		active.setRequired(true);
+		form.add(active);
+		
+		RadioGroup<Boolean> admin = new RadioGroup<Boolean>("admin", new PropertyModel<Boolean>(user, "admin"));
+		admin.add(new Radio<Boolean>("true", new Model<Boolean>(true)));
+		admin.add(new Radio<Boolean>("false", new Model<Boolean>(false)));
+		admin.setRequired(true);
+		form.add(admin);
+		  
 		Button save = new Button("save"){
 			@Override
 			public void onSubmit() {

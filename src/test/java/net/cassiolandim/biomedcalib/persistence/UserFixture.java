@@ -10,6 +10,9 @@ import net.cassiolandim.biomedcalib.web.MockContext;
 public class UserFixture {
 
 	public static final String[] NAMES = UserDataGenerator.NAMES;
+	public static final Boolean[] ADMIN = UserDataGenerator.ADMIN;
+	public static final String[] LOGINS = UserDataGenerator.LOGINS;
+	public static final String[] HASHES = UserDataGenerator.HASHES;
 	
 	private final UserData userData = new UserData();
 
@@ -18,6 +21,10 @@ public class UserFixture {
 		for (int i = 0; i < NAMES.length; i++) {
 			User user = new User();
 			user.setName(NAMES[i]);
+			user.setLogin(LOGINS[i]);
+			user.setAdmin(ADMIN[i]);
+			user.setActive(true);
+			user.setPasswordHash(HASHES[i]);
 			user.setLaboratory(labs.get(i % 4));
 			userData.newUser(user);
 		}

@@ -69,6 +69,6 @@ public class TestLaboratoryNewPage {
 		
 		Assert.assertEquals("PDCA", form.getModelObject().getName());
 		
-		tester.assertInfoMessages(new String[]{"Laboratório salvo com sucesso!"});
+		tester.assertInfoMessages(new String[]{"LaboratÃ³rio salvo com sucesso!"});
 	}
 }

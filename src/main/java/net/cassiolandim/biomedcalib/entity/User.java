@@ -20,6 +20,7 @@ public class User extends BaseEntity<User> {
 	private String passwordHash;
 	private Laboratory laboratory;
 	private Boolean admin;
+	private Boolean active;
 	
 	@Id
 	@Column(name="id_user")
@@ -61,6 +62,14 @@ public class User extends BaseEntity<User> {
 	}
 	public void setAdmin(Boolean admin) {
 		this.admin = admin;
+	}
+	
+	@Column(nullable=false)
+	public Boolean getActive() {
+		return active;
+	}
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 	
 	@ManyToOne(optional=false)

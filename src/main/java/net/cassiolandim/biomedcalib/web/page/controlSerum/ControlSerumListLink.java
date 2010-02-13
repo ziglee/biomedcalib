@@ -2,6 +2,9 @@ package net.cassiolandim.biomedcalib.web.page.controlSerum;
 
 import org.apache.wicket.markup.html.link.Link;
 
+/**
+ * @author Cassio Landim
+ */
 public class ControlSerumListLink extends Link<ControlSerumListPage> {
 
 	public ControlSerumListLink(String id) {

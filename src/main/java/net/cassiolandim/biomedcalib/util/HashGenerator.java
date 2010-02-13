@@ -5,6 +5,9 @@ import java.security.NoSuchAlgorithmException;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.HexBin;
 
+/**
+ * @author Cassio Landim
+ */
 public class HashGenerator {
 
 	public static String convert(String plaintext) {

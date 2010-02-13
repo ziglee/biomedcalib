@@ -1,18 +1,18 @@
 package net.cassiolandim.biomedcalib.web.page;
 
 import net.cassiolandim.biomedcalib.component.UserLoggedStatusPanel;
+import net.cassiolandim.biomedcalib.web.BiomedcalibSession;
 import net.cassiolandim.biomedcalib.web.page.controlSerum.ControlSerumListPage;
 import net.cassiolandim.biomedcalib.web.page.measure.MeasureListPage;
 
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
-
-import sun.rmi.log.LogOutputStream;
 
 /**
  * @author Cassio Landim
  */
-public class HomePage extends BasePage {
+public class HomePage extends WebPage {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,6 +21,10 @@ public class HomePage extends BasePage {
 			@Override
 			public void onClick() {
 				setResponsePage(AdminHomePage.class);
+			}
+			@Override
+			public boolean isVisible() {
+				return BiomedcalibSession.get().isAdmin();
 			}
         });
     	

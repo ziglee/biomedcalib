@@ -1,6 +1,9 @@
 package net.cassiolandim.biomedcalib.persistence;
 
+import java.util.List;
+
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
+import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.sampleDataGeneration.ControlSerumDataGenerator;
 import net.cassiolandim.biomedcalib.web.MockContext;
 
@@ -17,11 +20,12 @@ public class ControlSerumFixture {
 	
 	private final ControlSerumData controlSerumData = new ControlSerumData();
 
-	public void addStubs(MockContext context) {
+	public void addStubs(MockContext context, List<Laboratory> labs) {
 		context.putBean("controlSerumPersistableService", controlSerumData.getControlSerumService());
 		for (int i = 0; i < NAMES.length; i++) {
 			ControlSerum controlSerum = new ControlSerum();
 			controlSerum.setName(NAMES[i]);
+			controlSerum.setLaboratory(labs.get(0));
 			controlSerum.setMinimum(MININUMS[i]);
 			controlSerum.setMaximum(MAXIMUMS[i]);
 			controlSerum.setStandardDeviation(SDS[i]);

@@ -115,7 +115,7 @@ public class TestUserListPage {
 		
 		tester.clickLink("users:1:deleteLink");
 		tester.assertRenderedPage(UserListPage.class);
-		tester.assertInfoMessages(new String[]{"Usu·rio excluÌdo com sucesso!"});
+		tester.assertInfoMessages(new String[]{"Usu√°rio exclu√≠do com sucesso!"});
 		
 		Assert.assertEquals(3, users.size());
 		Assert.assertTrue(userFixture.getUserData().isUserDaoDeleteCalled());

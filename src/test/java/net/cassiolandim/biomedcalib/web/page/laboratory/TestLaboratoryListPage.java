@@ -103,7 +103,7 @@ public class TestLaboratoryListPage {
 		
 		tester.clickLink("laboratories:1:deleteLink");
 		tester.assertRenderedPage(LaboratoryListPage.class);
-		tester.assertInfoMessages(new String[]{"Laboratório excluído com sucesso!"});
+		tester.assertInfoMessages(new String[]{"LaboratÃ³rio excluÃ­do com sucesso!"});
 		
 		Assert.assertEquals(5, laboratories.size());
 		Assert.assertTrue(laboratoryFixture.getLaboratoryData().isLaboratoryDaoDeleteCalled());

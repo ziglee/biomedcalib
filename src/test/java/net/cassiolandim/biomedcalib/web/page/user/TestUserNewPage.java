@@ -66,6 +66,8 @@ public class TestUserNewPage {
 		FormTester formTester = tester.newFormTester("form");
 		formTester.select("laboratory", 2);
 		formTester.setValue("name", "Novo nome");
+		formTester.select("active", 0);
+		formTester.select("admin", 1);
 		
 		Assert.assertFalse(userFixture.getUserData().isUserDaoSaveCalled());
 		
@@ -83,6 +85,6 @@ public class TestUserNewPage {
 		Assert.assertEquals("Novo nome", form.getModelObject().getName());
 		Assert.assertEquals(LaboratoryFixture.NAMES[5], form.getModelObject().getLaboratory().getName());
 		
-		tester.assertInfoMessages(new String[]{"Usu·rio salvo com sucesso!"});
+		tester.assertInfoMessages(new String[]{"Usu√°rio salvo com sucesso!"});
 	}
 }

@@ -24,6 +24,7 @@ import org.junit.Test;
 public class TestAdminHomePage {
 	
 	private WicketTester tester;
+	private ControlSerumFixture controlSerumFixture;
 
 	@Before
 	public void setUp(){
@@ -34,11 +35,11 @@ public class TestAdminHomePage {
 		LaboratoryFixture laboratoryFixture = new LaboratoryFixture();
 		laboratoryFixture.addStubs(app.context);
 		
-		ControlSerumFixture controlSerumFixture = new ControlSerumFixture();
-		controlSerumFixture.addStubs(app.context);
-		
 		MockListPersistenceService<Laboratory> laboratorySimplePersistableService = laboratoryFixture.getLaboratoryData().getLaboratoryService();
 		List<Laboratory> labs = laboratorySimplePersistableService.findAll();
+
+		controlSerumFixture = new ControlSerumFixture();
+		controlSerumFixture.addStubs(app.context, labs);
 		
 		UserFixture userFixture = new UserFixture();
 		userFixture.addStubs(app.context, labs);

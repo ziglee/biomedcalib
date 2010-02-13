@@ -22,7 +22,7 @@ public class MeasuresDataGenerator {
 		List<MeasuresAggregate> list = new ArrayList<MeasuresAggregate>();
 		
 		MeasuresAggregate entity = new MeasuresAggregate(laboratories.get(0));
-		entity.setObservation("observação");
+		entity.setObservation("observaÃ§Ã£o\nsegunda linha\nterceira linha");
 		entity.setControlSerum(controlSerums.get(0));
 		entity.addMeasure(createMeasure(entity, "16/12/2009", 110L));
 		entity.addMeasure(createMeasure(entity, "17/12/2009", 101L));

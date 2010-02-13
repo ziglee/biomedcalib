@@ -1,9 +1,9 @@
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
     <head>  
-        <title>Biomedcalib - Listagem de Usu·rios</title>
+        <title>Biomedcalib - Listagem de Usu√°rios</title>
     </head>
     <body>
-        <strong>Listagem de Usu·rios</strong>
+        <strong>Listagem de Usu√°rios</strong>
         <hr/>
         
         <a wicket:id="adminHomeLink">[home]</a>
@@ -19,12 +19,20 @@
         			Nome
         		</th>
         		<th>
+        			Laborat√≥rio
+        		</th>
+        		<th>
+        			Ativo
+        		</th>
+        		<th>
         		</th>
         		<th>
         		</th>
         	</tr>
         	<tr wicket:id="users">
         		<td wicket:id="name">[nome]</td>
+        		<td wicket:id="laboratory.name">[lab]</td>
+        		<td wicket:id="active">[ativo]</td>
         		<td><a wicket:id="editLink">[editar]</a></td>
         		<td><a wicket:id="deleteLink">[excluir]</a></td>
         	</tr>

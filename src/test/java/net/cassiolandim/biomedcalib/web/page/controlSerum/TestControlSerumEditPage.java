@@ -1,8 +1,13 @@
 package net.cassiolandim.biomedcalib.web.page.controlSerum;
 
+import java.util.List;
+
 import junit.framework.Assert;
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
+import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.persistence.ControlSerumFixture;
+import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
+import net.cassiolandim.biomedcalib.persistence.MockListPersistenceService;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
 
@@ -22,6 +27,7 @@ public class TestControlSerumEditPage {
 	
 	private WicketTester tester;
 	private ControlSerumFixture controlSerumFixture;
+	private LaboratoryFixture laboratoryFixture;
 
 	@Before
 	public void setUp(){
@@ -29,8 +35,14 @@ public class TestControlSerumEditPage {
 		
 		BiomedcalibApplicationForTesting app = (BiomedcalibApplicationForTesting)tester.getApplication();
 		
+		laboratoryFixture = new LaboratoryFixture();
+		laboratoryFixture.addStubs(app.context);
+		
+		MockListPersistenceService<Laboratory> laboratorySimplePersistableService = laboratoryFixture.getLaboratoryData().getLaboratoryService();
+		List<Laboratory> labs = laboratorySimplePersistableService.findAll();
+		
 		controlSerumFixture = new ControlSerumFixture();
-		controlSerumFixture.addStubs(app.context);
+		controlSerumFixture.addStubs(app.context, labs);
 
 		tester.startPage(ControlSerumListAdminPage.class);
 		tester.clickLink("controlSerums:1:editLink");

@@ -1,7 +1,12 @@
 package net.cassiolandim.biomedcalib.web.page.controlSerum;
 
+import java.util.List;
+
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
+import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.persistence.ControlSerumFixture;
+import net.cassiolandim.biomedcalib.persistence.LaboratoryFixture;
+import net.cassiolandim.biomedcalib.persistence.MockListPersistenceService;
 import net.cassiolandim.biomedcalib.sampleDataGeneration.ControlSerumDataGenerator;
 import net.cassiolandim.biomedcalib.web.BiomedcalibApplicationForTesting;
 import net.cassiolandim.biomedcalib.web.BiomedcalibWicketTester;
@@ -23,6 +28,7 @@ public class TestControlSerumListPage {
 	
 	private WicketTester tester;
 	private ControlSerumFixture controlSerumFixture;
+	private LaboratoryFixture laboratoryFixture;
 
 	@Before
 	public void setUp(){
@@ -30,8 +36,14 @@ public class TestControlSerumListPage {
 		
 		BiomedcalibApplicationForTesting app = (BiomedcalibApplicationForTesting)tester.getApplication();
 		
+		laboratoryFixture = new LaboratoryFixture();
+		laboratoryFixture.addStubs(app.context);
+		
+		MockListPersistenceService<Laboratory> laboratorySimplePersistableService = laboratoryFixture.getLaboratoryData().getLaboratoryService();
+		List<Laboratory> labs = laboratorySimplePersistableService.findAll();
+		
 		controlSerumFixture = new ControlSerumFixture();
-		controlSerumFixture.addStubs(app.context);
+		controlSerumFixture.addStubs(app.context, labs);
 
 		tester.startPage(AdminHomePage.class);
 		tester.clickLink("controlSerumListLink");
@@ -103,7 +115,7 @@ public class TestControlSerumListPage {
 		
 		tester.clickLink("controlSerums:1:deleteLink");
 		tester.assertRenderedPage(ControlSerumListAdminPage.class);
-		tester.assertInfoMessages(new String[]{"Soro controle excluído com sucesso!"});
+		tester.assertInfoMessages(new String[]{"Soro controle excluÃ­do com sucesso!"});
 		
 		Assert.assertEquals(3, controlSerums.size());
 		Assert.assertTrue(controlSerumFixture.getControlSerumData().isControlSerumDaoDeleteCalled());

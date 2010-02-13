@@ -4,18 +4,23 @@ import net.cassiolandim.biomedcalib.entity.User;
 import net.cassiolandim.biomedcalib.service.UserPersistableService;
 import net.cassiolandim.biomedcalib.util.HashGenerator;
 import net.cassiolandim.biomedcalib.web.BiomedcalibSession;
-import net.cassiolandim.biomedcalib.web.page.BasePage;
 
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-public class SignInPage extends BasePage {
+/**
+ * @author Cassio Landim
+ */
+public class SignInPage extends WebPage {
 
 	public SignInPage() {
 		add(new SignInForm("form"));
+		add(new FeedbackPanel("feedback"));
 	}
 	
 	private static class SignInForm extends StatelessForm {

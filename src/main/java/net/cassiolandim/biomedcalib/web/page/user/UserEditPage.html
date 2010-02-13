@@ -1,9 +1,9 @@
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
     <head>  
-        <title>Biomedcalib - EdiÁ„o de Usu·rios</title>
+        <title>Biomedcalib - Edi√ß√£o de Usu√°rios</title>
     </head>
     <body>
-        <strong>EdiÁ„o de Usu·rios</strong>
+        <strong>Edi√ß√£o de Usu√°rios</strong>
         <hr/>
         
         <a wicket:id="adminHomeLink">[home]</a>
@@ -17,7 +17,7 @@
 	        <table>
 	        	<tr>
 	        		<td>
-	        			LaboratÛrio:
+	        			Laborat√≥rio:
 	        		</td>
 	        		<td>
 	        			<select wicket:id="laboratory">
@@ -35,6 +35,30 @@
 	        		</td>
 	        		<td>
 	        			<input wicket:id="name"/>
+	        		</td>
+	        	</tr>
+	        	
+	        	<tr>
+	        		<td>
+	        			Ativo:
+	        		</td>
+	        		<td>
+	        			<span wicket:id="active">
+					    	<input wicket:id="true" type="radio"/>Sim
+					    	<input wicket:id="false" type="radio"/>N√£o
+					  	</span>
+	        		</td>
+	        	</tr>
+	        	
+	        	<tr>
+	        		<td>
+	        			Administrador:
+	        		</td>
+	        		<td>
+	        			<span wicket:id="admin">
+					    	<input wicket:id="true" type="radio"/>Sim
+					    	<input wicket:id="false" type="radio"/>N√£o
+					  	</span>
 	        		</td>
 	        	</tr>
 	        	

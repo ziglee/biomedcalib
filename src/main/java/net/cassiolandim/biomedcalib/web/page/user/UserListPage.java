@@ -14,6 +14,9 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+/**
+ * @author Cassio Landim
+ */
 public class UserListPage extends AdminBasePage {
 
 	@SpringBean(name = "userPersistableService")
@@ -29,6 +32,8 @@ public class UserListPage extends AdminBasePage {
 				final User user = item.getModelObject();
 				
 				item.add(new Label("name", user.getName()));
+				item.add(new Label("laboratory.name", user.getLaboratory().getName()));
+				item.add(new Label("active", user.getActive().toString()));
 				
 				item.add(new Link<UserEditPage>("editLink"){
 					@Override
