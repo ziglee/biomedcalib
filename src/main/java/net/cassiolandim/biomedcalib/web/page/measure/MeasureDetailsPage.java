@@ -2,6 +2,7 @@ package net.cassiolandim.biomedcalib.web.page.measure;
 
 import net.cassiolandim.biomedcalib.component.MeasuresAggregateHistogramChartImage;
 import net.cassiolandim.biomedcalib.component.MeasuresAggregateLineChartImage;
+import net.cassiolandim.biomedcalib.entity.ControlSerum;
 import net.cassiolandim.biomedcalib.entity.Measure;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
 import net.cassiolandim.biomedcalib.service.MeasuresAggregatePersistableService;
@@ -16,6 +17,7 @@ import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.ListDataProvider;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
@@ -32,7 +34,6 @@ public class MeasureDetailsPage extends BasePage {
 		CompoundPropertyModel<MeasuresAggregate> compoundModel = new CompoundPropertyModel<MeasuresAggregate>(detachModel);
 		this.setDefaultModel(compoundModel);
 		
-		add(new Label("creationDate"));
 		add(new Label("laboratory.name"));
 		add(new Label("observation"));
 		add(new Label("mean", new PropertyModel<MeasuresAggregate>(detachModel, "mean")));
@@ -47,16 +48,36 @@ public class MeasureDetailsPage extends BasePage {
 		};
 		add(controlSerumEditLink);
 		
-		add(new Label("controlSerum.name"));
+		controlSerumEditLink.add(new Label("controlSerum.manufacturer"));
+		controlSerumEditLink.add(new Label("controlSerum.name"));
+		
+		Label labelManufacturer = new Label("labelManufacturer");
+		labelManufacturer.setDefaultModel(new ResourceModel("inUse"));
+		add(labelManufacturer);
+		
+		Label labelInPreparation = new Label("labelInPreparation");
+		labelInPreparation.setDefaultModel(new ResourceModel("current"));
+		add(labelInPreparation);
+		
+		if(measuresAggregate.getControlSerum().getStatus().equals(ControlSerum.STATUS_PREP)){
+			labelManufacturer.setDefaultModel(new ResourceModel("manufacturer"));
+			labelInPreparation.setDefaultModel(new ResourceModel("inPreparation"));
+		}
+		
 		add(new Label("controlSerum.mean"));
-		add(new Label("controlSerum.minimum"));
-		add(new Label("controlSerum.maximum"));
 		add(new Label("controlSerum.standardDeviation"));
 		add(new Label("controlSerum.coefficientOfVariation"));
 		add(new Label("controlSerum.statusString"));
 		
-		add(new MeasuresAggregateLineChartImage("lineChart", measuresAggregateId));
-		add(new MeasuresAggregateHistogramChartImage("histogramChart", measuresAggregateId));
+		MeasuresAggregateLineChartImage measuresAggregateLineChartImage = new MeasuresAggregateLineChartImage("lineChart", measuresAggregateId);
+		add(measuresAggregateLineChartImage);
+		MeasuresAggregateHistogramChartImage measuresAggregateHistogramChartImage = new MeasuresAggregateHistogramChartImage("histogramChart", measuresAggregateId);
+		add(measuresAggregateHistogramChartImage);
+		
+		if(measuresAggregate.getMeasures().size() == 0){
+			measuresAggregateLineChartImage.setVisible(false);
+			measuresAggregateHistogramChartImage.setVisible(false);
+		}
 
 		DataView<Measure> dataView = new DataView<Measure>("measures", new ListDataProvider<Measure>(measuresAggregate.getMeasures())) {
 			@Override

@@ -2,16 +2,19 @@ package net.cassiolandim.biomedcalib.web.page.controlSerum;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.service.ControlSerumPersistableService;
 import net.cassiolandim.biomedcalib.service.LaboratoryPersistableService;
+import net.cassiolandim.biomedcalib.util.Constants;
 import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.model.EntityLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
 
+import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
@@ -86,6 +89,12 @@ public class ControlSerumEditAdminPage extends AdminBasePage {
 		status.setRequired(true);
 		form.add(status);
 		
+		TextField<String> manufacturer = new TextField<String>("manufacturer", new PropertyModel<String>(controlSerum, "manufacturer"));
+		manufacturer.setLabel(new ResourceModel("manufacturer"));
+		manufacturer.setRequired(true);
+		manufacturer.add(StringValidator.maximumLength(150));
+		form.add(manufacturer);
+		
 		TextField<String> name = new TextField<String>("name", new PropertyModel<String>(controlSerum, "name"));
 		name.setLabel(new ResourceModel("name"));
 		name.setRequired(true);
@@ -118,6 +127,13 @@ public class ControlSerumEditAdminPage extends AdminBasePage {
 		coefficientOfVariation.setRequired(true);
 		coefficientOfVariation.add(doubleRangeValidator);
 		form.add(coefficientOfVariation);
+		
+		DateTextField expiration = new DateTextField("expiration", new PropertyModel<Date>(controlSerum, "expiration"),	Constants.DATE_PATTERN);
+		expiration.setRequired(true);
+		form.add(expiration);
+		
+		DateTextField deployment = new DateTextField("deployment", new PropertyModel<Date>(controlSerum, "deployment"),	Constants.DATE_PATTERN);
+		form.add(deployment);
 		
 		Button save = new Button("save"){
 			@Override

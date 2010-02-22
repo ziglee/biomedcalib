@@ -1,6 +1,7 @@
 package net.cassiolandim.biomedcalib.sampleDataGeneration;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.ControlSerum;
@@ -23,10 +24,13 @@ public class ControlSerumDataGenerator {
 		for (int i = 0; i < NAMES.length; i++){
 			ControlSerum controlSerum = new ControlSerum(laboratories.get(i % NAMES.length));
 			controlSerum.setName(NAMES[i]);
+			controlSerum.setManufacturer("Control Lab");
 			controlSerum.setMinimum(MININUMS[i]);
 			controlSerum.setMaximum(MAXIMUMS[i]);
 			controlSerum.setStandardDeviation(SDS[i]);
 			controlSerum.setCoefficientOfVariation(CVS[i]);
+			controlSerum.setExpiration(new Date());
+			controlSerum.setDeployment(new Date());
 			controlSerumService.persist(controlSerum);
 			list.add(controlSerum);
 		}

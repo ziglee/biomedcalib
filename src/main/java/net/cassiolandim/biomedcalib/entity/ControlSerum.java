@@ -1,5 +1,6 @@
 package net.cassiolandim.biomedcalib.entity;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,12 +23,15 @@ public class ControlSerum extends BaseEntity<ControlSerum> {
 
 	private Long id;
 	private String name;
+	private String manufacturer;
 	private Double minimum;
 	private Double maximum;
 	private Double standardDeviation;
 	private Double coefficientOfVariation;
 	private Laboratory laboratory;
 	private Integer status;
+	private Date expiration;
+	private Date deployment;
 	
 	public final static double RANGE_MINIMUM = -200d;
 	public final static double RANGE_MAXIMUM = 200d;
@@ -70,6 +74,14 @@ public class ControlSerum extends BaseEntity<ControlSerum> {
 		this.name = name;
 	}
 	
+	@Column(nullable=false,length=200)
+	public String getManufacturer() {
+		return manufacturer;
+	}
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
 	@Column(nullable=false)
 	public Double getMinimum() {
 		return minimum;
@@ -78,6 +90,22 @@ public class ControlSerum extends BaseEntity<ControlSerum> {
 		this.minimum = minimum;
 	}
 	
+	@Column(nullable=false)
+	public Date getExpiration() {
+		return expiration;
+	}
+	public void setExpiration(Date expiration) {
+		this.expiration = expiration;
+	}
+
+	@Column
+	public Date getDeployment() {
+		return deployment;
+	}
+	public void setDeployment(Date deployment) {
+		this.deployment = deployment;
+	}
+
 	@Column(nullable=false)
 	public Double getMaximum() {
 		return maximum;

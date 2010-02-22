@@ -38,7 +38,8 @@ public class MeasuresAggregateDaoPersistenceService implements MeasuresAggregate
 	public List<MeasuresAggregate> findAll() {
 		Search search = new Search();
 		search.addSort("laboratory.name", false, true);
-		search.addSort("creationDate", false, true);
+		search.addSort("firstDate", false, true);
+		search.addSort("controlSerum.manufacturer", false, true);
 		search.addSort("controlSerum.name", false, true);
 		return measuresAggregateDao.search(search);
 	}
@@ -47,6 +48,7 @@ public class MeasuresAggregateDaoPersistenceService implements MeasuresAggregate
 		for(Measure measure : entity.getMeasures()){
 			persist(measure);
 		}
+		entity.setFirstAndLastDate();
 		measuresAggregateDao.persist(entity);
 	}
 
@@ -58,6 +60,7 @@ public class MeasuresAggregateDaoPersistenceService implements MeasuresAggregate
 		for(Measure measure : entity.getMeasures()){
 			save(measure);
 		}
+		entity.setFirstAndLastDate();
 		measuresAggregateDao.save(entity);
 	}
 

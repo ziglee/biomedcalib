@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 /**
@@ -21,6 +22,7 @@ public class User extends BaseEntity<User> {
 	private Laboratory laboratory;
 	private Boolean admin;
 	private Boolean active;
+	private byte[] signature;
 	
 	@Id
 	@Column(name="id_user")
@@ -70,6 +72,15 @@ public class User extends BaseEntity<User> {
 	}
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+	
+	@Lob
+	@Column
+	public byte[] getSignature() {
+		return signature;
+	}
+	public void setSignature(byte[] signature) {
+		this.signature = signature;
 	}
 	
 	@ManyToOne(optional=false)

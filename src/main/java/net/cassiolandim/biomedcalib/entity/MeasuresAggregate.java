@@ -29,11 +29,11 @@ public class MeasuresAggregate extends BaseEntity<MeasuresAggregate>{
 	private Laboratory laboratory;
 	private ControlSerum controlSerum;
 	private String observation;
-	private Date creationDate;
+	private Date firstDate;
+	private Date lastDate;
 	private List<Measure> measures;
 
 	public MeasuresAggregate() {
-		setCreationDate(new Date());
 		setMeasures(new ArrayList<Measure>());
 	}
 	
@@ -77,27 +77,23 @@ public class MeasuresAggregate extends BaseEntity<MeasuresAggregate>{
 	public void setObservation(String observation) {
 		this.observation = observation;
 	}
-	
-	@Column(nullable=false,updatable=true)
-	public Date getCreationDate() {
-		return creationDate;
+
+	@Column
+	public Date getFirstDate() {
+		return firstDate;
 	}
-	private void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+	public void setFirstDate(Date firstDate) {
+		this.firstDate = firstDate;
 	}
 
-	public int compareTo(MeasuresAggregate ma) {
-		int comparison = this.laboratory.compareTo(ma.laboratory);
-		
-		if(comparison == 0)
-			comparison = this.creationDate.compareTo(ma.creationDate);
-
-		if(comparison == 0)
-			comparison = this.controlSerum.compareTo(ma.controlSerum);
-		
-		return comparison;
+	@Column
+	public Date getLastDate() {
+		return lastDate;
 	}
-	
+	public void setLastDate(Date lastDate) {
+		this.lastDate = lastDate;
+	}
+
 	@OneToMany
 	public List<Measure> getMeasures() {
 		return measures;
@@ -110,6 +106,18 @@ public class MeasuresAggregate extends BaseEntity<MeasuresAggregate>{
 	}
 	public void removeMeasure(Measure measure) {
 		measures.remove(measure);
+	}
+	
+	public int compareTo(MeasuresAggregate ma) {
+		int comparison = this.laboratory.compareTo(ma.laboratory);
+		
+		if(comparison == 0)
+			comparison = this.firstDate.compareTo(ma.firstDate);
+
+		if(comparison == 0)
+			comparison = this.controlSerum.compareTo(ma.controlSerum);
+		
+		return comparison;
 	}
 
 	@Transient
@@ -135,5 +143,16 @@ public class MeasuresAggregate extends BaseEntity<MeasuresAggregate>{
 	@Transient
 	public double getCofficientOfVariation() {
 		return MyMath.coeffientOfVariation(getStandardDeviation(), getMean());
+	}
+	
+	@Transient
+	public void setFirstAndLastDate(){
+		if(measures != null){
+			int size = measures.size();
+			if(size > 0){
+				setFirstDate(measures.get(0).getDate());
+				setLastDate(measures.get(size - 1).getDate());
+			}
+		}
 	}
 }

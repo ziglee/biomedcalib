@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  * @author Cassio Landim
@@ -14,6 +15,7 @@ public class Laboratory extends BaseEntity<Laboratory> {
 
 	private Long id;
 	private String name;
+	private byte[] logomark;
 
 	@Id
 	@Column(name="id_laboratory")
@@ -31,6 +33,15 @@ public class Laboratory extends BaseEntity<Laboratory> {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Lob
+	@Column
+	public byte[] getLogomark() {
+		return logomark;
+	}
+	public void setLogomark(byte[] logomark) {
+		this.logomark = logomark;
 	}
 	
 	public int compareTo(Laboratory laboratory) {

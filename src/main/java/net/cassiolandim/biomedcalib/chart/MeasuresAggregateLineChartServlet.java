@@ -64,7 +64,7 @@ public class MeasuresAggregateLineChartServlet extends HttpServlet {
 	private JFreeChart createChart(final MeasuresAggregate measuresAggregate, final CategoryDataset dataset) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-		TextTitle subtitle = new TextTitle(sdf.format(measuresAggregate.getCreationDate()));
+		TextTitle subtitle = new TextTitle(sdf.format(measuresAggregate.getFirstDate()));
 		
         // create the chart...
         final JFreeChart chart = ChartFactory.createLineChart(

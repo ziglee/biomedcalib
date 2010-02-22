@@ -34,7 +34,8 @@ public class MeasureListPage extends BasePage {
 				CompoundPropertyModel<MeasuresAggregate> compoundModel = new CompoundPropertyModel<MeasuresAggregate>(measureAggregate);
 				item.setModel(compoundModel);
 				
-				item.add(new Label("creationDate"));
+				item.add(new Label("firstDate"));
+				item.add(new Label("controlSerum.manufacturer"));
 				item.add(new Label("controlSerum.name"));
 				
 				item.add(new Link<MeasureDetailsPage>("measureDetailsLink"){
