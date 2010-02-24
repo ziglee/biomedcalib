@@ -8,10 +8,13 @@ import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.upload.FileUpload;
+import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.util.upload.FileItemFactory;
 import org.apache.wicket.validation.validator.StringValidator;
 
 /**
@@ -40,10 +43,16 @@ public class LaboratoryEditPage extends AdminBasePage {
 		name.setRequired(true);
 		name.add(StringValidator.maximumLength(50));
 		form.add(name);
+
+		final FileUploadField logomark = new FileUploadField("logomark");
+		form.add(logomark);
 		
 		Button save = new Button("save"){
 			@Override
 			public void onSubmit() {
+				if(logomark.getFileUpload()!=null){
+					laboratory.setLogomark(logomark.getFileUpload().getBytes());
+				}
 				laboratoryPersistableService.save(laboratory);
 				model.setId(laboratory.getId());
 				info(getString("laboratory.save.success"));
