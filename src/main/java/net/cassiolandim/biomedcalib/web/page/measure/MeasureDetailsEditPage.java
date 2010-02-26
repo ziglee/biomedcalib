@@ -14,8 +14,10 @@ import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.BasePage;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
@@ -69,18 +71,10 @@ public class MeasureDetailsEditPage extends BasePage {
 		Form<MeasuresAggregate> form = new Form<MeasuresAggregate>("form");
 		add(form);
 		
-		Label laboratoryName = new Label("laboratory.name", 
-				new PropertyModel<String>(measuresAggregate, "laboratory.name"));
+		Label laboratoryName = new Label("laboratory.name",	new PropertyModel<String>(measuresAggregate, "laboratory.name"));
 		form.add(laboratoryName);
 		
-		DateTextField creationDate = new DateTextField("creationDate", 
-				new PropertyModel<Date>(measuresAggregate, "creationDate"), 
-				Constants.DATE_PATTERN);
-		creationDate.setRequired(true);
-		form.add(creationDate);
-		
-		TextArea<String> observationTextArea = new TextArea<String>("observation", 
-				new PropertyModel<String>(measuresAggregate, "observation"));
+		TextArea<String> observationTextArea = new TextArea<String>("observation", new PropertyModel<String>(measuresAggregate, "observation"));
 		form.add(observationTextArea);
 		
 		EntityListLoadableDetachableModel<ControlSerum, List<ControlSerum>> controlSerumListModel = new EntityListLoadableDetachableModel<ControlSerum, List<ControlSerum>>(controlSerumPersistableService){
@@ -90,16 +84,29 @@ public class MeasureDetailsEditPage extends BasePage {
 			}
 		};
 		
-		ChoiceRenderer<ControlSerum> choiceRenderer = new ChoiceRenderer<ControlSerum>("name","id");
-		DropDownChoice<ControlSerum> controlSerums = new DropDownChoice<ControlSerum>("controlSerum", new PropertyModel<ControlSerum>(measuresAggregate, "controlSerum"), controlSerumListModel);
+		final ChoiceRenderer<ControlSerum> choiceRenderer = new ChoiceRenderer<ControlSerum>("name","id");
+		final DropDownChoice<ControlSerum> controlSerums = new DropDownChoice<ControlSerum>("controlSerum", new PropertyModel<ControlSerum>(measuresAggregate, "controlSerum"), controlSerumListModel);
 		controlSerums.setLabel(new ResourceModel("controlSerum"));
 		controlSerums.setRequired(true);
 		controlSerums.setChoiceRenderer(choiceRenderer);
 		form.add(controlSerums);
 		
-		form.add(new Label("mean", new PropertyModel<MeasuresAggregate>(measuresAggregate, "mean")));
-		form.add(new Label("standardDeviation", new PropertyModel<MeasuresAggregate>(measuresAggregate, "standardDeviation")));
-		form.add(new Label("coefficientOfVariation", new PropertyModel<MeasuresAggregate>(measuresAggregate, "cofficientOfVariation")));
+		final WebMarkupContainer controlSerumContainer = new WebMarkupContainer("controlSerumContainer");
+		controlSerumContainer.setOutputMarkupId(true);
+		form.add(controlSerumContainer);
+		
+		controlSerumContainer.add(new Label("controlSerum.manufacturer", new PropertyModel<String>(measuresAggregate, "controlSerum.manufacturer")));
+		controlSerumContainer.add(new Label("controlSerum.mean", new PropertyModel<Double>(measuresAggregate, "controlSerum.mean")));
+		controlSerumContainer.add(new Label("controlSerum.standardDeviation", new PropertyModel<Double>(measuresAggregate, "controlSerum.standardDeviation")));
+		controlSerumContainer.add(new Label("controlSerum.coefficientOfVariation", new PropertyModel<Double>(measuresAggregate, "controlSerum.coefficientOfVariation")));
+		controlSerumContainer.add(new Label("controlSerum.statusString", new PropertyModel<String>(measuresAggregate, "controlSerum.statusString")));
+		
+		controlSerums.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+            protected void onUpdate(AjaxRequestTarget target) {
+            	measuresAggregate.setControlSerum(controlSerums.getModelObject());
+                target.addComponent(controlSerumContainer);
+            }
+        });
 		
 		DataView<Measure> dataView = new DataView<Measure>("measures", new ListDataProvider<Measure>(measuresAggregate.getMeasures())) {
 			@Override

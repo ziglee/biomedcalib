@@ -13,86 +13,65 @@
         <a wicket:id="editLink">[editar]</a>
         <hr/>
         
-        <table>
+        <table border="1">
+        	<tr>
+        		<td colspan="3">
+        			Laboratório: <span wicket:id="laboratory.name">[laboratorio]</span>
+        		</td>
+        	</tr>
+        	<tr>
+        		<td colspan="3">
+        			<a wicket:id="controlSerumEditLink">
+	        			<b><span wicket:id="controlSerum.manufacturer">[fabricante]</span> - <span wicket:id="controlSerum.name">[nome]</span></b>
+        			</a>
+        			&nbsp;
+        			(<span wicket:id="controlSerum.statusString">[status]</span>)
+        		</td>
+        	</tr>
         	<tr>
         		<td>
-			        <table border="1">
-			        	<tr>
-			        		<td>
-			        			<b>Laboratório:</b>
-			        		</td>
-			        		<td>
-			        			<b><span wicket:id="laboratory.name">[laboratorio]</span></b>
-			        		</td>
-			        	</tr>
-			        	<tr>
-			        		<td>
-			        			Observações:
-			        		</td>
-			        		<td>
-			        			<pre wicket:id="observation">[observações]</pre>
-			        		</td>
-			        	</tr>
-			        </table>
         		</td>
         		<td>
-			        <table border="1">
-			        	<tr>
-			        		<td colspan="3">
-			        			<a wicket:id="controlSerumEditLink">
-				        			<b><span wicket:id="controlSerum.manufacturer">[fabricante]</span> - <span wicket:id="controlSerum.name">[nome]</span></b>
-			        			</a>
-			        			&nbsp;
-			        			(<span wicket:id="controlSerum.statusString">[status]</span>)
-			        		</td>
-			        	</tr>
-			        	<tr>
-			        		<td>
-			        		</td>
-			        		<td>
-			        			<span wicket:id="labelManufacturer">[label]</span>
-			        		</td>
-			        		<td>
-			        			<span wicket:id="labelInPreparation">[label]</span>
-			        		</td>
-			        	</tr>
-			        	
-			        	<tr>
-			        		<td>
-			        			Média
-			        		</td>
-			        		<td>
-			        			<span wicket:id="controlSerum.mean">[media]</span>
-			        		</td>
-			        		<td>
-			        			<span wicket:id="mean">[media]</span>
-			        		</td>
-			        	</tr>
-			        	
-			        	<tr>
-			        		<td>
-			        			DP
-			        		</td>
-			        		<td>
-			        			<span wicket:id="controlSerum.standardDeviation">[standardDeviation]</span>
-			        		</td>
-			        		<td>
-			        			<span wicket:id="standardDeviation">[desvio padrao]</span>
-			        		</td>
-			        	</tr>
-			        	
-			        	<tr>
-			        		<td>
-			        			CV
-			        		</td>
-			        		<td>
-			        			<span wicket:id="controlSerum.coefficientOfVariation">[coefficientOfVariation]</span>
-			        		</td>
-			        		<td>
-			        			<span wicket:id="coefficientOfVariation">[coeficiente de variacao]</span>
-			        		</td>
-			        	</tr>
-			        </table>
+        			<span wicket:id="labelManufacturer">[label]</span>
+        		</td>
+        		<td>
+        			<span wicket:id="labelInPreparation">[label]</span>
+        		</td>
+        	</tr>
+        	
+        	<tr>
+        		<td>
+        			Média
+        		</td>
+        		<td>
+        			<span wicket:id="controlSerum.mean">[media]</span>
+        		</td>
+        		<td>
+        			<span wicket:id="mean">[media]</span>
+        		</td>
+        	</tr>
+        	
+        	<tr>
+        		<td>
+        			DP
+        		</td>
+        		<td>
+        			<span wicket:id="controlSerum.standardDeviation">[standardDeviation]</span>
+        		</td>
+        		<td>
+        			<span wicket:id="standardDeviation">[desvio padrao]</span>
+        		</td>
+        	</tr>
+        	
+        	<tr>
+        		<td>
+        			CV
+        		</td>
+        		<td>
+        			<span wicket:id="controlSerum.coefficientOfVariation">[coefficientOfVariation]</span>
+        		</td>
+        		<td>
+        			<span wicket:id="coefficientOfVariation">[coeficiente de variacao]</span>
         		</td>
         	</tr>
         </table>
@@ -101,7 +80,7 @@
         
         <table border="1">
         	<tr>
-        		<td>
+        		<td valign="top">
 			        <table border="1">
 						<thead>
 							<tr>
@@ -144,6 +123,19 @@
 			        		</td>
 			        	</tr>
         			</table>
+        		</td>
+        	</tr>
+        </table>
+
+		<br/>
+        
+        <table border="1">
+        	<tr>
+        		<td>
+        			Observações:
+        		</td>
+        		<td>
+        			<pre wicket:id="observation">[observações]</pre>
         		</td>
         	</tr>
         </table>

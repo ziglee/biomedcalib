@@ -14,107 +14,114 @@
         <div wicket:id="feedback"></div>
         
 		<form wicket:id="form">
-	        <table border="1">
-	        	<tr>
-	        		<td>
-	        			Laboratório:
-	        		</td>
-	        		<td>
-	        			<span wicket:id="laboratory.name">[laboratorio]</span>
-	        		</td>
-	        	</tr>
-	        	<tr>
-	        		<td>
-	        			Soro controle:
-	        		</td>
-	        		<td>
-	        			<select wicket:id="controlSerum">
-	        				<option>[control serum]</option>
-	        			</select>
-	        		</td>
-	        	</tr>
-	        	<tr>
-	        		<td>
-	        			Data de criação:
-	        		</td>
-	        		<td>
-	       				<input wicket:id="creationDate" />
-	        		</td>
-	        	</tr>
-	        	<tr>
-	        		<td>
-	        			Observações:
-	        		</td>
-	        		<td>
-	       				<textarea wicket:id="observation">[observacoes]</textarea>
-	        		</td>
-	        	</tr>
-	        	<tr>
-	        		<td colspan="2">
-	       				<button wicket:id="save">Salvar</button>
-	        		</td>
-	        	</tr>
-	        </table>
-        	
-        	<br/>
-        	
-	        <table border="1">
-				<thead>
-					<tr>
-						<th>
-							Data
-						</th>
-						<th>
-							Valor
-						</th>
-						<th>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr wicket:id="measures">
-						<td>
-							<input wicket:id="date" />
-						</td>
-						<td>
-							<input wicket:id="value" />
-						</td>
-						<td>
-							<button wicket:id="remove">X</button>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="3">
-							<button wicket:id="add">Add</button>
-						</td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td>
-							Média:
-						</td>
-						<td colspan="2">
-							<span wicket:id="mean">[media]</span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Desvio padrão:
-						</td>
-						<td colspan="2">
-							<span wicket:id="standardDeviation">[desvio padrao]</span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Coeficiente de variação:
-						</td>
-						<td colspan="2">
-							<span wicket:id="coefficientOfVariation">[coeficiente de variacao]</span>
-						</td>
-					</tr>
-				</tfoot>
+			<table>
+				<tr>
+					<td>
+				        <table border="1">
+							<thead>
+								<tr>
+									<th>
+										Data
+									</th>
+									<th>
+										Valor
+									</th>
+									<th>
+										<button wicket:id="add">Add</button>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr wicket:id="measures">
+									<td>
+										<input wicket:id="date" />
+									</td>
+									<td>
+										<input wicket:id="value" />
+									</td>
+									<td>
+										<button wicket:id="remove">X</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td valign="top">
+						<table border="1">
+				        	<tr>
+				        		<td>
+				        			Laboratório:
+				        		</td>
+				        		<td>
+				        			<span wicket:id="laboratory.name">[laboratorio]</span>
+				        		</td>
+				        	</tr>
+				        	<tr>
+				        		<td>
+				        			Soro controle:
+				        		</td>
+				        		<td>
+				        			<select wicket:id="controlSerum">
+				        				<option>[control serum]</option>
+				        			</select>
+				        			<br />
+				        			<div wicket:id="controlSerumContainer">
+				        				<table border="1">
+								        	<tr>
+								        		<td>
+								        			<span wicket:id="controlSerum.manufacturer">[fabricante]</span>
+								        		</td>
+								        		<td>
+								        			<span wicket:id="controlSerum.statusString">[status]</span>
+								        		</td>
+								        	</tr>
+								        	
+								        	<tr>
+								        		<td>
+								        			Média
+								        		</td>
+								        		<td>
+								        			<span wicket:id="controlSerum.mean">[media]</span>
+								        		</td>
+								        	</tr>
+								        	
+								        	<tr>
+								        		<td>
+								        			DP
+								        		</td>
+								        		<td>
+								        			<span wicket:id="controlSerum.standardDeviation">[standardDeviation]</span>
+								        		</td>
+								        	</tr>
+								        	
+								        	<tr>
+								        		<td>
+								        			CV
+								        		</td>
+								        		<td>
+								        			<span wicket:id="controlSerum.coefficientOfVariation">[coefficientOfVariation]</span>
+								        		</td>
+								        	</tr>
+								        </table>
+				        			</div>
+				        		</td>
+				        	</tr>
+				        	<tr>
+				        		<td>
+				        			Observações:
+				        		</td>
+				        		<td>
+				       				<textarea wicket:id="observation" rows="15" cols="50">[observacoes]</textarea>
+				        		</td>
+				        	</tr>
+				        	<tr>
+				        		<td colspan="2">
+				       				<button wicket:id="save">Salvar</button>
+				        		</td>
+				        	</tr>
+				        </table>
+					</td>
+				</tr>
 			</table>
        	</form>
     </body>
