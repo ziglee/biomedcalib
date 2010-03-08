@@ -10,12 +10,14 @@ import net.cassiolandim.biomedcalib.web.model.EntityLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.BasePage;
 import net.cassiolandim.biomedcalib.web.page.controlSerum.ControlSerumEditPage;
 
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.markup.repeater.data.ListDataProvider;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -105,6 +107,16 @@ public class MeasureDetailsPage extends BasePage {
 				setResponsePage(new MeasureDetailsEditPage(measuresAggregate.getId()));
 			}
         });
+
+    	Link<MeasureListPage> deleteLink = new Link<MeasureListPage>("deleteLink"){
+			@Override
+			public void onClick() {
+				measuresAggregatePersistableService.remove(measuresAggregate);
+				setResponsePage(MeasureListPage.class);
+			}
+        };
+		deleteLink.add(new AttributeAppender("onclick", new Model("return confirm('Deseja realmente excluir?');"), ";"));
+		add(deleteLink);
 
 		addHomeLink();
 	}
