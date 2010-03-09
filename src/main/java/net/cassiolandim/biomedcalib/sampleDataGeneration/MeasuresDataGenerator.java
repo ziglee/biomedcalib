@@ -24,22 +24,63 @@ public class MeasuresDataGenerator {
 		MeasuresAggregate entity = new MeasuresAggregate(laboratories.get(0));
 		entity.setObservation("observação\nsegunda linha\nterceira linha");
 		entity.setControlSerum(controlSerums.get(0));
-		entity.addMeasure(createMeasure(entity, "16/12/2009", 110L));
-		entity.addMeasure(createMeasure(entity, "17/12/2009", 101L));
-		entity.addMeasure(createMeasure(entity, "18/12/2009", 99L));
-		entity.addMeasure(createMeasure(entity, "19/12/2009", 105L));
-		entity.addMeasure(createMeasure(entity, "20/12/2009", 120L));
-		entity.addMeasure(createMeasure(entity, "21/12/2009", 109L));
-		entity.addMeasure(createMeasure(entity, "22/12/2009", 111L));
-		entity.addMeasure(createMeasure(entity, "23/12/2009", 98L));
-		entity.addMeasure(createMeasure(entity, "24/12/2009", 97L));
-		entity.addMeasure(createMeasure(entity, "25/12/2009", 120L));
-		entity.addMeasure(createMeasure(entity, "26/12/2009", 118L));
-		entity.addMeasure(createMeasure(entity, "27/12/2009", 117L));
-		entity.addMeasure(createMeasure(entity, "28/12/2009", 114L));
-		entity.addMeasure(createMeasure(entity, "29/12/2009", 110L));
-		entity.addMeasure(createMeasure(entity, "30/12/2009", 99L));
-		entity.addMeasure(createMeasure(entity, "01/01/2010", 90L));
+		entity.addMeasure(createMeasure(entity, "01/12/2009", 4));
+		entity.addMeasure(createMeasure(entity, "02/12/2009", 4.4));
+		entity.addMeasure(createMeasure(entity, "03/12/2009", 4.3));
+		entity.addMeasure(createMeasure(entity, "04/12/2009", 4.1));
+		entity.addMeasure(createMeasure(entity, "05/12/2009", 4.5));
+		entity.addMeasure(createMeasure(entity, "06/12/2009", 4.2));
+		entity.addMeasure(createMeasure(entity, "07/12/2009", 4.1));
+		entity.addMeasure(createMeasure(entity, "08/12/2009", 4.2));
+		entity.addMeasure(createMeasure(entity, "09/12/2009", 4.6));
+		entity.addMeasure(createMeasure(entity, "10/12/2009", 4.2));
+		entity.addMeasure(createMeasure(entity, "11/12/2009", 4.3));
+		entity.addMeasure(createMeasure(entity, "12/12/2009", 4.4));
+		entity.addMeasure(createMeasure(entity, "13/12/2009", 4.3));
+		entity.addMeasure(createMeasure(entity, "14/12/2009", 4));
+		entity.addMeasure(createMeasure(entity, "15/12/2009", 4.3));
+		entity.addMeasure(createMeasure(entity, "16/01/2010", 4.5));
+		entity.addMeasure(createMeasure(entity, "17/01/2010", 4.6));
+		entity.addMeasure(createMeasure(entity, "18/01/2010", 4.5));
+		entity.addMeasure(createMeasure(entity, "19/01/2010", 4));
+		entity.addMeasure(createMeasure(entity, "20/01/2010", 4.5));
+		entity.addMeasure(createMeasure(entity, "21/01/2010", 4.3));
+		entity.addMeasure(createMeasure(entity, "22/01/2010", 4.4));
+		entity.addMeasure(createMeasure(entity, "23/01/2010", 4.4));
+		entity.addMeasure(createMeasure(entity, "24/01/2010", 4.4));
+		entity.addMeasure(createMeasure(entity, "25/01/2010", 4.3));
+		
+		measuresAggregateService.persist(entity);
+		list.add(entity);
+		
+		entity = new MeasuresAggregate(laboratories.get(1));
+		entity.setObservation("bla bla bla bla blalaaa blalaieiaee boijser \ns oeiurpoweiru wui skjcvn skr");
+		entity.setControlSerum(controlSerums.get(1));
+		entity.addMeasure(createMeasure(entity, "16/01/2010", 9.2));
+		entity.addMeasure(createMeasure(entity, "17/01/2010", 10));
+		entity.addMeasure(createMeasure(entity, "18/01/2010", 9.7));
+		entity.addMeasure(createMeasure(entity, "19/01/2010", 9.4));
+		entity.addMeasure(createMeasure(entity, "20/01/2010", 10));
+		entity.addMeasure(createMeasure(entity, "21/01/2010", 9.5));
+		entity.addMeasure(createMeasure(entity, "22/01/2010", 9.3));
+		entity.addMeasure(createMeasure(entity, "23/01/2010", 10));
+		entity.addMeasure(createMeasure(entity, "24/02/2010", 9.9));
+		entity.addMeasure(createMeasure(entity, "25/02/2010", 10));
+		entity.addMeasure(createMeasure(entity, "26/02/2010", 10));
+		entity.addMeasure(createMeasure(entity, "27/02/2010", 10));
+		entity.addMeasure(createMeasure(entity, "28/02/2010", 9.7));
+		entity.addMeasure(createMeasure(entity, "29/02/2010", 10.2));
+		entity.addMeasure(createMeasure(entity, "30/02/2010", 9.6));
+		entity.addMeasure(createMeasure(entity, "01/03/2010", 10.2));
+		entity.addMeasure(createMeasure(entity, "02/03/2010", 9.7));
+		entity.addMeasure(createMeasure(entity, "03/03/2010", 9.7));
+		entity.addMeasure(createMeasure(entity, "04/03/2010", 9.6));
+		entity.addMeasure(createMeasure(entity, "05/03/2010", 9.8));
+		entity.addMeasure(createMeasure(entity, "06/03/2010", 10.2));
+		entity.addMeasure(createMeasure(entity, "07/03/2010", 10));
+		entity.addMeasure(createMeasure(entity, "08/03/2010", 10.1));
+		entity.addMeasure(createMeasure(entity, "09/03/2010", 10.1));
+		entity.addMeasure(createMeasure(entity, "10/03/2010", 9.4));
 		
 		measuresAggregateService.persist(entity);
 		list.add(entity);
@@ -47,7 +88,7 @@ public class MeasuresDataGenerator {
 		return list;
 	}
 	
-	private static Measure createMeasure(MeasuresAggregate ma, String date, long value) throws ParseException{
+	private static Measure createMeasure(MeasuresAggregate ma, String date, double value) throws ParseException{
 		Measure measure = new Measure(ma);
 		measure.setDate(dateFormat.parse(date));
 		measure.setValue(value);

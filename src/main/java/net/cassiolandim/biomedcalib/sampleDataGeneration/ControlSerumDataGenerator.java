@@ -14,9 +14,9 @@ import net.cassiolandim.biomedcalib.service.ControlSerumPersistableService;
 public class ControlSerumDataGenerator {
 
 	public static final String[] NAMES = { "HGH - 3N" , "GGH - 3P", "ABN - 2N", "GON - 2P" };
-	public static final Double[] MININUMS = { 90d , 87d, 98d, 89d };
-	public static final Double[] MAXIMUMS = { 120d , 92d, 118d, 97d };
-	public static final Double[] SDS = { 17.5 , 33.5, 21.2, 28.6 };
+	public static final Double[] MININUMS = { 3.1 , 6.5, 98d, 89d };
+	public static final Double[] MAXIMUMS = { 5.68 , 12.68, 118d, 97d };
+	public static final Double[] SDS = { 0.42 , 0.31, 21.2, 28.6 };
 	public static final Double[] CVS = { 40d , 41d, 38.2, 41.6 };
 	
 	public static List<ControlSerum> generateData(ControlSerumPersistableService controlSerumService, List<Laboratory> laboratories){

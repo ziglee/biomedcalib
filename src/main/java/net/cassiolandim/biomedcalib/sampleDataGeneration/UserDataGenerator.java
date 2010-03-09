@@ -15,7 +15,7 @@ public class UserDataGenerator {
 	public static final String[] NAMES = { "Cássio" , "Cíntia", "Landmary", "Maclemes" };
 	public static final String[] LOGINS = { "cassio" , "cintia", "landmary", "maclemes" };
 	public static final Boolean[] ADMIN = { true , false, false, false };
-	public static final String[] HASHES = { "E10ADC3949BA59ABBE56E057F20F883E" , "E10ADC3949BA59ABBE56E057F20F883E", "aaa", "aaa" };
+	public static final String[] HASHES = { "E10ADC3949BA59ABBE56E057F20F883E" , "E10ADC3949BA59ABBE56E057F20F883E", "E10ADC3949BA59ABBE56E057F20F883E", "aaa" };
 	
 	public static List<User> generateData(UserPersistableService userService, List<Laboratory> laboratories){
 		List<User> list = new ArrayList<User>();
