@@ -17,11 +17,11 @@ public class Measure extends BaseEntity<Measure>{
 
 	private Long id;
 	private Date date;
-	private Long value;
+	private Double value;
 	private MeasuresAggregate measureAggregate;
 	
 	private Measure() {
-		value = new Long(0);
+		value = new Double(0);
 		date = new Date();
 	}
 	
@@ -49,10 +49,10 @@ public class Measure extends BaseEntity<Measure>{
 	}
 	
 	@Column(nullable=false)
-	public Long getValue() {
+	public Double getValue() {
 		return value;
 	}
-	public void setValue(Long value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
 	
