@@ -64,31 +64,31 @@ public class TestMeasuresPerLevel {
 		measuresAggregate.addMeasure(m24);
 		measuresAggregate.addMeasure(m25);
 		
-		m01.setValue(112L);
-		m02.setValue(115L);
-		m03.setValue(103L);
-		m04.setValue(107L);
-		m05.setValue(116L);
-		m06.setValue(108L);
-		m07.setValue(115L);
-		m08.setValue(111L);
-		m09.setValue(106L);
-		m10.setValue(110L);
-		m11.setValue(102L);
-		m12.setValue(100L);
-		m13.setValue(104L);
-		m14.setValue(105L);
-		m15.setValue(107L);
-		m16.setValue(116L);
-		m17.setValue(117L);
-		m18.setValue(116L);
-		m19.setValue(105L);
-		m20.setValue(100L);
-		m21.setValue(94L);
-		m22.setValue(98L);
-		m23.setValue(92L);
-		m24.setValue(94L);
-		m25.setValue(96L);
+		m01.setValue(112d);
+		m02.setValue(115d);
+		m03.setValue(103d);
+		m04.setValue(107d);
+		m05.setValue(116d);
+		m06.setValue(108d);
+		m07.setValue(115d);
+		m08.setValue(111d);
+		m09.setValue(106d);
+		m10.setValue(110d);
+		m11.setValue(102d);
+		m12.setValue(100d);
+		m13.setValue(104d);
+		m14.setValue(105d);
+		m15.setValue(107d);
+		m16.setValue(116d);
+		m17.setValue(117d);
+		m18.setValue(116d);
+		m19.setValue(105d);
+		m20.setValue(100d);
+		m21.setValue(94d);
+		m22.setValue(98d);
+		m23.setValue(92d);
+		m24.setValue(94d);
+		m25.setValue(96d);
 	}
 	
 	@Test
