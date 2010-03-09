@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.cassiolandim.biomedcalib.dao.MeasureDao;
 import net.cassiolandim.biomedcalib.dao.MeasuresAggregateDao;
+import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.Measure;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
 
@@ -37,6 +38,16 @@ public class MeasuresAggregateDaoPersistenceService implements MeasuresAggregate
 
 	public List<MeasuresAggregate> findAll() {
 		Search search = new Search();
+		search.addSort("laboratory.name", false, true);
+		search.addSort("firstDate", false, true);
+		search.addSort("controlSerum.manufacturer", false, true);
+		search.addSort("controlSerum.name", false, true);
+		return measuresAggregateDao.search(search);
+	}
+	
+	public List<MeasuresAggregate> findByLaboratory(Laboratory laboratory) {
+		Search search = new Search();
+		search.addFilterEqual("laboratory.id", laboratory.getId());
 		search.addSort("laboratory.name", false, true);
 		search.addSort("firstDate", false, true);
 		search.addSort("controlSerum.manufacturer", false, true);

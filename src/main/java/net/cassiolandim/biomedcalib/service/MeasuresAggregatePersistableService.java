@@ -1,5 +1,8 @@
 package net.cassiolandim.biomedcalib.service;
 
+import java.util.List;
+
+import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
 
 /**
@@ -7,4 +10,5 @@ import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
  */
 public interface MeasuresAggregatePersistableService extends PersistableService<MeasuresAggregate> {
 
+	List<MeasuresAggregate> findByLaboratory(Laboratory laboratory);
 }

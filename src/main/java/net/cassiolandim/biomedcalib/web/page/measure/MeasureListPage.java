@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
 import net.cassiolandim.biomedcalib.service.MeasuresAggregatePersistableService;
+import net.cassiolandim.biomedcalib.web.BiomedcalibSession;
 import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.BasePage;
 
@@ -27,7 +28,14 @@ public class MeasureListPage extends BasePage {
 		FeedbackPanel feedbackPanel = new FeedbackPanel("feedback");
 		add(feedbackPanel);
 		
-		add(new ListView<MeasuresAggregate>("measureAggregates", new EntityListLoadableDetachableModel<MeasuresAggregate, List<MeasuresAggregate>>(measuresAggregatePersistableService)){
+		EntityListLoadableDetachableModel<MeasuresAggregate, List<MeasuresAggregate>> entityListLoadableDetachableModel = new EntityListLoadableDetachableModel<MeasuresAggregate, List<MeasuresAggregate>>(measuresAggregatePersistableService){
+			@Override
+			protected List<MeasuresAggregate> load() {
+				return measuresAggregatePersistableService.findByLaboratory(BiomedcalibSession.get().getLaboratory());
+			}
+		};
+		
+		add(new ListView<MeasuresAggregate>("measureAggregates", entityListLoadableDetachableModel){
 			@Override
 			protected void populateItem(ListItem<MeasuresAggregate> item){
 				final MeasuresAggregate measureAggregate = item.getModelObject();
@@ -35,6 +43,7 @@ public class MeasureListPage extends BasePage {
 				item.setModel(compoundModel);
 				
 				item.add(new Label("firstDate"));
+				item.add(new Label("lastDate"));
 				item.add(new Label("controlSerum.manufacturer"));
 				item.add(new Label("controlSerum.name"));
 				
