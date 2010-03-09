@@ -25,6 +25,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.Range;
+import org.jfree.data.RangeType;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.springframework.context.ApplicationContext;
@@ -52,10 +53,17 @@ public class MeasuresAggregateLineChartServlet extends HttpServlet {
 		List<Measure> measures = measuresAggregate.getMeasures();
 		
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        ControlSerum controlSerum = measuresAggregate.getControlSerum();
         
+		Double standardDeviation = controlSerum.getStandardDeviation();
+		Double mean = controlSerum.getMean();
+		
         int index = 0;
         for(Measure measure : measures){
-        	dataset.addValue(measure.getValue(), measuresAggregate.getControlSerum().getName(), Integer.toString(++index));
+        	Double value = measure.getValue() - mean;
+        	value = value / standardDeviation;
+			dataset.addValue(value, controlSerum.getName(), Integer.toString(++index));
         }
         
         return dataset;
@@ -69,13 +77,13 @@ public class MeasuresAggregateLineChartServlet extends HttpServlet {
         // create the chart...
         final JFreeChart chart = ChartFactory.createLineChart(
             "Medidas",       			// chart title
-            "Corridas",// domain axis label
-            "Valor",                   // range axis label
-            dataset,                   // data
-            PlotOrientation.VERTICAL,  // orientation
-            true,                      // include legend
-            true,                      // tooltips
-            false                      // urls
+            "Corridas",					// domain axis label
+            "Valor",                   	// range axis label
+            dataset,                   	// data
+            PlotOrientation.VERTICAL,  	// orientation
+            true,                      	// include legend
+            true,                      	// tooltips
+            false                      	// urls
         );
 
         chart.setBackgroundPaint(Color.white);
@@ -85,20 +93,12 @@ public class MeasuresAggregateLineChartServlet extends HttpServlet {
         plot.setBackgroundPaint(Color.lightGray);
         plot.setRangeGridlinePaint(Color.white);
 
-        ControlSerum controlSerum = measuresAggregate.getControlSerum();
-        
-		Double standardDeviation = controlSerum.getStandardDeviation();
-		Double minimum = controlSerum.getMinimum() - (2 * standardDeviation);
-		Double maximum = controlSerum.getMaximum() + (2 * standardDeviation);
-		
-		Range range = new Range(minimum, maximum);
-		NumberTickUnit numberTickUnit = new NumberTickUnit(standardDeviation);
+		Range range = new Range(-3, 3);
 		
         // customise the range axis...
         final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         rangeAxis.setAutoRange(true);
-        rangeAxis.setTickUnit(numberTickUnit);
         rangeAxis.setRange(range);
         
         // customise the renderer...
