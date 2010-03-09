@@ -42,6 +42,6 @@ public class HomePage extends WebPage {
 			}
         });
     	
-    	add(new UserLoggedStatusPanel("userStatus", HomePage.class));
+    	add(new UserLoggedStatusPanel("userStatus"));
     }
 }
