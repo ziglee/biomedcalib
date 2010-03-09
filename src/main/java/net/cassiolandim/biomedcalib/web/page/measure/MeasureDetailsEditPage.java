@@ -8,7 +8,6 @@ import net.cassiolandim.biomedcalib.entity.Measure;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
 import net.cassiolandim.biomedcalib.service.ControlSerumPersistableService;
 import net.cassiolandim.biomedcalib.service.MeasuresAggregatePersistableService;
-import net.cassiolandim.biomedcalib.service.UserPersistableService;
 import net.cassiolandim.biomedcalib.util.Constants;
 import net.cassiolandim.biomedcalib.web.model.EntityListLoadableDetachableModel;
 import net.cassiolandim.biomedcalib.web.page.BasePage;
@@ -45,13 +44,9 @@ public class MeasureDetailsEditPage extends BasePage {
 	@SpringBean(name = "controlSerumPersistableService")
 	private ControlSerumPersistableService controlSerumPersistableService;
 
-	@SpringBean(name = "userPersistableService")
-	private UserPersistableService userPersistableService;
-	
 	private final MeasuresAggregate measuresAggregate;
 	
 	public MeasureDetailsEditPage() {
-		getBiomedicalSession().setUser(userPersistableService.findAll().get(0));
 		measuresAggregate = new MeasuresAggregate(getBiomedicalSession().getLaboratory());
 		pageConstructor();
 	}
