@@ -1,0 +1,49 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <head>  
+        <title>Biomedcalib - Relatório</title>
+    </head>
+    <body>
+        <strong>Relatório de corridas</strong>
+        <hr/>
+        
+        <a wicket:id="adminHomeLink">[home]</a>
+        <hr/>
+        
+        <div wicket:id="feedback"></div>
+        
+		<form wicket:id="form">
+   			Lab: <select wicket:id="laboratory">
+   				<option>[laboratorio]</option>
+   			</select>
+   			
+   			Data início: <input wicket:id="firstDate"/>
+   			
+   			Data fim: <input wicket:id="lastDate"/>
+   			
+   			Medidas:
+   			<table wicket:id="measuresContainer">
+   				<tr wicket:id="measuresAggregates">
+   					<td>
+   						<span wicket:id="firstDate"/> -
+   						<span wicket:id="lastDate"/> - 
+   						<span wicket:id="controlSerum.name"/>
+   						<input type="button" wicket:id="choose" value="-&gt;"/>
+   					</td>
+   				</tr>
+   			</table>
+   			
+   			Escolhidas:
+   			<table wicket:id="chosenMeasuresContainer">
+   				<tr wicket:id="measuresAggregates">
+   					<td>
+   						<span wicket:id="firstDate"/> -
+   						<span wicket:id="lastDate"/> - 
+   						<span wicket:id="controlSerum.name"/>
+   					</td>
+   				</tr>
+   			</table>
+   			
+   			<input type="button" wicket:id="submit" value="Enviar"/>
+		</form>
+    </body>
+</html>

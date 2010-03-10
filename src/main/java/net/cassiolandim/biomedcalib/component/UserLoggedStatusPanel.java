@@ -3,7 +3,6 @@ package net.cassiolandim.biomedcalib.component;
 import net.cassiolandim.biomedcalib.web.BiomedcalibSession;
 import net.cassiolandim.biomedcalib.web.page.HomePage;
 import net.cassiolandim.biomedcalib.web.page.signInOut.SignInPage;
-import net.cassiolandim.biomedcalib.web.page.signInOut.SignOutPage;
 
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.markup.html.basic.Label;
@@ -18,7 +17,7 @@ public class UserLoggedStatusPanel extends Panel {
 	
 		add(new Label("name", new PropertyModel<String>(this, "session.user.name")));
 
-		add(new Link<SignOutPage>("signout") {
+		add(new Link<HomePage>("signout") {
 			@Override
 			public boolean isVisible() {
 				return BiomedcalibSession.get().isAuthenticated();

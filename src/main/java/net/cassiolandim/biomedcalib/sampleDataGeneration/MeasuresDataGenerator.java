@@ -85,6 +85,39 @@ public class MeasuresDataGenerator {
 		measuresAggregateService.persist(entity);
 		list.add(entity);
 		
+		entity = new MeasuresAggregate(laboratories.get(1));
+		entity.setObservation("aopisuf aosidf j,cnv xjncv iuwyoeir qiua sdfk\n oasupeoir qiopoasd xcvn,\n ofsiuperjkhsdf");
+		entity.setControlSerum(controlSerums.get(1));
+		entity.addMeasure(createMeasure(entity, "01/02/2010", 9.2));
+		entity.addMeasure(createMeasure(entity, "02/02/2010", 10));
+		entity.addMeasure(createMeasure(entity, "03/02/2010", 9.7));
+		entity.addMeasure(createMeasure(entity, "04/02/2010", 9.4));
+		
+		measuresAggregateService.persist(entity);
+		list.add(entity);
+		
+		entity = new MeasuresAggregate(laboratories.get(1));
+		entity.setObservation("oiup soidu eruiy xn nkdjkj \nos oueroi oiuhd");
+		entity.setControlSerum(controlSerums.get(1));
+		entity.addMeasure(createMeasure(entity, "02/03/2010", 9.2));
+		entity.addMeasure(createMeasure(entity, "03/03/2010", 10));
+		entity.addMeasure(createMeasure(entity, "04/03/2010", 9.7));
+		entity.addMeasure(createMeasure(entity, "05/03/2010", 9.4));
+		
+		measuresAggregateService.persist(entity);
+		list.add(entity);
+		
+		entity = new MeasuresAggregate(laboratories.get(1));
+		entity.setObservation("iuqiqoiwiuoe quuweo jkjdjfd jsjkdf");
+		entity.setControlSerum(controlSerums.get(1));
+		entity.addMeasure(createMeasure(entity, "11/02/2010", 9.2));
+		entity.addMeasure(createMeasure(entity, "13/03/2010", 10));
+		entity.addMeasure(createMeasure(entity, "14/03/2010", 9.7));
+		entity.addMeasure(createMeasure(entity, "15/03/2010", 9.4));
+		
+		measuresAggregateService.persist(entity);
+		list.add(entity);
+		
 		return list;
 	}
 	
