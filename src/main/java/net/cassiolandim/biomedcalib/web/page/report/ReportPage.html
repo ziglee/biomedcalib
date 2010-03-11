@@ -1,0 +1,55 @@
+<html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
+    <head>  
+        <title>Biomedcalib - Relatório</title>
+    </head>
+    <body>
+        <strong>Relatório de corridas</strong>
+        <hr/>
+        
+        <a wicket:id="adminHomeLink">[home]</a>
+        <hr/>
+        
+        Laboratório: <span wicket:id="laboratory" />
+        
+        <table border="1">
+        	<tr>
+        		<td>
+        		</td>
+        		<div wicket:id="levelsView">
+        			<th>
+        				Nível <span wicket:id="name"></span>
+        			</th>
+        		</div>
+        	</tr>
+        	<tr>
+        		<td>
+        		</td>
+        		<div wicket:id="controlSerumsView">
+        			<th>
+        				<span wicket:id="name"></span>
+        			</th>
+        		</div>
+        	</tr>
+        	<tr>
+        		<td>
+        			Média em uso
+        		</td>
+        		<div wicket:id="meansView">
+        			<td align="right">
+        				<span wicket:id="mean"></span>
+        			</td>
+        		</div>
+        	</tr>
+        	<tr>
+        		<td>
+        			Desvio padrão em uso
+        		</td>
+        		<div wicket:id="sdsView">
+        			<td align="right">
+        				<span wicket:id="sd"></span>
+        			</td>
+        		</div>
+        	</tr>
+        </table>
+	</body>
+</html>
