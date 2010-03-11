@@ -98,7 +98,7 @@ public class MeasuresDataGenerator {
 		
 		entity = new MeasuresAggregate(laboratories.get(1));
 		entity.setObservation("oiup soidu eruiy xn nkdjkj \nos oueroi oiuhd");
-		entity.setControlSerum(controlSerums.get(1));
+		entity.setControlSerum(controlSerums.get(2));
 		entity.addMeasure(createMeasure(entity, "02/03/2010", 9.2));
 		entity.addMeasure(createMeasure(entity, "03/03/2010", 10));
 		entity.addMeasure(createMeasure(entity, "04/03/2010", 9.7));
@@ -109,7 +109,7 @@ public class MeasuresDataGenerator {
 		
 		entity = new MeasuresAggregate(laboratories.get(1));
 		entity.setObservation("iuqiqoiwiuoe quuweo jkjdjfd jsjkdf");
-		entity.setControlSerum(controlSerums.get(1));
+		entity.setControlSerum(controlSerums.get(3));
 		entity.addMeasure(createMeasure(entity, "11/02/2010", 9.2));
 		entity.addMeasure(createMeasure(entity, "13/03/2010", 10));
 		entity.addMeasure(createMeasure(entity, "14/03/2010", 9.7));

@@ -1,5 +1,6 @@
 package net.cassiolandim.biomedcalib.service;
 
+import java.util.Date;
 import java.util.List;
 
 import net.cassiolandim.biomedcalib.dao.MeasureDao;
@@ -54,6 +55,22 @@ public class MeasuresAggregateDaoPersistenceService implements MeasuresAggregate
 		search.addSort("controlSerum.name", false, true);
 		return measuresAggregateDao.search(search);
 	}
+	
+	public List<MeasuresAggregate> findActiveByLaboratory(Laboratory laboratory, Date firstDate, Date lastDate) {
+		Search search = new Search();
+		
+		search.addFilterEqual("active", true);
+		search.addFilterEqual("laboratory.id", laboratory.getId());
+		
+		if(firstDate != null) search.addFilterGreaterOrEqual("firstDate", firstDate);
+		if(lastDate != null) search.addFilterLessOrEqual("lastDate", lastDate);
+		
+		search.addSort("laboratory.name", false, true);
+		search.addSort("firstDate", false, true);
+		search.addSort("controlSerum.manufacturer", false, true);
+		search.addSort("controlSerum.name", false, true);
+		return measuresAggregateDao.search(search);
+	}
 
 	public void persist(MeasuresAggregate entity) {
 		for(Measure measure : entity.getMeasures()){
@@ -81,5 +98,17 @@ public class MeasuresAggregateDaoPersistenceService implements MeasuresAggregate
 
 	private void save(Measure measure) {
 		measureDao.save(measure);
+	}
+	
+	public MeasuresAggregate archive(MeasuresAggregate entity) {
+		entity.setActive(Boolean.FALSE);
+		measuresAggregateDao.save(entity);
+		return entity;
+	}
+	
+	public MeasuresAggregate unarchive(MeasuresAggregate entity) {
+		entity.setActive(Boolean.TRUE);
+		measuresAggregateDao.save(entity);
+		return entity;
 	}
 }

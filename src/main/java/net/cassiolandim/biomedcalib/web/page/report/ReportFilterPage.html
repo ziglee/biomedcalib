@@ -12,38 +12,43 @@
         <div wicket:id="feedback"></div>
         
 		<form wicket:id="form">
-   			Lab: <select wicket:id="laboratory">
-   				<option>[laboratorio]</option>
-   			</select>
+			<table>
+				<tr>
+					<td>
+						Laboratório
+					</td>
+					<td colspan="3">
+						<select wicket:id="laboratory">
+			   				<option>[laboratorio]</option>
+			   			</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Data início:
+					</td>
+					<td>
+						<input wicket:id="firstDate"/>
+					</td>
+					<td>
+						Data fim:
+					</td>
+					<td>
+						<input wicket:id="lastDate"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Medidas:
+					</td>
+					<td colspan="3">
+						<span wicket:id="choices">
+						</span>
+					</td>
+				</tr>
+			</table>
    			
-   			Data início: <input wicket:id="firstDate"/>
-   			
-   			Data fim: <input wicket:id="lastDate"/>
-   			
-   			Medidas:
-   			<table wicket:id="measuresContainer">
-   				<tr wicket:id="measuresAggregates">
-   					<td>
-   						<span wicket:id="firstDate"/> -
-   						<span wicket:id="lastDate"/> - 
-   						<span wicket:id="controlSerum.name"/>
-   						<input type="button" wicket:id="choose" value="-&gt;"/>
-   					</td>
-   				</tr>
-   			</table>
-   			
-   			Escolhidas:
-   			<table wicket:id="chosenMeasuresContainer">
-   				<tr wicket:id="measuresAggregates">
-   					<td>
-   						<span wicket:id="firstDate"/> -
-   						<span wicket:id="lastDate"/> - 
-   						<span wicket:id="controlSerum.name"/>
-   					</td>
-   				</tr>
-   			</table>
-   			
-   			<input type="button" wicket:id="submit" value="Enviar"/>
+   			<button wicket:id="submit">Enviar</button>
 		</form>
     </body>
 </html>

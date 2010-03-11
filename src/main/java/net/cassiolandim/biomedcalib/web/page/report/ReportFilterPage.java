@@ -1,5 +1,6 @@
 package net.cassiolandim.biomedcalib.web.page.report;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,17 +17,12 @@ import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
-import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
-import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.CheckBoxMultipleChoice;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.markup.repeater.Item;
-import org.apache.wicket.markup.repeater.data.DataView;
-import org.apache.wicket.markup.repeater.data.ListDataProvider;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
@@ -44,7 +40,7 @@ public class ReportFilterPage extends AdminBasePage {
 	private Date firstDate;
 	private Date lastDate;
 	private List<MeasuresAggregate> measures = new ArrayList<MeasuresAggregate>();
-	private List<MeasuresAggregate> chosenMeasures = new ArrayList<MeasuresAggregate>();
+	private ArrayList<MeasuresAggregate> chosenMeasures = new ArrayList<MeasuresAggregate>();
 	
 	public ReportFilterPage() {
 		addAdminHomeLink();
@@ -70,73 +66,50 @@ public class ReportFilterPage extends AdminBasePage {
 		DateTextField lastDateTextField = new DateTextField("lastDate", new PropertyModel<Date>(this, "lastDate"), Constants.DATE_PATTERN);
 		form.add(lastDateTextField);
 		
-		final WebMarkupContainer measuresContainer = new WebMarkupContainer("measuresContainer");
-		measuresContainer.setOutputMarkupId(true);
-		form.add(measuresContainer);
+		final SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.DATE_PATTERN);
 		
-		final WebMarkupContainer chosenMeasuresContainer = new WebMarkupContainer("chosenMeasuresContainer");
-		chosenMeasuresContainer.setOutputMarkupId(true);
-		form.add(chosenMeasuresContainer);
-		
-		final ListDataProvider<MeasuresAggregate> measuresListDataProvider = new ListDataProvider<MeasuresAggregate>(measures);
-		DataView<MeasuresAggregate> dataView = new DataView<MeasuresAggregate>("measuresAggregates", measuresListDataProvider) {
+		final CheckBoxMultipleChoice<MeasuresAggregate> checkboxes = new CheckBoxMultipleChoice<MeasuresAggregate>("choices", new Model(chosenMeasures), measures);
+		checkboxes.setOutputMarkupId(true);
+		checkboxes.setChoiceRenderer(new ChoiceRenderer<MeasuresAggregate>(){
 			@Override
-			protected void populateItem(final Item<MeasuresAggregate> item){
-				final MeasuresAggregate measure = item.getModelObject();
-				item.add(new Label("firstDate", new PropertyModel<Date>(measure, "firstDate")));
-				item.add(new Label("lastDate", new PropertyModel<Date>(measure, "lastDate")));
-				item.add(new Label("controlSerum.name", new PropertyModel<String>(measure, "controlSerum.name")));
-				
-				final Button choose = new Button("choose"){
-					@Override
-					public boolean isVisible() {
-						//return !chosenMeasures.contains(measure.getId());
-						return true;
-					}
-				};
-				choose.setOutputMarkupId(true);
-				
-				choose.add(new AjaxFormComponentUpdatingBehavior("onclick") {
-		            protected void onUpdate(AjaxRequestTarget target) {
-		            	choose.setVisible(false);
-		            	chosenMeasures.add(measure);
-		            	target.addComponent(choose);
-		            	target.addComponent(chosenMeasuresContainer);
-		            }
-		        });
-				
-				item.add(choose);
+			public Object getDisplayValue(MeasuresAggregate object) {
+				StringBuilder display = new StringBuilder();
+				display.append(dateFormat.format(object.getFirstDate()));
+				display.append(" - ");
+				display.append(dateFormat.format(object.getLastDate()));
+				display.append(" - ");
+				display.append(object.getControlSerum().getName());
+				return display.toString();
 			}
-		};
-		measuresContainer.add(dataView);
-		
-		final ListDataProvider<MeasuresAggregate> chosenMeasuresListDataProvider = new ListDataProvider<MeasuresAggregate>(measures);
-		DataView<MeasuresAggregate> chosenDataView = new DataView<MeasuresAggregate>("measuresAggregates", chosenMeasuresListDataProvider) {
+			
 			@Override
-			protected void populateItem(final Item<MeasuresAggregate> item){
-				final MeasuresAggregate measure = item.getModelObject();
-				item.add(new Label("firstDate", new PropertyModel<Date>(measure, "firstDate")));
-				item.add(new Label("lastDate", new PropertyModel<Date>(measure, "lastDate")));
-				item.add(new Label("controlSerum.name", new PropertyModel<String>(measure, "controlSerum.name")));
+			public String getIdValue(MeasuresAggregate object, int index) {
+				return object.getId().toString();
 			}
-		};
-		chosenMeasuresContainer.add(chosenDataView);
-		
+		});
+		form.add(checkboxes);
+
 		labs.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             protected void onUpdate(AjaxRequestTarget target) {
             	measures.clear();
-            	List<MeasuresAggregate> measuresFiltered = measuresAggregatePersistableService.findByLaboratory(laboratory);
+            	List<MeasuresAggregate> measuresFiltered = measuresAggregatePersistableService.findActiveByLaboratory(laboratory, firstDate, lastDate);
             	for(MeasuresAggregate measuresAggregate : measuresFiltered){
             		measures.add(measuresAggregate);
             	}
-                target.addComponent(measuresContainer);
+                target.addComponent(checkboxes);
             }
         });
 		
 		Button submit = new Button("submit"){
 			@Override
 			public void onSubmit() {
-				setResponsePage(ReportFilterPage.class);
+				if(chosenMeasures.size() == 0){
+					error("Selecione pelo menos 1 corrida");
+				}else{
+					List<Long> ids = new ArrayList<Long>();
+					for(MeasuresAggregate measuresAggregate : chosenMeasures) ids.add(measuresAggregate.getId());
+					setResponsePage(new ReportPage(ids));
+				}
 			}
 		};
 		form.add(submit);

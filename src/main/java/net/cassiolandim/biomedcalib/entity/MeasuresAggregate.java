@@ -33,9 +33,11 @@ public class MeasuresAggregate extends BaseEntity<MeasuresAggregate>{
 	private Date firstDate;
 	private Date lastDate;
 	private List<Measure> measures;
+	private Boolean active;
 
 	public MeasuresAggregate() {
 		setMeasures(new ArrayList<Measure>());
+		active = Boolean.TRUE;
 	}
 	
 	public MeasuresAggregate(Laboratory laboratory) {
@@ -85,6 +87,14 @@ public class MeasuresAggregate extends BaseEntity<MeasuresAggregate>{
 	}
 	public void setFirstDate(Date firstDate) {
 		this.firstDate = firstDate;
+	}
+	
+	@Column(nullable=false)
+	public Boolean getActive() {
+		return active;
+	}
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	@Column

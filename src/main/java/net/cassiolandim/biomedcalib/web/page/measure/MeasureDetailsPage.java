@@ -108,6 +108,30 @@ public class MeasureDetailsPage extends BasePage {
 			}
         });
 
+    	Link<MeasureListPage> archiveLink = new Link<MeasureListPage>("archiveLink"){
+			@Override
+			public void onClick() {
+				measuresAggregatePersistableService.archive(measuresAggregate);
+			}
+			@Override
+			public boolean isVisible() {
+				return measuresAggregate.getActive();
+			}
+        };
+		add(archiveLink);
+		
+    	Link<MeasureListPage> unarchiveLink = new Link<MeasureListPage>("unarchiveLink"){
+			@Override
+			public void onClick() {
+				measuresAggregatePersistableService.unarchive(measuresAggregate);
+			}
+			@Override
+			public boolean isVisible() {
+				return !measuresAggregate.getActive();
+			}
+        };
+		add(unarchiveLink);
+		
     	Link<MeasureListPage> deleteLink = new Link<MeasureListPage>("deleteLink"){
 			@Override
 			public void onClick() {
