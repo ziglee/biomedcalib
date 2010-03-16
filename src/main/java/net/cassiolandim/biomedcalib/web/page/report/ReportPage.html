@@ -9,46 +9,125 @@
         <a wicket:id="adminHomeLink">[home]</a>
         <hr/>
         
-        Laboratório: <span wicket:id="laboratory" />
+        <table width="100%">
+	    	<tr>
+	    		<td>
+	    			Laboratório: <span wicket:id="laboratory">[nome lab]</span><br>
+	    			Analista responsável: <span wicket:id="loggedUser">[logged user]</span>
+	    		</td>
+	    		<td align="right">
+	    			<img wicket:id="bothCardImage"/>
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<td align="right" colspan="2">
+	    			Período: de [dataInicio] à [dataFim]
+	    		</td>
+	    	</tr>
+	    </table>
+        
         
         <table border="1">
         	<tr>
         		<td>
+        			<table>
+        				<tr>
+        					<td>
+        						--
+        					</td>
+        				</tr>
+        				<tr>
+        					<td>
+        						Média em uso
+        					</td>
+        				</tr>
+        				<tr>
+        					<td>
+        						Desvio padrão em uso
+        					</td>
+        				</tr>
+        				<tr>
+        					<td>
+        						Média corrente
+        					</td>
+        				</tr>
+        				<tr>
+        					<td>
+        						Desvio padrão corrente
+        					</td>
+        				</tr>
+        				<tr>
+        					<td>
+        						Coeficiente de variação corrente
+        					</td>
+        				</tr>
+        			</table>
         		</td>
-        		<div wicket:id="levelsView">
-        			<th>
-        				Nível <span wicket:id="name"></span>
-        			</th>
-        		</div>
+        		<td wicket:id="controlSerums">
+        			<table>
+        				<tr>
+	        				<td>
+	        					Nível <span wicket:id="index">[index]</span>
+	        				</td>
+        				</tr>
+        				<tr>
+	        				<td wicket:id="meanInUse">
+	        				</td>
+        				</tr>
+        				<tr>
+	        				<td wicket:id="standardDeviationInUse">
+	        				</td>
+        				</tr>
+        				<tr>
+	        				<td wicket:id="meanCurrent">
+	        				</td>
+        				</tr>
+        				<tr>
+	        				<td wicket:id="standardDeviationCurrent">
+	        				</td>
+        				</tr>
+        				<tr>
+	        				<td wicket:id="cofficientOfVariationCurrent">
+	        				</td>
+        				</tr>
+        			</table>
+        		</td>
+        	</tr>
+        </table>
+        
+        <table>
+        	<tr>
+        		<th>
+        			CA
+        		</th>
+        		<th wicket:id="measuresColumns" align="center">
+        			Nível <span wicket:id="label">[index]</span>
+        		</th>
         	</tr>
         	<tr>
         		<td>
+        			<table>
+        				<tr wicket:id="indexRows" valign="top">
+        					<td wicket:id="label" align="right">[label]</td>
+        				</tr>
+        			</table>
         		</td>
-        		<div wicket:id="controlSerumsView">
-        			<th>
-        				<span wicket:id="name"></span>
-        			</th>
-        		</div>
+        		
+        		<td wicket:id="measuresAggregates" valign="top">
+        			<table>
+        				<tr wicket:id="measuresRows">
+        					<td wicket:id="label" align="right">[label]</td>
+        				</tr>
+        			</table>
+        		</td>
         	</tr>
-        	<tr>
+        </table>
+        
+        <table>
+        	<tr wicket:id="chartsView">
         		<td>
-        			Média em uso
+        			<img wicket:id="lineChart"/>
         		</td>
-        		<div wicket:id="meansView">
-        			<td align="right">
-        				<span wicket:id="mean"></span>
-        			</td>
-        		</div>
-        	</tr>
-        	<tr>
-        		<td>
-        			Desvio padrão em uso
-        		</td>
-        		<div wicket:id="sdsView">
-        			<td align="right">
-        				<span wicket:id="sd"></span>
-        			</td>
-        		</div>
         	</tr>
         </table>
 	</body>
