@@ -6,8 +6,6 @@ package net.cassiolandim.biomedcalib.math;
  */
 public abstract class MyMath {
 	
-	private MyMath() {}
-	
 	/**
 	 * Calculates de coefficient of variation of the
 	 * standard deviantion and the mean

@@ -8,13 +8,12 @@ import net.cassiolandim.biomedcalib.web.page.AdminBasePage;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.apache.wicket.util.upload.FileItemFactory;
+import org.apache.wicket.validation.validator.RangeValidator;
 import org.apache.wicket.validation.validator.StringValidator;
 
 /**
@@ -43,6 +42,12 @@ public class LaboratoryEditPage extends AdminBasePage {
 		name.setRequired(true);
 		name.add(StringValidator.maximumLength(50));
 		form.add(name);
+		
+		TextField<Integer> doublePrecision = new TextField<Integer>("doublePrecision", new PropertyModel<Integer>(laboratory, "doublePrecision"));
+		doublePrecision.setLabel(new ResourceModel("doublePrecision"));
+		doublePrecision.setRequired(true);
+		doublePrecision.add(new RangeValidator<Integer>(0, 10));
+		form.add(doublePrecision);
 
 		final FileUploadField logomark = new FileUploadField("logomark");
 		form.add(logomark);
@@ -50,7 +55,7 @@ public class LaboratoryEditPage extends AdminBasePage {
 		Button save = new Button("save"){
 			@Override
 			public void onSubmit() {
-				if(logomark.getFileUpload()!=null){
+				if(logomark.getFileUpload() != null){
 					laboratory.setLogomark(logomark.getFileUpload().getBytes());
 				}
 				laboratoryPersistableService.save(laboratory);

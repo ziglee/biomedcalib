@@ -53,6 +53,7 @@ public class TestLaboratoryNewPage {
 	public void clickSaveButton() {
 		FormTester formTester = tester.newFormTester("form");
 		formTester.setValue("name", "PDCA");
+		formTester.setValue("doublePrecision", "2");
 		
 		Assert.assertFalse(laboratoryFixture.getLaboratoryData().isLaboratoryDaoSaveCalled());
 		

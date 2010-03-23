@@ -97,6 +97,9 @@ public class TestControlSerumEditPage {
 		formTester.setValue("maximum", "100");
 		formTester.setValue("standardDeviation", "15");
 		formTester.setValue("coefficientOfVariation", "50");
+		formTester.setValue("expiration", "01/02/2003");
+		formTester.setValue("deployment", "01/02/2003");
+		formTester.setValue("manufacturer", "BMW");
 		
 		Assert.assertFalse(controlSerumFixture.getControlSerumData().isControlSerumDaoSaveCalled());
 		

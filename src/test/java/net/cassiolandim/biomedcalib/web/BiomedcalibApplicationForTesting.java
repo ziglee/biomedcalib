@@ -35,6 +35,7 @@ public class BiomedcalibApplicationForTesting extends BaseBiomedcalibApplication
 		user.setAdmin(true);
 		Laboratory laboratory = new Laboratory();
 		laboratory.setName("Lab teste");
+		laboratory.setDoublePrecision(2);
 		user.setLaboratory(laboratory);
 		biomedcalibSession.setUser(user);
 		return biomedcalibSession;

@@ -10,13 +10,14 @@ import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.Measure;
 import net.cassiolandim.biomedcalib.entity.MeasuresAggregate;
 import net.cassiolandim.biomedcalib.service.MeasuresAggregatePersistableService;
+import net.cassiolandim.biomedcalib.util.Constants;
 
 /**
  * @author Cassio Landim
  */
 public class MeasuresDataGenerator {
 
-	private final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+	private final static SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.DATE_PATTERN);
 	
 	public static List<MeasuresAggregate> generateData(MeasuresAggregatePersistableService measuresAggregateService, List<Laboratory> laboratories, List<ControlSerum> controlSerums) throws ParseException{
 		List<MeasuresAggregate> list = new ArrayList<MeasuresAggregate>();
@@ -121,10 +122,7 @@ public class MeasuresDataGenerator {
 		return list;
 	}
 	
-	private static Measure createMeasure(MeasuresAggregate ma, String date, double value) throws ParseException{
-		Measure measure = new Measure(ma);
-		measure.setDate(dateFormat.parse(date));
-		measure.setValue(value);
-		return measure;
+	public static Measure createMeasure(MeasuresAggregate ma, String date, double value) throws ParseException{
+		return new Measure(ma, dateFormat.parse(date), value);
 	}
 }

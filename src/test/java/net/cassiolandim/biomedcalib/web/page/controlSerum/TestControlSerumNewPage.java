@@ -70,6 +70,9 @@ public class TestControlSerumNewPage {
 		formTester.setValue("standardDeviation", "15");
 		formTester.setValue("coefficientOfVariation", "50");
 		formTester.select("laboratory", 2);
+		formTester.setValue("expiration", "01/02/2003");
+		formTester.setValue("deployment", "01/02/2003");
+		formTester.setValue("manufacturer", "BMW");
 		
 		Assert.assertFalse(controlSerumFixture.getControlSerumData().isControlSerumDaoSaveCalled());
 		

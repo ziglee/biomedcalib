@@ -66,6 +66,8 @@ public class TestUserNewPage {
 		FormTester formTester = tester.newFormTester("form");
 		formTester.select("laboratory", 2);
 		formTester.setValue("name", "Novo nome");
+		formTester.setValue("login", "Login nome");
+		formTester.setValue("password", "123456");
 		formTester.select("active", 0);
 		formTester.select("admin", 1);
 		

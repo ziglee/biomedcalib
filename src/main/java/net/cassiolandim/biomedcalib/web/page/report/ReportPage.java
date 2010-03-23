@@ -2,6 +2,7 @@ package net.cassiolandim.biomedcalib.web.page.report;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,8 @@ public class ReportPage extends AdminBasePage {
 
 	@SpringBean(name = "measuresAggregatePersistableService")
 	private MeasuresAggregatePersistableService measuresAggregatePersistableService;
+	private NumberFormat numberFormat;
+	Laboratory laboratory;
 	
 	List<MeasuresAggregate> measuresAggregates = new ArrayList<MeasuresAggregate>();
 	
@@ -41,6 +44,9 @@ public class ReportPage extends AdminBasePage {
 			int size = measures.size();
 			if(size > biggestMeasuresListSize) biggestMeasuresListSize = size;
 		}
+		
+		laboratory = measuresAggregates.get(0).getLaboratory();
+		numberFormat = laboratory.getNumberFormat(getLocale());
 
 		addAdminHomeLink();
 		addLaboratoryNameAndLogomark();
@@ -52,21 +58,27 @@ public class ReportPage extends AdminBasePage {
 		addChartsViews(ids);
 	}
 
-	private void addMeasuresAggregatesRows() {
-		ListView<MeasuresAggregate> measuresAggregatesRows = new ListView<MeasuresAggregate>("measuresAggregates", measuresAggregates) {
-			@Override
-			protected void populateItem(ListItem<MeasuresAggregate> item) {
-				final MeasuresAggregate measuresAggregate = item.getModelObject();
-				ListView<Measure> measureRow = new ListView<Measure>("measuresRows", measuresAggregate.getMeasures()) {
-					@Override
-					protected void populateItem(ListItem<Measure> item) {
-						item.add(new Label("label", item.getModelObject().getValue().toString()));
-					}
-				};
-				item.add(measureRow);
+	private void addLaboratoryNameAndLogomark() {
+		add(new Label("laboratory", laboratory.getName()));
+		
+		byte[] logomarkBytes = laboratory.getLogomark();
+		if(logomarkBytes != null && logomarkBytes.length > 0){
+	        try {
+	        	final BufferedDynamicImageResource resource = new BufferedDynamicImageResource(); 
+	            java.awt.image.BufferedImage image = ImageIO.read(new ByteArrayInputStream(logomarkBytes));
+		        resource.setImage(image); 
+		        add(new Image("bothCardImage", resource)); 
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		};
-		add(measuresAggregatesRows);
+		}else{
+			add(new Image("bothCardImage", new Model<String>("blank.gif")));
+		}
+	}
+
+	private void addResponsableAnalyst() {
+		Label loggedUser = new Label("loggedUser", new Model<String>(BiomedcalibSession.get().getUser().getName()));
+		add(loggedUser);
 	}
 
 	private void addControlSerums() {
@@ -77,24 +89,14 @@ public class ReportPage extends AdminBasePage {
 				ControlSerum controlSerum = measuresAggregate.getControlSerum();
 				
 				item.add(new Label("index", Integer.toString(item.getIndex() + 1)));
-				item.add(new Label("meanInUse", Double.toString(controlSerum.getMean())));
-				item.add(new Label("standardDeviationInUse", Double.toString(controlSerum.getStandardDeviation())));
-				item.add(new Label("meanCurrent", Double.toString(measuresAggregate.getMean())));
-				item.add(new Label("standardDeviationCurrent", Double.toString(measuresAggregate.getStandardDeviation())));
-				item.add(new Label("cofficientOfVariationCurrent", Double.toString(measuresAggregate.getCofficientOfVariation())));
+				item.add(new Label("meanInUse", numberFormat.format(controlSerum.getMean())));
+				item.add(new Label("standardDeviationInUse", numberFormat.format(controlSerum.getStandardDeviation())));
+				item.add(new Label("meanCurrent", numberFormat.format(measuresAggregate.getMean())));
+				item.add(new Label("standardDeviationCurrent", numberFormat.format(measuresAggregate.getStandardDeviation())));
+				item.add(new Label("cofficientOfVariationCurrent", numberFormat.format(measuresAggregate.getCofficientOfVariation())));
 			}
 		};
 		add(controlSerumsView);
-	}
-
-	private void addMeasuresColumns(List<Long> ids) {
-		ListView<Long> measuresColumns = new ListView<Long>("measuresColumns", ids) {
-			@Override
-			protected void populateItem(ListItem<Long> item) {
-				item.add(new Label("label", Integer.toString(item.getIndex() + 1)));
-			}
-		};
-		add(measuresColumns);
 	}
 
 	private void addIndexRows(int biggestMeasuresListSize) {
@@ -112,6 +114,33 @@ public class ReportPage extends AdminBasePage {
 		add(indexRows);
 	}
 
+	private void addMeasuresColumns(List<Long> ids) {
+		ListView<Long> measuresColumns = new ListView<Long>("measuresColumns", ids) {
+			@Override
+			protected void populateItem(ListItem<Long> item) {
+				item.add(new Label("label", Integer.toString(item.getIndex() + 1)));
+			}
+		};
+		add(measuresColumns);
+	}
+
+	private void addMeasuresAggregatesRows() {
+		ListView<MeasuresAggregate> measuresAggregatesRows = new ListView<MeasuresAggregate>("measuresAggregates", measuresAggregates) {
+			@Override
+			protected void populateItem(ListItem<MeasuresAggregate> item) {
+				final MeasuresAggregate measuresAggregate = item.getModelObject();
+				ListView<Measure> measureRow = new ListView<Measure>("measuresRows", measuresAggregate.getMeasures()) {
+					@Override
+					protected void populateItem(ListItem<Measure> item) {
+						item.add(new Label("label", numberFormat.format(item.getModelObject().getValue())));
+					}
+				};
+				item.add(measureRow);
+			}
+		};
+		add(measuresAggregatesRows);
+	}
+
 	private void addChartsViews(List<Long> ids) {
 		ListView<Long> chartsViews = new ListView<Long>("chartsView", ids) {
 			@Override
@@ -121,29 +150,5 @@ public class ReportPage extends AdminBasePage {
 			}
 		};
 		add(chartsViews);
-	}
-
-	private void addResponsableAnalyst() {
-		Label loggedUser = new Label("loggedUser", new Model<String>(BiomedcalibSession.get().getUser().getName()));
-		add(loggedUser);
-	}
-
-	private void addLaboratoryNameAndLogomark() {
-		Laboratory laboratory = measuresAggregates.get(0).getLaboratory();
-		add(new Label("laboratory", laboratory.getName()));
-		
-		byte[] logomarkBytes = laboratory.getLogomark();
-		if(logomarkBytes != null && logomarkBytes.length > 0){
-	        try {
-	        	final BufferedDynamicImageResource resource = new BufferedDynamicImageResource(); 
-	            java.awt.image.BufferedImage image = ImageIO.read(new ByteArrayInputStream(logomarkBytes));
-		        resource.setImage(image); 
-		        add(new Image("bothCardImage", resource)); 
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}else{
-			add(new Image("bothCardImage", new Model<String>("blank.gif")));
-		}
 	}
 }

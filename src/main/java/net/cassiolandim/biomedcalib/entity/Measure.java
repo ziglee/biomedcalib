@@ -30,6 +30,12 @@ public class Measure extends BaseEntity<Measure>{
 		setMeasureAggregate(measureAggregate);
 	}
 	
+	public Measure(MeasuresAggregate measureAggregate, Date date, Double value) {
+		this(measureAggregate);
+		setDate(date);
+		setValue(value);
+	}
+	
 	@Id
 	@Column(name="id_measure")
 	@GeneratedValue(strategy=GenerationType.AUTO)

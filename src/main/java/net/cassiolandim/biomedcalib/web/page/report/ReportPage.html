@@ -1,33 +1,33 @@
 <html xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" >
-    <head>  
+    <head>
         <title>Biomedcalib - Relatório</title>
     </head>
     <body>
+    	<wicket:extend>
         <strong>Relatório de corridas</strong>
         <hr/>
         
         <a wicket:id="adminHomeLink">[home]</a>
         <hr/>
         
-        <table width="100%">
-	    	<tr>
-	    		<td>
-	    			Laboratório: <span wicket:id="laboratory">[nome lab]</span><br>
-	    			Analista responsável: <span wicket:id="loggedUser">[logged user]</span>
-	    		</td>
-	    		<td align="right">
-	    			<img wicket:id="bothCardImage"/>
-	    		</td>
-	    	</tr>
-	    	<tr>
-	    		<td align="right" colspan="2">
-	    			Período: de [dataInicio] à [dataFim]
-	    		</td>
-	    	</tr>
-	    </table>
+   		<div id="labLogo">
+   			<img wicket:id="bothCardImage"/>
+   		</div>
+	    		
+   		<div>
+   			Laboratório:
+   			<span wicket:id="laboratory">[nome lab]</span>
+   		</div>
+   		<div>
+   			Analista responsável:
+   			<span wicket:id="loggedUser">[logged user]</span>
+   		</div>
+   		
+   		<div>
+   			Período: de [dataInicio] à [dataFim]
+	    </div>
         
-        
-        <table border="1">
+        <table>
         	<tr>
         		<td>
         			<table>
@@ -63,31 +63,32 @@
         				</tr>
         			</table>
         		</td>
+        		
         		<td wicket:id="controlSerums">
         			<table>
         				<tr>
 	        				<td>
-	        					Nível <span wicket:id="index">[index]</span>
+	        					Nível <span wicket:id="index">1</span>
 	        				</td>
         				</tr>
         				<tr>
-	        				<td wicket:id="meanInUse">
+	        				<td wicket:id="meanInUse" align="right">
 	        				</td>
         				</tr>
         				<tr>
-	        				<td wicket:id="standardDeviationInUse">
+	        				<td wicket:id="standardDeviationInUse" align="right">
 	        				</td>
         				</tr>
         				<tr>
-	        				<td wicket:id="meanCurrent">
+	        				<td wicket:id="meanCurrent" align="right">
 	        				</td>
         				</tr>
         				<tr>
-	        				<td wicket:id="standardDeviationCurrent">
+	        				<td wicket:id="standardDeviationCurrent" align="right">
 	        				</td>
         				</tr>
         				<tr>
-	        				<td wicket:id="cofficientOfVariationCurrent">
+	        				<td wicket:id="cofficientOfVariationCurrent" align="right">
 	        				</td>
         				</tr>
         			</table>
@@ -130,5 +131,6 @@
         		</td>
         	</tr>
         </table>
+        </wicket:extend>
 	</body>
 </html>

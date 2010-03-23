@@ -1,5 +1,7 @@
 package net.cassiolandim.biomedcalib.web;
 
+import java.text.NumberFormat;
+
 import net.cassiolandim.biomedcalib.entity.Laboratory;
 import net.cassiolandim.biomedcalib.entity.User;
 
@@ -14,6 +16,7 @@ public class BiomedcalibSession extends WebSession {
 
 	private static final long serialVersionUID = 1L;
 	private User user;
+	private NumberFormat numberFormat;
 	
 	public BiomedcalibSession(Request request) {
 		super(request);
@@ -29,6 +32,7 @@ public class BiomedcalibSession extends WebSession {
 	
 	public synchronized void setUser(User user) {
 		this.user = user;
+		this.numberFormat = user.getLaboratory().getNumberFormat(getLocale());
 	}
 	
 	public synchronized Laboratory getLaboratory() {
@@ -41,5 +45,9 @@ public class BiomedcalibSession extends WebSession {
 	
 	public boolean isAdmin(){
 		return (isAuthenticated() && user.getAdmin());
+	}
+	
+	public NumberFormat getNumberFormat(){
+		return numberFormat;
 	}
 }

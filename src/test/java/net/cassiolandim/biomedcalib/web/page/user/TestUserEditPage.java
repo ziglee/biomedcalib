@@ -110,6 +110,7 @@ public class TestUserEditPage {
 		FormTester formTester = tester.newFormTester("form");
 		formTester.select("laboratory", 2);
 		formTester.setValue("name", "Nome alterado");
+		formTester.setValue("password", "123456");
 		
 		Assert.assertFalse(userFixture.getUserData().isUserDaoSaveCalled());
 		

@@ -3,6 +3,7 @@
         <title>Biomedcalib - Edição de Laboratório</title>
     </head>
     <body>
+    	<wicket:extend>
         <strong>Edição de Laboratório</strong>
         <hr/>
         
@@ -26,6 +27,15 @@
 	        	
 	        	<tr>
 	        		<td>
+	        			Precisão de casas decimais:
+	        		</td>
+	        		<td>
+	        			<input wicket:id="doublePrecision"/>
+	        		</td>
+	        	</tr>
+	        	
+	        	<tr>
+	        		<td>
 	        			Logomarca:
 	        		</td>
 	        		<td>
@@ -40,5 +50,6 @@
 	        	</tr>
 	        </table>
         </form>
+        </wicket:extend>
     </body>
 </html>
