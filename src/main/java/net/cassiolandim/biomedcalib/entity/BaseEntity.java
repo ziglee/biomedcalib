@@ -21,12 +21,16 @@ public abstract class BaseEntity<T> implements Serializable, HasId, Comparable<T
 			return true;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
-		if (getId() == null) {
-			if (other.getId() != null)
+		
+		if(obj instanceof BaseEntity){
+			BaseEntity other = (BaseEntity) obj;
+			if (getId() == null) {
+				if (other.getId() != null)
+					return false;
+			} else if (!getId().equals(other.getId()))
 				return false;
-		} else if (!getId().equals(other.getId()))
-			return false;
+		}
+		
 		return true;
 	}
 }
