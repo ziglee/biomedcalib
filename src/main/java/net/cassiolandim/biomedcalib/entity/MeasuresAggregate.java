@@ -1,6 +1,5 @@
 package net.cassiolandim.biomedcalib.entity;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
