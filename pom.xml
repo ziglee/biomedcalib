@@ -37,6 +37,9 @@
 			<id>cassiolandim</id>
 			<email>ziglee at gmail.com</email>
 		</developer>
+		<developer>
+			<name>Cintia Landim Ribeiro</name>
+		</developer>
 	</developers>
 	
 	<distributionManagement>
